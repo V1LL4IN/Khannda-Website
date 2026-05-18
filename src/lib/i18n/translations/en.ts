@@ -12,41 +12,72 @@ export const en: Translations = {
         startProject: "Start Project",
     },
 
-    // Hero Section
+    // Hero Section — H1d Outcome Dark
     hero: {
-        title: "Software that evolves",
-        subtitle: "with your business.",
-        description: "We design and develop custom digital ecosystems. From secure financial systems to efficient operational management.",
-        cta: "Get a Quote",
-        rating: "Trusted by financial institutions.",
+        statusEst: "Khannda — est. 2019",
+        statusCount: "50+ systems in production",
+        eyebrow: "· Custom software engineering",
+        titleLine1: "Build the",
+        titleHighlight: "next",
+        titleLine2: "system",
+        titleLine3: "that will outlast you.",
+        description: "We design and operate software for companies that scale. Without rewriting anything in three years.",
+        cta: "Book a diagnostic",
+        ctaSecondary: "See how we work",
+        sectors: "Fintech · Logistics · Retail · Health",
+        scroll: "scroll ↓",
     },
 
-    // About Section
+    // About Section — A1 Layered Stack
     about: {
-        badge: "Why KHANNDA",
+        eyebrow: "Why Khannda · 01",
         title: "Invisible",
-        titleHighlight: "Architecture",
-        subtitle: "The technology that powers your business shouldn't be visible. It should simply work. We design systems that adapt to you, not the other way around.",
-        values: {
-            growth: {
-                title: "Tangible Results",
-                description: "We don't talk about technology. We talk about your revenue, your efficiency, and your growth.",
+        titleHighlight: "Architecture.",
+        subtitle: "Your customer only sees the screen. Behind it run five layers we design, operate, and guarantee. Hover any of them.",
+        layers: [
+            {
+                name: "Experience",
+                tag: "UX · UI · Performance",
+                own: "All your user ever sees. Loads in under 1.2s, accessible, offline-ready.",
+                stack: ["Next.js", "React Native", "Framer Motion", "WCAG AA"],
+                metric: "+34%",
+                metricLabel: "conversion post-redesign",
             },
-            architecture: {
-                title: "Liquid Architecture",
-                description: "Systems that mold to your business model and scale with you without friction.",
+            {
+                name: "API Surface",
+                tag: "Gateway · Auth · Contract",
+                own: "A single versioned surface. Your team and your partners speak the same language.",
+                stack: ["tRPC", "GraphQL Federation", "OAuth 2.1", "OpenAPI 3.1"],
+                metric: "< 80ms",
+                metricLabel: "global p95 · 6 regions",
             },
-            quality: {
-                title: "Incremental Deliveries",
-                description: "Visible progress every week. Continuous validation of each feature.",
+            {
+                name: "Business Logic",
+                tag: "Microservices · Events · Workflows",
+                own: "Where your business model lives. Isolated, tested, observable, replaceable.",
+                stack: ["Node 22", "Go", "Temporal", "Kafka", "SQS"],
+                metric: "94%",
+                metricLabel: "test coverage · main",
             },
-        },
-        dashboard: {
-            newVisitors: "New Visitors",
-            activeUsers: "Active Users",
-            monthlyRevenue: "Monthly Revenue",
-            dailyGrowth: "Daily Growth",
-        },
+            {
+                name: "Data",
+                tag: "OLTP · Warehouse · Cache",
+                own: "Multi-region replication, verified backups, RTO < 15 min, RPO < 1 min.",
+                stack: ["Postgres 16", "Redis", "ClickHouse", "dbt"],
+                metric: "99.99%",
+                metricLabel: "annualized durability",
+            },
+            {
+                name: "Security",
+                tag: "Zero-trust · Audit · Compliance",
+                own: "E2E encryption, rotated secrets, immutable audit log, real-time alerts.",
+                stack: ["mTLS", "Vault", "SIEM", "PCI-DSS", "SOC 2"],
+                metric: "0",
+                metricLabel: "Sev-1 incidents · 24m",
+            },
+        ],
+        footerNote: "5 layers · 1 SLA contract · zero monoliths",
+        footerCta: "See reference architecture →",
     },
 
     // Services Section
