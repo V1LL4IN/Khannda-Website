@@ -10,9 +10,10 @@ const COLOR_A = new THREE.Color('#8a3c86');
 const COLOR_B = new THREE.Color('#c87bbf');
 const COLOR_C = new THREE.Color('#592355');
 
-// Idle colors blend almost into each background so out-of-halo dashes feel quiet.
-const COLOR_IDLE_LIGHT = new THREE.Color('#cfc8c4');
-const COLOR_IDLE_DARK = new THREE.Color('#22202a');
+// Idle colors carry contrast against each background so out-of-halo dashes
+// stay visible — Medusae assumed white-only, so dark mode needs a bright idle.
+const COLOR_IDLE_LIGHT = new THREE.Color('#3a2d44'); // muted plum on cream
+const COLOR_IDLE_DARK = new THREE.Color('#d8c4dc'); // pale lilac on near-black
 
 const VERTEX_SHADER = /* glsl */ `
     uniform float uTime;
@@ -145,8 +146,8 @@ export const ParticleField = ({ isDark, columns, rows, dragFactor }: ParticleFie
             uColorB: { value: COLOR_B.clone() },
             uColorC: { value: COLOR_C.clone() },
             uColorIdle: { value: (isDark ? COLOR_IDLE_DARK : COLOR_IDLE_LIGHT).clone() },
-            uIdleAlpha: { value: isDark ? 0.32 : 0.55 },
-            uActiveAlpha: { value: isDark ? 0.95 : 0.92 },
+            uIdleAlpha: { value: isDark ? 0.55 : 0.6 },
+            uActiveAlpha: { value: 0.98 },
         }),
         // We intentionally only build this once; theme updates patched in below via useEffect.
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,8 +157,8 @@ export const ParticleField = ({ isDark, columns, rows, dragFactor }: ParticleFie
     // Keep idle color + alphas in sync with theme without rebuilding the material.
     useEffect(() => {
         uniforms.uColorIdle.value.copy(isDark ? COLOR_IDLE_DARK : COLOR_IDLE_LIGHT);
-        uniforms.uIdleAlpha.value = isDark ? 0.32 : 0.55;
-        uniforms.uActiveAlpha.value = isDark ? 0.95 : 0.92;
+        uniforms.uIdleAlpha.value = isDark ? 0.55 : 0.6;
+        uniforms.uActiveAlpha.value = 0.98;
     }, [isDark, uniforms]);
 
     const material = useMemo(

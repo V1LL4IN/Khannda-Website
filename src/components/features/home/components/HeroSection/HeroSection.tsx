@@ -76,12 +76,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
                         <span
                             className="font-medium italic"
                             style={{
-                                background: isDark
+                                backgroundImage: isDark
                                     ? 'linear-gradient(135deg, #c87bbf, #8a3c86)'
                                     : 'linear-gradient(135deg, #592355, #8a3c86)',
                                 WebkitBackgroundClip: 'text',
                                 backgroundClip: 'text',
-                                color: 'transparent',
+                                WebkitTextFillColor: 'transparent',
                             }}
                         >
                             {t.hero.titleEmphasis}
