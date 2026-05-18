@@ -1,19 +1,15 @@
 export type AntigravityBackgroundProps = {
     className?: string;
-    /** Inner ring radius in px (closest ring to center). Default 100. */
-    ringRadius?: number;
-    /** Radial span from innermost to outermost ring in px. Default 600. */
-    ringThickness?: number;
-    /** Particles per concentric ring. Default 80. */
+    /** Inverts the palette and base coloring for dark-mode pages. */
+    isDark?: boolean;
+    /** Number of dash particles. Default 700. */
     particleCount?: number;
-    /** Number of concentric rings. Default 25. */
-    particleRows?: number;
-    /** Dot size in px. Default 2. */
-    particleSize?: number;
-    /** Dot color (CSS color string). Default "#ffffff". */
-    particleColor?: string;
-    /** Whether to slowly rotate the field. Default true. */
-    animate?: boolean;
-    /** Background color behind the dots. Default "transparent". */
-    background?: string;
+    /** Dash length in px. Default 6. */
+    particleLength?: number;
+    /** Dash stroke width in px. Default 1.6. */
+    particleWidth?: number;
+    /** Radius (px) around the cursor where particles are repelled. Default 140. */
+    cursorRadius?: number;
+    /** Maximum displacement (px/frame) applied at the cursor center. Default 0.6 — kept subtle on purpose. */
+    cursorForce?: number;
 };
