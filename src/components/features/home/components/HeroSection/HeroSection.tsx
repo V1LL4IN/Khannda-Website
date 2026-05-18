@@ -23,23 +23,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
                 isDark ? 'bg-[#0a0a0c] text-white' : 'bg-[#fafaf7] text-[#0a0a0a]'
             )}
         >
-            {/* Antigravity dash-particle field */}
+            {/* Antigravity halo particle field (R3F + GLSL) */}
             <div className="absolute inset-0 w-full h-full pointer-events-none">
                 <AntigravityBackground
                     isDark={isDark}
-                    particleCount={700}
-                    particleLength={6}
-                    particleWidth={1.6}
-                    cursorRadius={140}
-                    cursorForce={0.6}
+                    dragFactor={0.06}
                 />
-                {/* Soft radial vignette over particles so the headline reads cleanly */}
+                {/* Soft radial vignette so the headline reads cleanly over the halo */}
                 <div
                     className={cn(
-                        'absolute inset-0',
-                        isDark
-                            ? '[mask-image:radial-gradient(ellipse_60%_55%_at_50%_50%,black_15%,transparent_75%)] bg-[#0a0a0c]/0'
-                            : '[mask-image:radial-gradient(ellipse_60%_55%_at_50%_50%,black_15%,transparent_75%)] bg-[#fafaf7]/0'
+                        'absolute inset-0 [mask-image:radial-gradient(ellipse_55%_50%_at_50%_50%,black_15%,transparent_75%)]',
+                        isDark ? 'bg-[#0a0a0c]/0' : 'bg-[#fafaf7]/0',
                     )}
                 />
             </div>

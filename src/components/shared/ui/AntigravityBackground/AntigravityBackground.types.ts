@@ -1,15 +1,20 @@
 export type AntigravityBackgroundProps = {
     className?: string;
-    /** Inverts the palette and base coloring for dark-mode pages. */
+    /** Inverts the palette and idle color for dark-mode pages. */
     isDark?: boolean;
-    /** Number of dash particles. Default 700. */
-    particleCount?: number;
-    /** Dash length in px. Default 6. */
-    particleLength?: number;
-    /** Dash stroke width in px. Default 1.6. */
-    particleWidth?: number;
-    /** Radius (px) around the cursor where particles are repelled. Default 140. */
-    cursorRadius?: number;
-    /** Maximum displacement (px/frame) applied at the cursor center. Default 0.6 — kept subtle on purpose. */
-    cursorForce?: number;
+    /** Grid columns. Default 100 (60 on mobile). */
+    columns?: number;
+    /** Grid rows. Default 55 (35 on mobile). */
+    rows?: number;
+    /** How fast the halo center catches up to the cursor (0..1). Default 0.06. */
+    dragFactor?: number;
+    /** [minDpr, maxDpr] for the canvas. Default [1, 2]. */
+    dprRange?: [number, number];
+};
+
+export type ParticleFieldProps = {
+    isDark: boolean;
+    columns: number;
+    rows: number;
+    dragFactor: number;
 };
