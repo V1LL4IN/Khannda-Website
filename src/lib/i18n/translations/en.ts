@@ -14,8 +14,6 @@ export const en: Translations = {
 
     // Hero Section — H1d Outcome Dark
     hero: {
-        statusEst: "Khannda — est. 2019",
-        statusCount: "50+ systems in production",
         eyebrow: "· Custom software engineering",
         titleBefore: "Custom software,",
         titleEmphasis: "built",

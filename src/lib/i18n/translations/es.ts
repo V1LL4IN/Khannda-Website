@@ -12,8 +12,6 @@ export const es = {
 
     // Hero Section — H1d Outcome Dark
     hero: {
-        statusEst: "Khannda — est. 2019",
-        statusCount: "50+ sistemas en producción",
         eyebrow: "· Ingeniería de software a medida",
         titleBefore: "Desarrollo de software",
         titleEmphasis: "a medida",

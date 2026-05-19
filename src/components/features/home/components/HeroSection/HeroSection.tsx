@@ -38,23 +38,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
                 />
             </div>
 
-            {/* Top status bar */}
-            <div
-                className={cn(
-                    'relative z-10 flex justify-between items-center px-6 sm:px-14 py-5 text-[10px] font-mono uppercase tracking-[0.18em]',
-                    isDark ? 'text-white/40' : 'text-neutral-500'
-                )}
-            >
-                <span className="flex items-center gap-2">
-                    <span
-                        className="w-[5px] h-[5px] rounded-full bg-emerald-500"
-                        style={{ boxShadow: '0 0 6px #10b981' }}
-                    />
-                    {t.hero.statusEst}
-                </span>
-                <span className="hidden sm:inline">{t.hero.statusCount}</span>
-            </div>
-
             {/* Centered composition */}
             <div className="relative z-10 flex-1 flex items-center justify-center px-6 sm:px-14 py-12">
                 <div className="text-center max-w-[1100px] mx-auto">
