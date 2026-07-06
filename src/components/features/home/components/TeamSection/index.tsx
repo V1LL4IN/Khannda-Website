@@ -2,6 +2,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { cn } from '../../../../../lib/utils';
 import { TeamSectionProps, TeamMember } from './TeamSection.types';
 import { useLanguage } from '@/providers/LanguageProvider';
@@ -12,14 +13,13 @@ function TeamMemberContent({ member }: { member: TeamMember; isDark?: boolean })
     <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
       <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-8 items-start">
         {/* Member Photo */}
-        <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden flex-shrink-0 ring-2 ring-[#712F6D]/30">
-          <img
+        <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden flex-shrink-0 ring-2 ring-[#712F6D]/30">
+          <Image
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = '/logo-khannda.png';
-            }}
+            fill
+            sizes="128px"
+            className="object-cover"
           />
         </div>
 
@@ -97,8 +97,8 @@ export function TeamSection({ isDark }: TeamSectionProps) {
 
       {/* Background decorative gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-purple-900/10 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-purple-900/10 rounded-full blur-3xl opacity-50" />
+        <div className="absolute top-1/4 -left-32 w-64 h-64" style={{ background: 'radial-gradient(circle, rgba(88,28,135,0.06) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-1/4 -right-32 w-64 h-64" style={{ background: 'radial-gradient(circle, rgba(88,28,135,0.06) 0%, transparent 70%)' }} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">

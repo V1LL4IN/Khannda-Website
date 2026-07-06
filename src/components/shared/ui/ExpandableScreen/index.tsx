@@ -4,12 +4,14 @@ import {
     createContext,
     useContext,
     useEffect,
+    useRef,
     useState,
     type ReactNode,
+    type RefObject,
 } from "react"
 import { createPortal } from "react-dom"
 import { X } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
 // Context
@@ -22,6 +24,8 @@ interface ExpandableScreenContextValue {
     contentRadius: string
     animationDuration: number
     isDark?: boolean
+    /** true entre expand() y el remontaje del trigger — para devolverle el foco */
+    wasExpandedRef: RefObject<boolean>
 }
 
 const ExpandableScreenContext =
@@ -62,6 +66,7 @@ export function ExpandableScreen({
     isDark = true,
 }: ExpandableScreenProps) {
     const [isExpanded, setIsExpanded] = useState(defaultExpanded)
+    const wasExpandedRef = useRef(false)
 
     // Sync with external state when defaultExpanded changes (controlled mode)
     useEffect(() => {
@@ -69,6 +74,7 @@ export function ExpandableScreen({
     }, [defaultExpanded])
 
     const expand = () => {
+        wasExpandedRef.current = true
         setIsExpanded(true)
         onExpandChange?.(true)
     }
@@ -113,9 +119,12 @@ export function ExpandableScreen({
                 contentRadius,
                 animationDuration,
                 isDark,
+                wasExpandedRef,
             }}
         >
-            {children}
+            {/* reducedMotion='user': con prefers-reduced-motion el morph a
+                pantalla completa se reduce a un fade de opacidad */}
+            <MotionConfig reducedMotion="user">{children}</MotionConfig>
         </ExpandableScreenContext.Provider>
     )
 }
@@ -130,12 +139,25 @@ export function ExpandableScreenTrigger({
     children,
     className = "",
 }: ExpandableScreenTriggerProps) {
-    const { isExpanded, expand, layoutId, triggerRadius } = useExpandableScreen()
+    const { isExpanded, expand, layoutId, triggerRadius, wasExpandedRef } =
+        useExpandableScreen()
+    const triggerRef = useRef<HTMLDivElement>(null)
+
+    // El trigger se desmonta al expandir (AnimatePresence), así que al
+    // colapsar el foco debe volver a su remontaje — no al nodo viejo.
+    useEffect(() => {
+        if (!isExpanded && wasExpandedRef.current) {
+            wasExpandedRef.current = false
+            triggerRef.current
+                ?.querySelector<HTMLElement>("button, a, [tabindex]")
+                ?.focus()
+        }
+    }, [isExpanded, wasExpandedRef])
 
     return (
         <AnimatePresence initial={false}>
             {!isExpanded && (
-                <motion.div className={`inline-block relative ${className}`}>
+                <motion.div ref={triggerRef} className={`inline-block relative ${className}`}>
                     {/* Background layer with shared layoutId for morphing */}
                     <motion.div
                         style={{
@@ -169,23 +191,60 @@ interface ExpandableScreenContentProps {
     className?: string
     showCloseButton?: boolean
     closeButtonClassName?: string
+    ariaLabel?: string
 }
+
+const FOCUSABLE_SELECTOR =
+    'a[href], button:not([disabled]), textarea, input, select, iframe, [tabindex]:not([tabindex="-1"])'
 
 export function ExpandableScreenContent({
     children,
     className = "",
     showCloseButton = true,
     closeButtonClassName = "",
+    ariaLabel = "Diálogo",
 }: ExpandableScreenContentProps) {
     const { isExpanded, collapse, layoutId, contentRadius, animationDuration, isDark } =
         useExpandableScreen()
 
     const [mounted, setMounted] = useState(false)
+    const overlayRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         setMounted(true)
         return () => setMounted(false)
     }, [])
+
+    // Al abrir, el foco entra al diálogo (el trigger ya se desmontó y lo
+    // habría dejado caer a <body>).
+    useEffect(() => {
+        if (!isExpanded) return
+        const t = setTimeout(() => overlayRef.current?.focus(), 50)
+        return () => clearTimeout(t)
+    }, [isExpanded])
+
+    // Trap de Tab: el fondo sigue en el tab order (solo hay scroll-lock),
+    // así que el ciclo debe quedarse dentro del overlay.
+    const trapTab = (e: React.KeyboardEvent) => {
+        if (e.key !== "Tab") return
+        const root = overlayRef.current
+        if (!root) return
+        const focusables = root.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+        if (!focusables.length) {
+            e.preventDefault()
+            return
+        }
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        const active = document.activeElement
+        if (e.shiftKey && (active === first || active === root)) {
+            e.preventDefault()
+            last.focus()
+        } else if (!e.shiftKey && active === last) {
+            e.preventDefault()
+            first.focus()
+        }
+    }
 
     if (!mounted) return null
 
@@ -194,7 +253,13 @@ export function ExpandableScreenContent({
         <AnimatePresence initial={false}>
             {isExpanded && (
                 <motion.div
-                    className="fixed inset-0 z-[9999]"
+                    ref={overlayRef}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={ariaLabel}
+                    tabIndex={-1}
+                    onKeyDown={trapTab}
+                    className="fixed inset-0 z-[9999] outline-none"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

@@ -53,9 +53,9 @@ export const TechStackScreen = () => {
 
     return (
         <div className="w-full h-full bg-gradient-to-br from-neutral-900 via-purple-950/50 to-neutral-900 relative overflow-hidden flex flex-col">
-            {/* Subtle gradient orbs */}
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-blue-500/15 rounded-full blur-3xl" />
+            {/* Subtle gradient orbs (radial-gradient: sin coste de filtro GPU) */}
+            <div className="absolute top-0 left-1/4 w-64 h-64" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.22) 0%, transparent 70%)' }} />
+            <div className="absolute bottom-0 right-1/4 w-48 h-48" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.17) 0%, transparent 70%)' }} />
 
             {/* Header */}
             <div className="px-6 py-4 border-b border-white/10">

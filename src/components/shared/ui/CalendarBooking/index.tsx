@@ -3,12 +3,14 @@
 import React from "react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/providers/LanguageProvider"
 
 interface CalendarBookingProps {
     isDark?: boolean
 }
 
 export function CalendarBooking({ isDark = true }: CalendarBookingProps) {
+    const { t } = useLanguage()
     // Colors based on theme
     const textColor = isDark ? "text-white" : "text-black"
     const textMuted = isDark ? "text-neutral-400" : "text-neutral-600"
@@ -18,45 +20,37 @@ export function CalendarBooking({ isDark = true }: CalendarBookingProps) {
         <div className="relative z-10 flex flex-col lg:flex-row min-h-full w-full items-start p-6 sm:p-10 lg:p-16 gap-8 lg:gap-16">
             <div className="flex-1 flex flex-col justify-center space-y-6 w-full lg:sticky lg:top-0 lg:py-10">
                 <h2 className={cn("text-3xl sm:text-4xl lg:text-5xl font-medium leading-none tracking-[-0.03em]", textColor)}>
-                    Agenda tu llamada
+                    {t.booking.title}
                 </h2>
 
                 <div className="space-y-4 sm:space-y-6 pt-4">
-                    <div className="flex gap-3 sm:gap-4">
-                        <div className={cn("flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center", isDark ? "bg-white/10" : "bg-black/5")}>
-                            <Check className={cn("w-5 h-5 sm:w-6 sm:h-6", textColor)} />
+                    {[t.booking.benefit1, t.booking.benefit2].map((benefit, i) => (
+                        <div key={i} className="flex gap-3 sm:gap-4">
+                            <div className={cn("flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center", isDark ? "bg-white/10" : "bg-black/5")}>
+                                <Check className={cn("w-5 h-5 sm:w-6 sm:h-6", textColor)} />
+                            </div>
+                            <div>
+                                <p className={cn("text-sm sm:text-base leading-[150%]", textColor)}>
+                                    {benefit}
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <p className={cn("text-sm sm:text-base leading-[150%]", textColor)}>
-                                Auditoría de procesos actuales e identificación de cuellos de botella.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex gap-3 sm:gap-4">
-                        <div className={cn("flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center", isDark ? "bg-white/10" : "bg-black/5")}>
-                            <Check className={cn("w-5 h-5 sm:w-6 sm:h-6", textColor)} />
-                        </div>
-                        <div>
-                            <p className={cn("text-sm sm:text-base leading-[150%]", textColor)}>
-                                Plan de acción personalizado para automatizar y escalar tu negocio.
-                            </p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
                 <div className={cn("pt-6 sm:pt-8 mt-6 sm:mt-8 border-t", borderColor)}>
                     <p className={cn("text-lg sm:text-xl lg:text-2xl leading-[150%] mb-4", textColor)}>
-                        &quot;La implementación tecnológica de Khannda optimizó drásticamente nuestros tiempos de respuesta. Un aliado estratégico clave.&quot;
+                        &quot;{t.booking.quote}&quot;
                     </p>
                     <div className="flex items-center gap-3 sm:gap-4">
                         {/* Placeholder for now or use a generic avatar */}
                         <div className={cn("w-10 h-10 sm:w-12 sm:h-12 rounded-full", isDark ? "bg-neutral-800" : "bg-neutral-200")} />
                         <div>
                             <p className={cn("text-base sm:text-lg lg:text-xl", textColor)}>
-                                Cooperativa Terán
+                                {t.booking.quoteAuthor}
                             </p>
                             <p className={cn("text-sm sm:text-base", textMuted)}>
-                                Sector Financiero
+                                {t.booking.quoteRole}
                             </p>
                         </div>
                     </div>

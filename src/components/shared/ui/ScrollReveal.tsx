@@ -34,14 +34,17 @@ export interface ScrollRevealProps {
     viewportMargin?: string;
 }
 
+// Defaults afinados para respuesta ágil: entrada corta (0.45s), desplazamiento
+// sutil (32px) y una sola animación por elemento (once) — re-animar en cada
+// re-entrada al viewport hacía sentir la página lenta.
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
     children,
     className,
     delay = 0,
-    duration = 0.6,
+    duration = 0.45,
     direction = 'up',
-    distance = 80,
-    once = false,
+    distance = 32,
+    once = true,
     viewportMargin = '-50px',
 }) => {
     const prefersReducedMotion = useReducedMotion();

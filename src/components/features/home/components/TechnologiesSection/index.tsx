@@ -18,16 +18,22 @@ export function TechnologiesSection({ isDark }: TechnologiesSectionProps) {
 
     return (
         <section id="tecnologia" className={cn("relative overflow-hidden transition-colors duration-300 bg-background pt-36 pb-8")}>
-            {/* Background Decorations - matching other pages */}
+            {/* Background Decorations — radial-gradient estático (sin blur GPU) */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className={cn("absolute -top-[20%] -right-[10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20", isDark ? "bg-purple-900" : "bg-purple-200")} />
-                <div className={cn("absolute -bottom-[20%] -left-[10%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20", isDark ? "bg-cyan-900" : "bg-cyan-200")} />
+                <div
+                    className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px]"
+                    style={{ background: `radial-gradient(circle, ${isDark ? 'rgba(88,28,135,0.22)' : 'rgba(233,213,255,0.4)'} 0%, transparent 70%)` }}
+                />
+                <div
+                    className="absolute -bottom-[20%] -left-[10%] w-[500px] h-[500px]"
+                    style={{ background: `radial-gradient(circle, ${isDark ? 'rgba(22,78,99,0.22)' : 'rgba(165,243,252,0.4)'} 0%, transparent 70%)` }}
+                />
             </div>
 
             {/* Header Section - matching Solutions/Projects format */}
             <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
                 <div className="text-center max-w-3xl mx-auto mb-5">
-                    <motion.div
+                    <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -39,13 +45,13 @@ export function TechnologiesSection({ isDark }: TechnologiesSectionProps) {
                             words={t.technologies.flipWords}
                         />
                         <span>{t.technologies.titleEnd}</span>
-                    </motion.div>
+                    </motion.h1>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ delay: 0.1 }}
                         className={cn("text-lg", isDark ? "text-neutral-400" : "text-neutral-600")}
                     >
                         {t.technologies.subtitle}

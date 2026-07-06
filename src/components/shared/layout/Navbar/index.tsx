@@ -30,8 +30,15 @@ const Navbar: React.FC<NavbarProps> = ({
 }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const pathname = usePathname();
-    const { language, setLanguage, t } = useLanguage();
+    const pathname = usePathname() ?? '/';
+    const { language, t } = useLanguage();
+
+    // Cambiar de idioma = navegar a la ruta hermana (/, /en/...) conservando
+    // la página actual. Son root layouts distintos: <a> es lo correcto.
+    const prefix = language === 'en' ? '/en' : '';
+    const isEnPath = /^\/en(\/|$)/.test(pathname);
+    const esHref = pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+    const enHref = isEnPath ? pathname : pathname === '/' ? '/en' : `/en${pathname}`;
 
     const WHATSAPP_NUMBER = "593995498636";
 
@@ -58,14 +65,14 @@ const Navbar: React.FC<NavbarProps> = ({
 
     // Navigation items using translations
     const navItems = [
-        { name: t.nav.solutions, link: '/soluciones' },
-        { name: t.nav.projects, link: '/proyectos' },
-        { name: t.nav.technologies, link: '/tecnologia' },
+        { name: t.nav.solutions, link: `${prefix}/soluciones` },
+        { name: t.nav.projects, link: `${prefix}/proyectos` },
+        { name: t.nav.technologies, link: `${prefix}/tecnologia` },
     ];
 
     // Check if a nav item is active
     const isActiveLink = (link: string) => {
-        if (link === '/') return pathname === '/';
+        if (link === '/' || link === '/en') return pathname === link;
         return pathname.startsWith(link);
     };
 
@@ -73,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <React.Fragment>
             {/* 1. Floating Logo - Top Left - Always Visible & Fixed */}
             <div data-navbar className={cn("fixed top-6 left-6 z-50", isDark ? "mix-blend-difference" : "")}>
-                <a href="/" className="flex items-center space-x-3 group">
+                <a href={prefix || '/'} className="flex items-center space-x-3 group">
                     <div className="h-10 w-auto relative transition-transform group-hover:scale-110 duration-300">
                         <Image
                             src="/logo-khannda.png"
@@ -134,10 +141,11 @@ const Navbar: React.FC<NavbarProps> = ({
                     {/* Dividers & Actions */}
                     <div className={cn("w-px h-5 mx-2", isDark ? "bg-white/10" : "bg-black/10")} />
 
-                    {/* Language Toggle */}
+                    {/* Language Toggle — navega a la ruta hermana del otro idioma */}
                     <div className="flex items-center px-2 space-x-2 text-xs font-mono">
-                        <button
-                            onClick={() => setLanguage('es')}
+                        <a
+                            href={esHref}
+                            hrefLang="es"
                             className={cn(
                                 "transition-colors",
                                 language === 'es'
@@ -146,10 +154,11 @@ const Navbar: React.FC<NavbarProps> = ({
                             )}
                         >
                             ES
-                        </button>
+                        </a>
                         <span className={cn(isDark ? "text-neutral-500" : "text-neutral-400")}>|</span>
-                        <button
-                            onClick={() => setLanguage('en')}
+                        <a
+                            href={enHref}
+                            hrefLang="en"
                             className={cn(
                                 "transition-colors",
                                 language === 'en'
@@ -158,7 +167,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             )}
                         >
                             EN
-                        </button>
+                        </a>
                     </div>
 
                     <div className={cn("w-px h-5 mx-2", isDark ? "bg-white/10" : "bg-black/10")} />
@@ -245,8 +254,9 @@ const Navbar: React.FC<NavbarProps> = ({
 
                     {/* Language Toggle for Mobile */}
                     <div className="flex items-center space-x-4 text-lg font-mono">
-                        <button
-                            onClick={() => setLanguage('es')}
+                        <a
+                            href={esHref}
+                            hrefLang="es"
                             className={cn(
                                 "transition-colors px-3 py-1 rounded",
                                 language === 'es'
@@ -255,9 +265,10 @@ const Navbar: React.FC<NavbarProps> = ({
                             )}
                         >
                             ES
-                        </button>
-                        <button
-                            onClick={() => setLanguage('en')}
+                        </a>
+                        <a
+                            href={enHref}
+                            hrefLang="en"
                             className={cn(
                                 "transition-colors px-3 py-1 rounded",
                                 language === 'en'
@@ -266,7 +277,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             )}
                         >
                             EN
-                        </button>
+                        </a>
                     </div>
 
                     <ExpandableScreen isDark={isDark} layoutId="navbar-cta-mobile">

@@ -19,7 +19,16 @@ interface ServicesSectionProps {
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ isDark }) => {
     const darkMode = isDark;
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const p = language === 'en' ? '/en' : '';
+
+    // Detalle indexable por servicio + enlace contextual con anchor de keyword.
+    const serviceDetails = [
+        { ...t.services.items.development, href: `${p}/soluciones` },
+        { ...t.services.items.security, href: `${p}/proyectos` },
+        { ...t.services.items.automation, href: `${p}/soluciones` },
+        { ...t.services.items.consulting, href: `${p}/contacto` },
+    ];
 
     const services = [
         {
@@ -90,6 +99,11 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ isDark }) => {
                         )}>
                             {t.services.subtitle}
                         </p>
+                        <p className={cn("text-sm max-w-2xl mx-auto font-light leading-relaxed mt-4 transition-colors",
+                            darkMode ? "text-neutral-500" : "text-neutral-500"
+                        )}>
+                            {t.services.seoIntro}
+                        </p>
                     </div>
                 </ScrollReveal>
 
@@ -119,6 +133,48 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ isDark }) => {
                         </ScrollReveal>
                     ))}
                 </BentoGrid>
+
+                {/* Detalle por servicio — texto indexable + cross-links con
+                    anchor de keyword hacia /soluciones, /proyectos y /contacto */}
+                <ScrollReveal delay={0.05} direction="up">
+                    <div
+                        className={cn(
+                            "grid md:grid-cols-2 gap-4 mb-16 border-t pt-12",
+                            darkMode ? "border-white/10" : "border-black/10"
+                        )}
+                    >
+                        {serviceDetails.map((service, i) => (
+                            <article
+                                key={i}
+                                className={cn(
+                                    "rounded-2xl border p-6 flex flex-col transition-colors",
+                                    darkMode
+                                        ? "border-white/10 bg-white/[0.02] hover:border-white/20"
+                                        : "border-black/10 bg-white hover:border-black/20"
+                                )}
+                            >
+                                <h3 className={cn("text-lg font-semibold mb-3", darkMode ? "text-white" : "text-neutral-900")}>
+                                    {service.title}
+                                </h3>
+                                <p className={cn("text-sm font-light leading-[1.6] mb-5 flex-1", darkMode ? "text-neutral-400" : "text-neutral-600")}>
+                                    {service.detail}
+                                </p>
+                                <a
+                                    href={service.href}
+                                    className={cn(
+                                        "inline-flex items-center gap-1.5 text-sm font-medium w-fit transition-colors group/link",
+                                        darkMode
+                                            ? "text-purple-300/90 hover:text-purple-200"
+                                            : "text-purple-700 hover:text-purple-900"
+                                    )}
+                                >
+                                    {service.linkText}
+                                    <span className="transition-transform group-hover/link:translate-x-0.5">→</span>
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+                </ScrollReveal>
 
                 {/* Metrics - Technical Style */}
                 <div className={cn("grid md:grid-cols-3 gap-6 border-t pt-12 transition-colors",

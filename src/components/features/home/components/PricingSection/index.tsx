@@ -8,7 +8,7 @@ import { PricingPlan, PricingSectionProps } from './PricingSection.types';
 import { useLanguage } from '@/providers/LanguageProvider';
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ isDark }) => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     // Fallback data if translation is missing or loading
     const plans: PricingPlan[] = [
@@ -63,6 +63,25 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ isDark }) => {
                         <PricingCard key={index} plan={plan} />
                     ))}
                 </div>
+
+                {/* Nota indexable + cross-link a /contacto */}
+                <p className={cn(
+                    "text-sm max-w-2xl mx-auto font-light leading-relaxed text-center mt-16 pt-10 border-t transition-colors",
+                    isDark ? "text-neutral-500 border-white/10" : "text-neutral-500 border-black/10"
+                )}>
+                    {t.pricing.seoNote}{' '}
+                    <a
+                        href={`${language === 'en' ? '/en' : ''}/contacto`}
+                        className={cn(
+                            'border-b pb-0.5 transition-colors',
+                            isDark
+                                ? 'text-purple-300/80 border-purple-300/30 hover:text-purple-200'
+                                : 'text-purple-700 border-purple-300 hover:text-purple-900'
+                        )}
+                    >
+                        {t.pricing.seoLink}
+                    </a>
+                </p>
             </div>
         </section>
     );

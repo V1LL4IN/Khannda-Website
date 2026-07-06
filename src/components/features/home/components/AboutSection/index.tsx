@@ -230,13 +230,14 @@ const LayerRow = ({
 };
 
 export function AboutSection({ isDark }: AboutSectionProps) {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [active, setActive] = useState<number>(2);
 
     const layers = t.about.layers as Layer[];
 
     return (
         <section
+            id="nosotros"
             className={cn(
                 'relative transition-colors duration-300',
                 isDark ? 'bg-neutral-950' : 'bg-[#fafaf9]'
@@ -288,6 +289,29 @@ export function AboutSection({ isDark }: AboutSectionProps) {
                     >
                         {t.about.footerCta}
                     </button>
+                </div>
+
+                {/* Cierre indexable + cross-link a casos de éxito */}
+                <div className={cn('border-t pt-6 mt-2', isDark ? 'border-white/[0.08]' : 'border-black/[0.08]')}>
+                    <p
+                        className={cn(
+                            'text-sm font-light leading-relaxed max-w-3xl',
+                            isDark ? 'text-neutral-500' : 'text-neutral-500'
+                        )}
+                    >
+                        {t.about.seoOutro}{' '}
+                        <a
+                            href={`${language === 'en' ? '/en' : ''}/proyectos`}
+                            className={cn(
+                                'border-b pb-0.5 transition-colors',
+                                isDark
+                                    ? 'text-purple-300/80 border-purple-300/30 hover:text-purple-200'
+                                    : 'text-purple-700 border-purple-300 hover:text-purple-900'
+                            )}
+                        >
+                            {t.about.seoLink}
+                        </a>
+                    </p>
                 </div>
             </div>
         </section>

@@ -110,7 +110,8 @@ import { useLanguage } from "@/providers/LanguageProvider";
 
 export const TechDetailSection = () => {
     const { isDark } = useTheme();
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const p = language === 'en' ? '/en' : '';
 
     const benefitCards = [
         {
@@ -192,7 +193,7 @@ export const TechDetailSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
+                    transition={{ delay: 0.1 }}
                     className="text-center mt-16"
                 >
                     <p className={cn(
@@ -201,10 +202,9 @@ export const TechDetailSection = () => {
                     )}>
                         {t.technologies.details.cta.text}
                     </p>
+                    {/* CTA interno (antes WhatsApp externo): conserva link equity */}
                     <a
-                        href="https://wa.me/593995498636?text=Hola!%20Me%20interesa%20conocer%20más%20sobre%20la%20tecnología%20que%20usan."
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={`${p}/contacto`}
                         className={cn(
                             "inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200",
                             isDark
@@ -214,6 +214,19 @@ export const TechDetailSection = () => {
                     >
                         {t.technologies.details.cta.button} →
                     </a>
+                    <p className="mt-6 text-sm">
+                        <a
+                            href={`${p}/proyectos`}
+                            className={cn(
+                                "border-b pb-0.5 transition-colors",
+                                isDark
+                                    ? "text-purple-300/80 border-purple-300/30 hover:text-purple-200"
+                                    : "text-purple-700 border-purple-300 hover:text-purple-900"
+                            )}
+                        >
+                            {t.technologies.details.crossProjects}
+                        </a>
+                    </p>
                 </motion.div>
             </div>
         </div>

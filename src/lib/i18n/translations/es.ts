@@ -7,22 +7,20 @@ export const es = {
         solutions: "Soluciones",
         projects: "Proyectos",
         technologies: "Tecnologías",
-        startProject: "Start Project",
+        startProject: "Inicia tu proyecto",
     },
 
-    // Hero Section — H1d Outcome Dark
+    // Hero Section — Obra Modular
     hero: {
-        statusEst: "Khannda — est. 2019",
-        statusCount: "50+ sistemas en producción",
-        eyebrow: "· Ingeniería de software a medida",
+        eyebrow: "Khannda · Software a medida · Ecuador → LATAM",
         titleBefore: "Desarrollo de software",
         titleEmphasis: "a medida",
-        titleAfter: "para empresas que escalan.",
-        description: "Diseñamos y operamos software a medida para empresas que escalan. Web, móvil y automatización — sin reescribir nada en tres años.",
+        titleAfter: ", construido pieza por pieza.",
+        description: "Diseñamos y ensamblamos sistemas web, móviles y automatizaciones con n8n que encajan con tu operación — no al revés. Más de 50 sistemas en producción para fintech, logística, retail y salud desde 2019.",
         cta: "Agendar diagnóstico",
-        ctaSecondary: "Ver cómo trabajamos",
-        sectors: "Fintech · Logística · Retail · Salud",
-        scroll: "scroll ↓",
+        ctaSecondary: "Ver proyectos",
+        proof: "Est. 2019 · 50+ sistemas en producción · Fintech / Logística / Retail / Salud",
+        annotation: "MÓDULO N.05 — a medida",
     },
 
     // About Section — A1 Layered Stack
@@ -75,6 +73,8 @@ export const es = {
         ],
         footerNote: "5 capas · 1 contrato SLA · cero monolitos",
         footerCta: "Ver arquitectura referencia →",
+        seoOutro: "Estas cinco capas son la base de más de 50 sistemas en producción que hemos construido desde 2019 para fintech, logística, retail y salud en Ecuador y LATAM.",
+        seoLink: "Míralos en nuestros casos de éxito",
     },
 
     // Services Section
@@ -83,25 +83,34 @@ export const es = {
         title: "Nuestros",
         titleHighlight: "Servicios",
         subtitle: "Ingeniería de software de primer nivel para resolver desafíos de negocio complejos.",
+        seoIntro: "Somos una empresa de desarrollo de software en Ecuador que trabaja para toda LATAM. Cada servicio se cotiza por alcance cerrado y se entrega con código fuente, documentación y soporte incluido.",
         items: {
             development: {
                 title: "Desarrollo a Medida",
                 description: "Arquitectura de software diseñada para escalar. Código limpio, modular y mantenible.",
+                detail: "Desarrollamos aplicaciones web y móviles a medida que encajan con tu operación, no al revés. Un MVP funcional en 4–6 semanas, con arquitectura pensada para escalar desde el primer día.",
+                linkText: "Conoce el desarrollo de software a medida",
                 features: ["Microservicios", "APIs REST/GraphQL", "Cloud Native"],
             },
             security: {
                 title: "Alta Seguridad & Fintech",
                 description: "Infraestructura crítica con estándares bancarios. Protección de datos y transaccionalidad garantizada.",
+                detail: "Construimos software para fintech y cooperativas de ahorro y crédito con estándares bancarios: cifrado de extremo a extremo, roles por perfil y auditoría de cada transacción.",
+                linkText: "Mira el caso de la Cooperativa César Terán",
                 features: ["Encriptación E2E", "Compliance PCI-DSS", "Auditoría Continua"],
             },
             automation: {
                 title: "Automatización Operativa",
                 description: "Eliminamos el trabajo manual. Bots, scripts y flujos de trabajo inteligentes que trabajan 24/7.",
+                detail: "Automatizamos procesos con n8n: conectamos tu CRM, facturación, WhatsApp y hojas de cálculo con más de 400 integraciones. Nuestros clientes ahorran en promedio más de 20 horas semanales de trabajo manual.",
+                linkText: "Así aplicamos la automatización con n8n",
                 features: ["RPA / Bots", "Integración de Sistemas", "Webhooks & Eventos"],
             },
             consulting: {
                 title: "Consultoría Tecnológica",
                 description: "Auditoría de deuda técnica y roadmap de modernización para empresas establecidas.",
+                detail: "Nuestra consultoría tecnológica audita tu deuda técnica y entrega un roadmap de modernización priorizado por retorno. Empieza con un diagnóstico gratuito de 30 minutos.",
+                linkText: "Empieza con un diagnóstico gratuito",
                 features: ["Code Reviews", "System Design", "Tech Stack Selection"],
             },
         },
@@ -118,6 +127,8 @@ export const es = {
         title: "Modelos de",
         titleHighlight: "Colaboración",
         subtitle: "Transparencia total. Sin costos ocultos.",
+        seoNote: "Todo proyecto de software a medida se cotiza por alcance cerrado tras un diagnóstico gratuito: sabes el precio y el plazo antes de empezar. En ambos modelos, el código fuente es tuyo.",
+        seoLink: "Agenda un diagnóstico gratuito",
         plans: {
             essential: {
                 name: "Sistematización Esencial",
@@ -171,11 +182,14 @@ export const es = {
 
     // Solutions Page
     solutions: {
-        title: "Tecnología que",
-        titleHighlight: "Impulsa",
-        flipWords: ["Impulsa", "Transforma", "Potencia", "Acelera"],
+        title: "Soluciones de Software que",
+        titleHighlight: "Impulsan",
+        flipWords: ["Impulsan", "Transforman", "Potencian", "Aceleran"],
         titleEnd: "tu Negocio",
         subtitle: "Desde la automatización de flujos complejos hasta el desarrollo de plataformas robustas. Creamos el ecosistema digital que tu empresa necesita.",
+        crossCases: "Mira cómo lo aplicamos en nuestros casos de éxito",
+        crossStack: "Conoce nuestro stack tecnológico",
+        faqTitle: "Preguntas frecuentes sobre estas soluciones",
         cta: "Ver detalles",
         topics: {
             automation: {
@@ -207,19 +221,58 @@ export const es = {
         title: "Casos de",
         titleHighlight: "Éxito",
         flipWords: ["Éxito", "Impacto", "Valor", "Resultados"],
-        subtitle: "Descubre cómo hemos transformado negocios con soluciones tecnológicas a medida.",
+        subtitle: "Así hemos transformado negocios reales en Ecuador y Estados Unidos con software a medida y automatización.",
+        crossText: "¿Tu operación se parece a alguno de estos casos?",
+        crossLink: "Agenda un diagnóstico gratuito",
+        detailLabel: "Los casos en detalle",
+        labels: {
+            challenge: "El problema",
+            solution: "La solución",
+            stack: "Stack",
+            results: "Resultados",
+        },
         showcase: {
             finance: {
                 title: "Cooperativa César Terán",
                 type: "Cooperativa Terán",
+                sector: "Fintech · Cooperativa de ahorro y crédito",
+                challenge: "La cooperativa gestionaba socios, ahorros y créditos con procesos manuales y hojas de cálculo: atención lenta en ventanilla, riesgo de errores en los cálculos de interés y ninguna trazabilidad sobre quién modificó cada registro.",
+                solution: "Diseñamos y construimos un sistema de gestión financiera a medida: módulos de socios, cuentas de ahorro, créditos con tabla de amortización automática, caja y reportería gerencial. Seguridad de nivel bancario: cifrado de datos, roles por perfil y auditoría inmutable de cada transacción.",
+                stack: ["Next.js", "Node.js", "PostgreSQL", "Cloud + backups diarios"],
+                results: [
+                    "Atención por socio en minutos, sin filas",
+                    "100% de las operaciones con registro de auditoría",
+                    "Cierre de caja diario automatizado",
+                    "Cálculo de intereses sin errores manuales",
+                ],
             },
             fitness: {
                 title: "Gym CT Tulcán",
                 type: "Gym Tulcán",
+                sector: "Fitness · Gestión de membresías",
+                challenge: "Las membresías se controlaban en papel y Excel: pagos vencidos sin detectar, renovaciones perdidas y ninguna visibilidad de la asistencia real. La morosidad solo se descubría a fin de mes.",
+                solution: "Construimos un sistema web de gestión para el gimnasio: membresías y planes, control de pagos y renovaciones, check-in de asistencia y panel con métricas del negocio. Con n8n automatizamos los recordatorios de renovación por WhatsApp, sin intervención del personal.",
+                stack: ["Next.js", "Node.js", "PostgreSQL", "n8n"],
+                results: [
+                    "Morosidad visible y gestionada en tiempo real",
+                    "100% de renovaciones con recordatorio automático por WhatsApp",
+                    "Panel de asistencia y ocupación en vivo",
+                    "Horas administrativas liberadas cada semana",
+                ],
             },
             retail: {
                 title: "GSZ Academy USA",
                 type: "E-Commerce",
+                sector: "E-commerce · Educación (EE. UU.)",
+                challenge: "Una academia con operación en Estados Unidos vendía sus programas por mensajes directos y cobraba de forma manual: matrículas lentas, pagos difíciles de conciliar y cero capacidad de venta fuera del horario de atención.",
+                solution: "Desarrollamos una plataforma e-commerce a medida: catálogo de programas, checkout con pagos en línea y panel de administración de alumnos, pedidos e ingresos. La venta quedó disponible 24/7 para el mercado estadounidense.",
+                stack: ["Next.js", "Node.js", "PostgreSQL", "Pagos en línea"],
+                results: [
+                    "Ventas online 24/7 sin intervención manual",
+                    "Matrícula en minutos, antes tomaba días",
+                    "Conciliación de pagos automática",
+                    "Operación remota Ecuador → EE. UU. en el mismo huso horario",
+                ],
             },
         },
     },
@@ -236,6 +289,7 @@ export const es = {
             title: "Tecnología que",
             titleHighlight: "Potencia tu Negocio",
             description: "No te abrumamos con tecnicismos. Lo que importa es cómo nuestra tecnología se traduce en resultados reales para tu empresa.",
+            crossProjects: "Más de 50 sistemas en producción lo respaldan — mira los casos de éxito",
             cta: {
                 text: "¿Quieres conocer más sobre nuestra arquitectura técnica?",
                 button: "Conversemos",
@@ -274,6 +328,100 @@ export const es = {
     },
 
     // Footer
+    // FAQ Section (home) — respuestas autocontenidas para snippets/AI Overviews
+    faq: {
+        badge: "FAQ",
+        title: "Preguntas",
+        titleHighlight: "frecuentes.",
+        subtitle: "Lo que todo el mundo nos pregunta antes de empezar — respondido sin rodeos.",
+        items: [
+            {
+                question: "¿Cuánto cuesta desarrollar software a medida en Ecuador?",
+                answer: "Depende del alcance: no vendemos paquetes, cotizamos cada proyecto por alcance cerrado. Tras un diagnóstico gratuito de 30 minutos entregamos una propuesta con precio fijo y plazo definido, sin costos ocultos ni sorpresas a mitad de proyecto. El diagnóstico no tiene compromiso.",
+            },
+            {
+                question: "¿Cuánto tiempo toma desarrollar un sistema a medida?",
+                answer: "Un MVP funcional toma entre 4 y 6 semanas. Sistemas más complejos —un core financiero o un e-commerce con logística— se entregan por fases de 2 a 3 meses. Trabajamos en sprints con demos semanales: ves avances reales cada semana, no una sorpresa al final.",
+            },
+            {
+                question: "¿Qué es n8n y para qué sirve?",
+                answer: "n8n es una plataforma de automatización de flujos de trabajo, similar a Zapier pero de código abierto y auto-alojable, con más de 400 integraciones. La usamos para conectar tus sistemas —CRM, facturación, WhatsApp, hojas de cálculo— y eliminar tareas repetitivas. Nuestros clientes ahorran en promedio más de 20 horas semanales de trabajo manual.",
+            },
+            {
+                question: "¿Me conviene software a medida o un SaaS genérico?",
+                answer: "Un SaaS genérico conviene cuando tu proceso es estándar y cabes en su plantilla. El software a medida conviene cuando tu operación es tu ventaja competitiva: pagas por un sistema que encaja con tu proceso, sin licencias por usuario, y el código queda como activo de tu empresa. En el diagnóstico gratuito te decimos honestamente cuál necesitas — a veces la respuesta es un SaaS.",
+            },
+            {
+                question: "¿Con qué tecnologías trabajan?",
+                answer: "Nuestro stack principal es Next.js y React para web, React Native para apps móviles iOS y Android, Node.js en backend, PostgreSQL y Redis para datos, y n8n para automatización, sobre infraestructura cloud. Elegimos tecnologías con comunidades enormes: tu sistema nunca dependerá de una herramienta exótica ni de nosotros.",
+            },
+            {
+                question: "¿Trabajan con empresas fuera de Ecuador?",
+                answer: "Sí. Operamos desde Ecuador para toda Latinoamérica y Estados Unidos, 100% en remoto. Ecuador comparte huso horario con la costa este de EE. UU. (EST), lo que permite trabajo sincrónico con equipos norteamericanos. GSZ Academy, uno de nuestros casos de éxito, opera en Estados Unidos.",
+            },
+            {
+                question: "¿Quién es dueño del código?",
+                answer: "Tú. Al cerrar el proyecto entregamos el código fuente completo, la documentación técnica y los accesos de infraestructura a nombre de tu empresa. Sin lock-in: si mañana quieres trabajar con otro equipo, puedes hacerlo. Creemos que retener clientes por secuestro técnico es mala ingeniería.",
+            },
+            {
+                question: "¿Qué incluye el diagnóstico gratuito?",
+                answer: "Una reunión de 30 minutos por Google Meet donde analizamos tu operación, identificamos cuellos de botella y te decimos si tu caso se resuelve con automatización, software a medida o una herramienta que ya existe. Sales con un plan de acción concreto, sin compromiso de contratar.",
+            },
+            {
+                question: "¿Ofrecen soporte después de la entrega?",
+                answer: "Todo proyecto incluye 1 mes de soporte post-lanzamiento sin costo. Después puedes optar por un plan de mantenimiento mensual o por nuestro modelo de equipo dedicado con SLA de 99.9% de disponibilidad, pensado para empresas que necesitan evolución continua.",
+            },
+            {
+                question: "¿Desarrollan aplicaciones móviles para iOS y Android?",
+                answer: "Sí, con React Native: una sola base de código que corre de forma nativa en iOS y Android. Eso reduce significativamente el costo y el tiempo frente a construir dos apps separadas, y garantiza que ambas plataformas evolucionen a la par.",
+            },
+        ],
+    },
+
+    // Contact Page
+    contact: {
+        eyebrow: "Contacto",
+        title: "Conversemos sobre tu",
+        titleHighlight: "proyecto.",
+        subtitle: "Agenda un diagnóstico gratuito de 30 minutos o escríbenos directo por WhatsApp. Respondemos en menos de 24 horas hábiles.",
+        bookingTitle: "Agenda tu diagnóstico",
+        bookingDesc: "30 minutos por Google Meet. Analizamos tu operación y sales con un plan de acción — sin compromiso.",
+        bookingCta: "Agendar diagnóstico",
+        whatsappTitle: "Escríbenos por WhatsApp",
+        whatsappDesc: "¿Prefieres ir al grano? Cuéntanos tu caso en un mensaje y te respondemos el mismo día hábil.",
+        whatsappCta: "Abrir WhatsApp",
+        infoTitle: "Datos directos",
+        infoItems: [
+            "WhatsApp y teléfono: +593 99 549 8636",
+            "Base: Quito, Ecuador — trabajamos en remoto para toda LATAM y EE. UU.",
+            "Horario: lunes a viernes, 9:00–18:00 (GMT-5, mismo huso que EST)",
+        ],
+        faq: [
+            {
+                question: "¿Qué pasa después de agendar?",
+                answer: "Recibes la invitación de Google Meet al instante. En la llamada revisamos tu operación y en pocos días hábiles te enviamos una propuesta con alcance y precio cerrado.",
+            },
+            {
+                question: "¿Atienden en inglés?",
+                answer: "Sí, atendemos en español e inglés.",
+            },
+            {
+                question: "¿Trabajan con empresas fuera de Ecuador?",
+                answer: "Sí, operamos en remoto para LATAM y Estados Unidos; compartimos huso horario con la costa este de EE. UU.",
+            },
+        ],
+    },
+
+    // Overlay de booking (CalendarBooking)
+    booking: {
+        title: "Agenda tu llamada",
+        benefit1: "Auditoría de procesos actuales e identificación de cuellos de botella.",
+        benefit2: "Plan de acción personalizado para automatizar y escalar tu negocio.",
+        quote: "La implementación tecnológica de Khannda optimizó drásticamente nuestros tiempos de respuesta. Un aliado estratégico clave.",
+        quoteAuthor: "Cooperativa Terán",
+        quoteRole: "Sector Financiero",
+    },
+
     footer: {
         tagline: "Arquitectura digital invisible para empresas que escalan.",
         services: {
@@ -285,14 +433,14 @@ export const es = {
         company: {
             title: "Compañía",
             about: "Sobre Nosotros",
-            careers: "Carreras",
-            partners: "Partners",
+            cases: "Casos de Éxito",
+            contact: "Contacto",
         },
         legal: {
             title: "Legal",
             terms: "Términos de Servicio",
             privacy: "Privacidad",
-            status: "Status",
+            faq: "Preguntas Frecuentes",
         },
         copyright: "Todos los derechos reservados.",
         systemStatus: "SYSTEM NORMAL",

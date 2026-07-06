@@ -1,0 +1,64 @@
+# Khannda
+
+> Khannda es una agencia de desarrollo de software a medida con sede en Quito,
+> Ecuador, que atiende a toda Latinoamérica y Estados Unidos. Desde 2019 ha
+> puesto más de 50 sistemas en producción para fintech, logística, retail y
+> salud. Servicios: desarrollo web a medida, aplicaciones móviles con React
+> Native, automatización de procesos con n8n y consultoría tecnológica.
+> Contacto: WhatsApp +593 99 549 8636.
+
+Datos clave sobre Khannda:
+
+- Fundada en 2019 en Ecuador. Equipo liderado por Matías Villarreal (Data & IA),
+  José Terán (Estrategia Tecnológica), Kevin Cano (Producto) y Kenny Pinchao
+  (Full Stack).
+- Más de 50 sistemas en producción en fintech, logística, retail y salud.
+- Un MVP funcional se entrega en 4 a 6 semanas. Cada proyecto se cotiza por
+  alcance cerrado tras un diagnóstico gratuito de 30 minutos, sin costos ocultos.
+- Automatización con n8n: más de 400 integraciones disponibles; los clientes
+  ahorran en promedio más de 20 horas semanales de trabajo manual.
+- Stack principal: Next.js, React, React Native, Node.js, PostgreSQL, Redis, n8n.
+- El cliente recibe el código fuente completo y la propiedad intelectual, sin
+  lock-in.
+- Ecuador opera en GMT-5, el mismo huso horario que la costa este de EE. UU.
+  (EST) — trabajo sincrónico con equipos norteamericanos.
+
+## Servicios
+
+- [Soluciones](https://www.khannda.com/soluciones): automatización de procesos
+  con n8n, desarrollo de software a medida (web y móvil) y consultoría de
+  optimización de procesos.
+- [Tecnología](https://www.khannda.com/tecnologia): stack tecnológico y
+  garantías de rendimiento, seguridad y escalabilidad.
+
+## Casos de éxito
+
+- [Proyectos](https://www.khannda.com/proyectos): Cooperativa de Ahorro y
+  Crédito César Terán (sistema de gestión financiera con auditoría de nivel
+  bancario), Gym CT Tulcán (gestión de membresías con recordatorios
+  automáticos por WhatsApp vía n8n) y GSZ Academy USA (plataforma e-commerce
+  24/7 para el mercado estadounidense).
+
+## Contacto
+
+- [Contacto](https://www.khannda.com/contacto): diagnóstico gratuito de 30
+  minutos por Google Meet, o WhatsApp +593 99 549 8636. Atención en español e
+  inglés, lunes a viernes de 9:00 a 18:00 (GMT-5).
+
+## English
+
+- [Home](https://www.khannda.com/en): custom software development company in
+  Ecuador for LATAM and the US — nearshore, same time zone as US East Coast.
+- [Solutions](https://www.khannda.com/en/soluciones): n8n automation, custom
+  web and mobile development, technology consulting.
+- [Projects](https://www.khannda.com/en/proyectos): case studies in fintech,
+  fitness and e-commerce.
+- [Contact](https://www.khannda.com/en/contacto): book a free 30-minute
+  assessment.
+
+## Optional
+
+- [Inicio](https://www.khannda.com/): visión general, servicios, preguntas
+  frecuentes, modelos de colaboración y equipo.
+- [Preguntas frecuentes](https://www.khannda.com/#faq): costos, plazos, qué es
+  n8n, software a medida vs SaaS, propiedad del código.

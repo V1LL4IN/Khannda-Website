@@ -12,14 +12,15 @@ export function LenisProvider({ children }: LenisProviderProps) {
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
-        // Initialize Lenis with premium "heavy" feel
+        // Smooth scroll ágil: suavizado corto y respuesta directa a la rueda.
+        // (La inercia larga de 1s hacía sentir la página "pesada".)
         const lenis = new Lenis({
-            duration: 1.0,
+            duration: 0.6,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1,
+            wheelMultiplier: 1.2,
             touchMultiplier: 1.5,
             infinite: false,
         });

@@ -13,7 +13,9 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ isDark }) => {
     const currentYear = new Date().getFullYear();
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    // Prefijo de ruta por idioma: las URLs inglesas viven bajo /en
+    const p = language === 'en' ? '/en' : '';
 
     return (
         <footer className={cn(
@@ -60,27 +62,28 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                     <div>
                         <h4 className={cn("font-bold mb-4 transition-colors", isDark ? "text-white" : "text-black")}>{t.footer.services.title}</h4>
                         <ul className={cn("space-y-2 text-sm", isDark ? "text-neutral-400" : "text-neutral-700")}>
-                            <li><a href="/soluciones" className="hover:text-purple-400 transition-colors">{t.footer.services.development}</a></li>
-                            <li><a href="/soluciones" className="hover:text-purple-400 transition-colors">{t.footer.services.automation}</a></li>
-                            <li><a href="/soluciones" className="hover:text-purple-400 transition-colors">{t.footer.services.consulting}</a></li>
+                            <li><a href={`${p}/soluciones`} className="hover:text-purple-400 transition-colors">{t.footer.services.development}</a></li>
+                            <li><a href={`${p}/soluciones`} className="hover:text-purple-400 transition-colors">{t.footer.services.automation}</a></li>
+                            <li><a href={`${p}/soluciones`} className="hover:text-purple-400 transition-colors">{t.footer.services.consulting}</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 className={cn("font-bold mb-4 transition-colors", isDark ? "text-white" : "text-black")}>{t.footer.company.title}</h4>
                         <ul className={cn("space-y-2 text-sm", isDark ? "text-neutral-400" : "text-neutral-700")}>
-                            <li><a href="/" className="hover:text-purple-400 transition-colors">{t.footer.company.about}</a></li>
-                            <li><a href="/" className="hover:text-purple-400 transition-colors">{t.footer.company.careers}</a></li>
-                            <li><a href="/" className="hover:text-purple-400 transition-colors">{t.footer.company.partners}</a></li>
+                            {/* sin slash antes del hash en /en: '/en/#x' provoca un 308 por trailing slash */}
+                            <li><a href={p ? `${p}#nosotros` : '/#nosotros'} className="hover:text-purple-400 transition-colors">{t.footer.company.about}</a></li>
+                            <li><a href={`${p}/proyectos`} className="hover:text-purple-400 transition-colors">{t.footer.company.cases}</a></li>
+                            <li><a href={`${p}/contacto`} className="hover:text-purple-400 transition-colors">{t.footer.company.contact}</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 className={cn("font-bold mb-4 transition-colors", isDark ? "text-white" : "text-black")}>{t.footer.legal.title}</h4>
                         <ul className={cn("space-y-2 text-sm", isDark ? "text-neutral-400" : "text-neutral-700")}>
-                            <li><a href="/" className="hover:text-purple-400 transition-colors">{t.footer.legal.terms}</a></li>
-                            <li><a href="/" className="hover:text-purple-400 transition-colors">{t.footer.legal.privacy}</a></li>
-                            <li><a href="/" className="hover:text-purple-400 transition-colors">{t.footer.legal.status}</a></li>
+                            <li><a href={`${p}/terminos`} className="hover:text-purple-400 transition-colors">{t.footer.legal.terms}</a></li>
+                            <li><a href={`${p}/privacidad`} className="hover:text-purple-400 transition-colors">{t.footer.legal.privacy}</a></li>
+                            <li><a href={p ? `${p}#faq` : '/#faq'} className="hover:text-purple-400 transition-colors">{t.footer.legal.faq}</a></li>
                         </ul>
                     </div>
                 </div>

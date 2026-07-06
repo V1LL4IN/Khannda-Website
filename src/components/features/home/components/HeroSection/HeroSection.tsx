@@ -11,70 +11,92 @@ import {
     ExpandableScreenContent,
 } from '@/components/shared/ui/ExpandableScreen';
 import { CalendarBooking } from '@/components/shared/ui/CalendarBooking';
-import { AntigravityBackground } from '@/components/shared/ui/AntigravityBackground';
+import { ModularMonolith } from '@/components/shared/ui/ModularMonolith';
 
+// Hero "Obra Modular": editorial asimétrico. El texto SSR es el LCP; el
+// monolito 3D vive en un contenedor absoluto (fuera de flujo → CLS 0) con
+// pointer-events:none. En móvil pasa a fondo enmascarado tras el contenido.
 const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const p = language === 'en' ? '/en' : '';
 
     return (
         <section
             className={cn(
-                'relative w-full overflow-hidden flex flex-col min-h-screen transition-colors duration-300',
+                'relative w-full overflow-hidden min-h-[100svh] flex transition-colors duration-300',
                 isDark ? 'bg-[#0a0a0c] text-white' : 'bg-[#fafaf7] text-[#0a0a0a]'
             )}
         >
-            {/* Antigravity halo particle field (R3F + GLSL) */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none">
-                <AntigravityBackground
-                    isDark={isDark}
-                    dragFactor={0.06}
-                />
-                {/* Soft radial vignette so the headline reads cleanly over the halo */}
-                <div
-                    className={cn(
-                        'absolute inset-0 [mask-image:radial-gradient(ellipse_55%_50%_at_50%_50%,black_15%,transparent_75%)]',
-                        isDark ? 'bg-[#0a0a0c]/0' : 'bg-[#fafaf7]/0',
-                    )}
-                />
-            </div>
-
-            {/* Top status bar */}
+            {/* Monolito — absoluto, nunca reserva ni roba altura al contenido */}
             <div
+                aria-hidden="true"
                 className={cn(
-                    'relative z-10 flex justify-between items-center px-6 sm:px-14 py-5 text-[10px] font-mono uppercase tracking-[0.18em]',
-                    isDark ? 'text-white/40' : 'text-neutral-500'
+                    'absolute z-0 pointer-events-none',
+                    // móvil: textura ambiental al pie, siempre detrás del texto
+                    'inset-x-0 bottom-0 h-[36%]',
+                    // desktop: columna derecha a toda altura
+                    'lg:left-auto lg:right-0 lg:top-0 lg:h-full lg:w-[48%]'
                 )}
             >
-                <span className="flex items-center gap-2">
-                    <span
-                        className="w-[5px] h-[5px] rounded-full bg-emerald-500"
-                        style={{ boxShadow: '0 0 6px #10b981' }}
+                {/* Capa visual enmascarada — la anotación queda fuera para que
+                    el gradiente no la atenúe */}
+                <div
+                    className={cn(
+                        'absolute inset-0',
+                        'opacity-60 [mask-image:linear-gradient(to_top,black_30%,transparent_78%)]',
+                        'lg:opacity-100 lg:[mask-image:linear-gradient(to_right,transparent,black_18%)]'
+                    )}
+                >
+                    {/* Halo radial que ancla la torre al fondo (clave en light) */}
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: `radial-gradient(ellipse 70% 55% at 55% 33%, ${
+                                isDark ? 'rgba(200,123,191,0.05)' : 'rgba(138,60,134,0.06)'
+                            }, transparent 70%)`,
+                        }}
                     />
-                    {t.hero.statusEst}
-                </span>
-                <span className="hidden sm:inline">{t.hero.statusCount}</span>
+                    <ModularMonolith isDark={isDark} />
+                </div>
+                {/* Anotación blueprint */}
+                <div className="hidden lg:flex absolute top-[26%] left-[8%] items-center gap-3">
+                    <span
+                        className={cn('h-px w-10', isDark ? 'bg-white/30' : 'bg-black/25')}
+                    />
+                    <span
+                        className={cn(
+                            'font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-sm',
+                            isDark
+                                ? 'text-white/60 bg-[#0a0a0c]/60'
+                                : 'text-neutral-600 bg-[#fafaf7]/70'
+                        )}
+                    >
+                        {t.hero.annotation}
+                    </span>
+                </div>
             </div>
 
-            {/* Centered composition */}
-            <div className="relative z-10 flex-1 flex items-center justify-center px-6 sm:px-14 py-12">
-                <div className="text-center max-w-[1100px] mx-auto">
-                    <div
+            {/* Texto — LCP */}
+            {/* pt en desktop: clearance del navbar flotante cuando el contenido
+                supera la altura del viewport (pantallas anchas y bajas) */}
+            <div className="relative z-10 w-full max-w-[1280px] xl:max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 items-center px-6 sm:px-14 pt-28 pb-16">
+                <div className="lg:col-span-6">
+                    <p
                         className={cn(
-                            'text-[10px] font-mono uppercase tracking-[0.3em] mb-6 sm:mb-7',
+                            'text-[10px] font-mono uppercase tracking-[0.3em] mb-6',
                             isDark ? 'text-[rgba(200,123,191,0.9)]' : 'text-[rgba(138,60,134,0.9)]'
                         )}
                     >
                         {t.hero.eyebrow}
-                    </div>
+                    </p>
                     <h1
                         className={cn(
-                            'font-medium m-0 text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.98] tracking-[-0.04em] text-balance',
+                            'font-medium m-0 text-4xl sm:text-5xl lg:text-[clamp(2.5rem,4.8vw,4.75rem)] leading-[1.02] tracking-[-0.04em] text-balance',
                             isDark ? 'text-white' : 'text-[#0a0a0a]'
                         )}
                     >
                         {t.hero.titleBefore}{' '}
                         <span
-                            className="font-medium italic"
                             style={{
                                 backgroundImage: isDark
                                     ? 'linear-gradient(135deg, #c87bbf, #8a3c86)'
@@ -85,21 +107,22 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
                             }}
                         >
                             {t.hero.titleEmphasis}
-                        </span>{' '}
+                        </span>
                         {t.hero.titleAfter}
                     </h1>
                     <p
                         className={cn(
-                            'text-base sm:text-lg md:text-[19px] leading-[1.55] mt-8 sm:mt-9 font-light max-w-[640px] mx-auto',
+                            'text-base sm:text-lg leading-[1.55] mt-6 font-light max-w-[52ch]',
                             isDark ? 'text-white/60' : 'text-neutral-600'
                         )}
                     >
                         {t.hero.description}
                     </p>
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-5 sm:gap-7 mt-10 sm:mt-12">
+                    <div className="flex flex-wrap items-center gap-5 sm:gap-7 mt-9">
                         <ExpandableScreen isDark={isDark} layoutId="hero-cta-button">
                             <ExpandableScreenTrigger>
                                 <button
+                                    aria-haspopup="dialog"
                                     className={cn(
                                         'px-9 py-[18px] rounded-full text-[15px] font-medium cursor-pointer flex items-center gap-3 hover:scale-[1.02] transition-transform',
                                         isDark
@@ -113,37 +136,33 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
                                     </span>
                                 </button>
                             </ExpandableScreenTrigger>
-                            <ExpandableScreenContent>
+                            <ExpandableScreenContent ariaLabel={t.hero.cta}>
                                 <CalendarBooking isDark={isDark} />
                             </ExpandableScreenContent>
                         </ExpandableScreen>
                         <a
-                            href="/proyectos"
+                            href={`${p}/proyectos`}
                             className={cn(
-                                'text-sm border-b pb-0.5 transition-colors',
+                                'group inline-flex items-center gap-2 text-sm border-b pb-0.5 transition-colors',
                                 isDark
                                     ? 'text-white/60 border-white/20 hover:text-white hover:border-white/60'
                                     : 'text-neutral-600 border-neutral-300 hover:text-neutral-900 hover:border-neutral-600'
                             )}
                         >
                             {t.hero.ctaSecondary}
+                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                         </a>
                     </div>
+                    {/* Prueba social: lo que un CTO escanea antes de agendar */}
+                    <p
+                        className={cn(
+                            'mt-10 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.18em]',
+                            isDark ? 'text-white/55' : 'text-neutral-600'
+                        )}
+                    >
+                        {t.hero.proof}
+                    </p>
                 </div>
-            </div>
-
-            {/* Bottom strip */}
-            <div
-                className={cn(
-                    'relative z-10 flex justify-between items-center border-t px-6 sm:px-14 py-5 text-[10px] font-mono uppercase tracking-[0.18em]',
-                    isDark
-                        ? 'border-white/[0.06] text-white/40'
-                        : 'border-black/[0.06] text-neutral-500'
-                )}
-            >
-                <span className="hidden sm:inline">{t.hero.sectors}</span>
-                <span className="sm:hidden">{t.hero.sectors.split('·')[0].trim()}</span>
-                <span>{t.hero.scroll}</span>
             </div>
         </section>
     );

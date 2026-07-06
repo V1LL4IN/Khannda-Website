@@ -12,19 +12,17 @@ export const en: Translations = {
         startProject: "Start Project",
     },
 
-    // Hero Section — H1d Outcome Dark
+    // Hero Section — Obra Modular
     hero: {
-        statusEst: "Khannda — est. 2019",
-        statusCount: "50+ systems in production",
-        eyebrow: "· Custom software engineering",
-        titleBefore: "Custom software,",
-        titleEmphasis: "built",
-        titleAfter: "for businesses that scale.",
-        description: "We design and operate custom software for businesses that scale. Web, mobile, and automation — no rewrites every three years.",
+        eyebrow: "Khannda · Custom software · Ecuador → LATAM",
+        titleBefore: "Custom software",
+        titleEmphasis: "built to fit",
+        titleAfter: ", piece by piece.",
+        description: "We design and assemble web, mobile and n8n automation systems that fit your operation — not the other way around. 50+ systems in production for fintech, logistics, retail and healthcare since 2019.",
         cta: "Book a diagnostic",
-        ctaSecondary: "See how we work",
-        sectors: "Fintech · Logistics · Retail · Health",
-        scroll: "scroll ↓",
+        ctaSecondary: "View projects",
+        proof: "Est. 2019 · 50+ systems in production · Fintech / Logistics / Retail / Health",
+        annotation: "MODULE N.05 — built to fit",
     },
 
     // About Section — A1 Layered Stack
@@ -77,6 +75,8 @@ export const en: Translations = {
         ],
         footerNote: "5 layers · 1 SLA contract · zero monoliths",
         footerCta: "See reference architecture →",
+        seoOutro: "These five layers are the foundation of the 50+ production systems we have built since 2019 for fintech, logistics, retail and healthcare across Ecuador and LATAM.",
+        seoLink: "See them in our case studies",
     },
 
     // Services Section
@@ -85,25 +85,34 @@ export const en: Translations = {
         title: "Our",
         titleHighlight: "Services",
         subtitle: "World-class software engineering to solve complex business challenges.",
+        seoIntro: "We are a custom software development company based in Ecuador working across LATAM and the US. Every service is quoted as a fixed scope and delivered with source code, documentation and support included.",
         items: {
             development: {
                 title: "Custom Development",
                 description: "Software architecture designed to scale. Clean, modular, and maintainable code.",
+                detail: "We build custom web and mobile applications that fit your operation — not the other way around. A working MVP in 4–6 weeks, with an architecture designed to scale from day one.",
+                linkText: "Explore custom software development",
                 features: ["Microservices", "REST/GraphQL APIs", "Cloud Native"],
             },
             security: {
                 title: "High Security & Fintech",
                 description: "Critical infrastructure with banking standards. Data protection and guaranteed transactionality.",
+                detail: "We build software for fintech companies and credit unions with banking-grade standards: end-to-end encryption, role-based access and an audit trail for every transaction.",
+                linkText: "See the Cooperativa César Terán case study",
                 features: ["E2E Encryption", "PCI-DSS Compliance", "Continuous Auditing"],
             },
             automation: {
                 title: "Operational Automation",
                 description: "We eliminate manual work. Bots, scripts, and intelligent workflows that work 24/7.",
+                detail: "We automate processes with n8n: connecting your CRM, invoicing, WhatsApp and spreadsheets through 400+ integrations. Our clients save an average of 20+ hours of manual work per week.",
+                linkText: "How we apply n8n automation",
                 features: ["RPA / Bots", "System Integration", "Webhooks & Events"],
             },
             consulting: {
                 title: "Technology Consulting",
                 description: "Technical debt audit and modernization roadmap for established companies.",
+                detail: "Our technology consulting audits your technical debt and delivers a modernization roadmap prioritized by return. It starts with a free 30-minute assessment.",
+                linkText: "Start with a free assessment",
                 features: ["Code Reviews", "System Design", "Tech Stack Selection"],
             },
         },
@@ -120,6 +129,8 @@ export const en: Translations = {
         title: "Collaboration",
         titleHighlight: "Models",
         subtitle: "Total transparency. No hidden costs.",
+        seoNote: "Every custom software project is quoted as a fixed scope after a free assessment: you know the price and timeline before we start. In both models, you own the source code.",
+        seoLink: "Book a free assessment",
         plans: {
             essential: {
                 name: "Essential Systematization",
@@ -173,11 +184,14 @@ export const en: Translations = {
 
     // Solutions Page
     solutions: {
-        title: "Technology that",
-        titleHighlight: "Drives",
-        flipWords: ["Drives", "Transforms", "Powers", "Accelerates"],
+        title: "Software Solutions that",
+        titleHighlight: "Drive",
+        flipWords: ["Drive", "Transform", "Power", "Accelerate"],
         titleEnd: "your Business",
         subtitle: "From making complex workflows automatic to building robust platforms. We create the digital ecosystem your company needs.",
+        crossCases: "See how we apply it in our case studies",
+        crossStack: "Explore our technology stack",
+        faqTitle: "Frequently asked questions about these solutions",
         cta: "View details",
         topics: {
             automation: {
@@ -209,19 +223,58 @@ export const en: Translations = {
         title: "Success",
         titleHighlight: "Stories",
         flipWords: ["Stories", "Cases", "Results", "Wins"],
-        subtitle: "Discover how we have transformed businesses with custom technological solutions.",
+        subtitle: "How we have transformed real businesses in Ecuador and the United States with custom software and automation.",
+        crossText: "Does your operation look like one of these cases?",
+        crossLink: "Book a free assessment",
+        detailLabel: "The cases in detail",
+        labels: {
+            challenge: "The problem",
+            solution: "The solution",
+            stack: "Stack",
+            results: "Results",
+        },
         showcase: {
             finance: {
                 title: "Cooperativa César Terán",
                 type: "Fintech",
+                sector: "Fintech · Savings & credit union",
+                challenge: "The credit union managed members, savings and loans with manual processes and spreadsheets: slow teller service, error-prone interest calculations and no trace of who touched each record.",
+                solution: "We designed and built a custom financial management system: member accounts, savings, loans with automatic amortization tables, cash desk and management reporting. Banking-grade security: data encryption, role-based access and an immutable audit trail for every transaction.",
+                stack: ["Next.js", "Node.js", "PostgreSQL", "Cloud + daily backups"],
+                results: [
+                    "Member service in minutes, no queues",
+                    "100% of operations with an audit trail",
+                    "Automated daily cash reconciliation",
+                    "Interest calculations with zero manual errors",
+                ],
             },
             fitness: {
                 title: "Gym CT Tulcán",
                 type: "Administration System",
+                sector: "Fitness · Membership management",
+                challenge: "Memberships were tracked on paper and Excel: overdue payments went unnoticed, renewals were lost and there was no visibility into real attendance. Delinquency only surfaced at the end of the month.",
+                solution: "We built a web-based management system for the gym: memberships and plans, payment and renewal tracking, attendance check-in and a business metrics dashboard. With n8n we automated WhatsApp renewal reminders, with zero staff involvement.",
+                stack: ["Next.js", "Node.js", "PostgreSQL", "n8n"],
+                results: [
+                    "Delinquency visible and managed in real time",
+                    "100% of renewals with automatic WhatsApp reminders",
+                    "Live attendance and occupancy dashboard",
+                    "Admin hours freed up every week",
+                ],
             },
             retail: {
-                title: "GZS Academy USA",
+                title: "GSZ Academy USA",
                 type: "E-Commerce",
+                sector: "E-commerce · Education (USA)",
+                challenge: "A US-based academy sold its programs through direct messages and collected payments manually: slow enrollments, hard-to-reconcile payments and zero ability to sell outside business hours.",
+                solution: "We developed a custom e-commerce platform: program catalog, online checkout and an admin panel for students, orders and revenue. Sales became available 24/7 for the US market.",
+                stack: ["Next.js", "Node.js", "PostgreSQL", "Online payments"],
+                results: [
+                    "24/7 online sales with no manual work",
+                    "Enrollment in minutes instead of days",
+                    "Automatic payment reconciliation",
+                    "Remote Ecuador → USA operation in the same time zone",
+                ],
             },
         },
     },
@@ -238,6 +291,7 @@ export const en: Translations = {
             title: "Technology that",
             titleHighlight: "Powers Your Business",
             description: "We don't overwhelm you with technicalities. What matters is how our technology translates into real results for your company.",
+            crossProjects: "Backed by 50+ systems in production — see the case studies",
             cta: {
                 text: "Want to know more about our technical architecture?",
                 button: "Let's Talk",
@@ -276,6 +330,100 @@ export const en: Translations = {
     },
 
     // Footer
+    // FAQ Section (home)
+    faq: {
+        badge: "FAQ",
+        title: "Frequently asked",
+        titleHighlight: "questions.",
+        subtitle: "What everyone asks us before starting — answered straight.",
+        items: [
+            {
+                question: "How much does custom software development cost in Ecuador?",
+                answer: "It depends on the scope: we don't sell packages, we quote every project as a fixed scope. After a free 30-minute assessment you get a proposal with a fixed price and a defined timeline — no hidden costs, no mid-project surprises. The assessment carries no commitment.",
+            },
+            {
+                question: "How long does it take to build a custom system?",
+                answer: "A working MVP takes 4 to 6 weeks. More complex systems — a financial core or an e-commerce platform with logistics — ship in 2-to-3-month phases. We work in sprints with weekly demos: you see real progress every week, not a surprise at the end.",
+            },
+            {
+                question: "What is n8n and what is it used for?",
+                answer: "n8n is a workflow automation platform — similar to Zapier, but open source and self-hostable — with 400+ integrations. We use it to connect your systems (CRM, invoicing, WhatsApp, spreadsheets) and eliminate repetitive tasks. Our clients save an average of 20+ hours of manual work per week.",
+            },
+            {
+                question: "Should I build custom software or use a generic SaaS?",
+                answer: "A generic SaaS makes sense when your process is standard and fits its template. Custom software makes sense when your operation is your competitive advantage: you pay for a system that fits your process, with no per-user licenses, and the code becomes an asset of your company. In the free assessment we tell you honestly which one you need — sometimes the answer is a SaaS.",
+            },
+            {
+                question: "What technologies do you work with?",
+                answer: "Our core stack is Next.js and React for web, React Native for iOS and Android mobile apps, Node.js on the backend, PostgreSQL and Redis for data, and n8n for automation, on cloud infrastructure. We choose technologies with huge communities: your system will never depend on an exotic tool — or on us.",
+            },
+            {
+                question: "Do you work with companies outside Ecuador?",
+                answer: "Yes. We operate from Ecuador for all of Latin America and the United States, 100% remotely. Ecuador shares its time zone with the US East Coast (EST), which enables synchronous work with North American teams. GSZ Academy, one of our case studies, operates in the US.",
+            },
+            {
+                question: "Who owns the code?",
+                answer: "You do. At project close we hand over the complete source code, technical documentation and infrastructure access in your company's name. No lock-in: if tomorrow you want to work with another team, you can. We believe retaining clients through technical hostage-taking is bad engineering.",
+            },
+            {
+                question: "What does the free assessment include?",
+                answer: "A 30-minute Google Meet call where we analyze your operation, identify bottlenecks and tell you whether your case is solved with automation, custom software or a tool that already exists. You leave with a concrete action plan, with no obligation to hire us.",
+            },
+            {
+                question: "Do you offer support after delivery?",
+                answer: "Every project includes 1 month of post-launch support at no cost. After that you can opt for a monthly maintenance plan or our dedicated-team model with a 99.9% availability SLA, designed for companies that need continuous evolution.",
+            },
+            {
+                question: "Do you build mobile apps for iOS and Android?",
+                answer: "Yes, with React Native: a single codebase that runs natively on iOS and Android. That significantly reduces cost and time compared to building two separate apps, and guarantees both platforms evolve together.",
+            },
+        ],
+    },
+
+    // Contact Page
+    contact: {
+        eyebrow: "Contact",
+        title: "Let's talk about your",
+        titleHighlight: "project.",
+        subtitle: "Book a free 30-minute assessment or message us directly on WhatsApp. We reply within one business day.",
+        bookingTitle: "Book your assessment",
+        bookingDesc: "30 minutes over Google Meet. We analyze your operation and you leave with an action plan — no strings attached.",
+        bookingCta: "Book assessment",
+        whatsappTitle: "Message us on WhatsApp",
+        whatsappDesc: "Prefer to get straight to the point? Tell us your case in a message and we'll reply the same business day.",
+        whatsappCta: "Open WhatsApp",
+        infoTitle: "Direct details",
+        infoItems: [
+            "WhatsApp and phone: +593 99 549 8636",
+            "Base: Quito, Ecuador — working remotely across LATAM and the US",
+            "Hours: Monday to Friday, 9:00–18:00 (GMT-5, same as EST)",
+        ],
+        faq: [
+            {
+                question: "What happens after I book?",
+                answer: "You receive the Google Meet invitation instantly. On the call we review your operation, and within a few business days you get a proposal with a fixed scope and price.",
+            },
+            {
+                question: "Do you work in English?",
+                answer: "Yes, we work in both Spanish and English.",
+            },
+            {
+                question: "Do you work with companies outside Ecuador?",
+                answer: "Yes, we operate remotely across LATAM and the United States; we share the same time zone as the US East Coast.",
+            },
+        ],
+    },
+
+    // Booking overlay (CalendarBooking)
+    booking: {
+        title: "Book your call",
+        benefit1: "Audit of your current processes and identification of bottlenecks.",
+        benefit2: "A personalized action plan to automate and scale your business.",
+        quote: "Khannda's technology implementation drastically improved our response times. A key strategic ally.",
+        quoteAuthor: "Cooperativa Terán",
+        quoteRole: "Financial Sector",
+    },
+
     footer: {
         tagline: "Invisible digital architecture for companies that scale.",
         services: {
@@ -287,14 +435,14 @@ export const en: Translations = {
         company: {
             title: "Company",
             about: "About Us",
-            careers: "Careers",
-            partners: "Partners",
+            cases: "Case Studies",
+            contact: "Contact",
         },
         legal: {
             title: "Legal",
             terms: "Terms of Service",
             privacy: "Privacy",
-            status: "Status",
+            faq: "FAQ",
         },
         copyright: "All rights reserved.",
         systemStatus: "SYSTEM NORMAL",

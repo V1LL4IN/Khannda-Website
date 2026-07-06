@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
@@ -137,10 +138,12 @@ function BlurImage({
   const [error, setError] = useState(false);
 
   return (
-    <img
+    <Image
       src={error ? '/logo-khannda.png' : src}
       alt={alt}
-      className={`${className} w-full h-full object-cover transition duration-300 ${
+      fill
+      sizes="(max-width: 768px) 224px, 384px"
+      className={`${className} object-cover transition duration-300 ${
         loaded ? "blur-none" : "blur-md"
       }`}
       onLoad={() => setLoaded(true)}
