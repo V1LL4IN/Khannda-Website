@@ -13,6 +13,7 @@ import { createPortal } from "react-dom"
 import { X } from "lucide-react"
 import { AnimatePresence, MotionConfig, motion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { useLenis } from "@/providers/LenisProvider"
 
 // Context
 interface ExpandableScreenContextValue {
@@ -84,12 +85,18 @@ export function ExpandableScreen({
         onExpandChange?.(false)
     }
 
+    const lenis = useLenis()
+
     useEffect(() => {
         if (lockScroll) {
+            // overflow:hidden no basta con Lenis (sigue comiendo la rueda):
+            // hay que pausar la instancia también
             if (isExpanded) {
                 document.body.style.overflow = "hidden"
+                lenis?.stop()
             } else {
                 document.body.style.overflow = "unset"
+                lenis?.start()
             }
         }
 
@@ -104,9 +111,10 @@ export function ExpandableScreen({
             document.removeEventListener("keydown", handleEscape)
             if (lockScroll) {
                 document.body.style.overflow = "unset"
+                lenis?.start()
             }
         }
-    }, [isExpanded, lockScroll])
+    }, [isExpanded, lockScroll, lenis])
 
     return (
         <ExpandableScreenContext.Provider

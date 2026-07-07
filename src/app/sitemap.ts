@@ -6,7 +6,7 @@ import { l, LANGS } from '@/lib/seo/site';
 // fecha que cambia en cada build le dice a Google que el contenido "cambió"
 // cuando no lo hizo.
 const ROUTES = [
-    { path: '', lastModified: '2026-07-02', changeFrequency: 'weekly' as const, priority: 1 },
+    { path: '', lastModified: '2026-07-06', changeFrequency: 'weekly' as const, priority: 1 },
     { path: '/soluciones', lastModified: '2026-07-02', changeFrequency: 'monthly' as const, priority: 0.9 },
     { path: '/proyectos', lastModified: '2026-07-02', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/tecnologia', lastModified: '2026-07-02', changeFrequency: 'monthly' as const, priority: 0.7 },

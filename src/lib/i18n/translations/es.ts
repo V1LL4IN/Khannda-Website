@@ -10,22 +10,33 @@ export const es = {
         startProject: "Inicia tu proyecto",
     },
 
-    // Hero Section — Obra Modular
+    // Hero Section — tipográfico editorial. titleBefore se parte por '\n'
+    // (control del salto de línea por idioma); el textContent del <h1> debe
+    // mantener la keyword "desarrollo de software a medida" contigua.
     hero: {
-        eyebrow: "Khannda · Software a medida · Ecuador → LATAM",
-        titleBefore: "Desarrollo de software",
+        eyebrow: "Khannda · Quito → LATAM & EE. UU. · desde 2019",
+        titleBefore: "Desarrollo de\nsoftware",
         titleEmphasis: "a medida",
-        titleAfter: ", construido pieza por pieza.",
-        description: "Diseñamos y ensamblamos sistemas web, móviles y automatizaciones con n8n que encajan con tu operación — no al revés. Más de 50 sistemas en producción para fintech, logística, retail y salud desde 2019.",
+        titleAfter: ".",
+        description: "Sistemas web, móviles y automatización con n8n para empresas de LATAM y EE. UU. Alcance cerrado, código tuyo, un MVP en producción en 4–6 semanas.",
         cta: "Agendar diagnóstico",
-        ctaSecondary: "Ver proyectos",
+        ctaSecondary: "Ver el trabajo",
         proof: "Est. 2019 · 50+ sistemas en producción · Fintech / Logística / Retail / Salud",
-        annotation: "MÓDULO N.05 — a medida",
     },
+
+    // Intro editorial (home) — declaración de posicionamiento
+    intro: {
+        title: "Lo que vas a encontrar aquí.",
+        body: "Ni promesas de transformación digital ni presentaciones de 40 láminas. Abajo está lo que hacemos, tres sistemas reales en producción, cómo cobramos y las preguntas que todos hacen antes de empezar. Si tu caso no necesita software a medida, te lo decimos en la primera llamada.",
+    },
+
+    // Palabras separadoras gigantes entre secciones (decorativas, aria-hidden;
+    // términos universales — idénticos en ambos idiomas a propósito)
+    separators: ["Software", "Fintech", "Uptime", "Partner"],
 
     // About Section — A1 Layered Stack
     about: {
-        eyebrow: "Why Khannda · 01",
+        eyebrow: "Cómo lo construimos",
         title: "Arquitectura",
         titleHighlight: "Invisible.",
         subtitle: "Tu cliente solo ve la pantalla. Detrás corren cinco capas que diseñamos, operamos y garantizamos. Pasa el mouse por cualquiera.",
@@ -79,10 +90,8 @@ export const es = {
 
     // Services Section
     services: {
-        badge: "Capabilities",
-        title: "Nuestros",
-        titleHighlight: "Servicios",
-        subtitle: "Ingeniería de software de primer nivel para resolver desafíos de negocio complejos.",
+        title: "Lo que hacemos.",
+        subtitle: "Cuatro formas de trabajar con nosotros. Todas terminan con código tuyo.",
         seoIntro: "Somos una empresa de desarrollo de software en Ecuador que trabaja para toda LATAM. Cada servicio se cotiza por alcance cerrado y se entrega con código fuente, documentación y soporte incluido.",
         items: {
             development: {
@@ -119,11 +128,23 @@ export const es = {
             timeToMarket: { value: "4 WKS", label: "Time-to-Market", desc: "Ciclos de desarrollo ágiles y rápidos." },
             ownership: { value: "2x", label: "Más Rápido", desc: "Desarrollo ágil y entregas frecuentes." },
         },
+        outroText: "¿No sabes cuál de las cuatro necesitas? Para eso existe el diagnóstico.",
+        outroCta: "Agendar diagnóstico gratuito",
+    },
+
+    // Work Index (home) — las filas leen projects.showcase.*
+    work: {
+        eyebrow: "Trabajo seleccionado",
+        title: "Sistemas en producción.",
+        subtitle: "Tres de los más de 50 sistemas que mantenemos en producción desde 2019.",
+        statusLabel: "En producción",
+        completedLabel: "Completado:",
+        viewCase: "Ver caso",
+        allCases: "Ver todos los casos de éxito",
     },
 
     // Pricing Section
     pricing: {
-        badge: "Investment",
         title: "Modelos de",
         titleHighlight: "Colaboración",
         subtitle: "Transparencia total. Sin costos ocultos.",
@@ -156,10 +177,6 @@ export const es = {
         title: "Nuestro",
         titleHighlight: "Equipo",
         subtitle: "Empatía, técnica y pasión por resolver problemas reales con código.",
-        cta: {
-            question: "¿Listo para digitalizar tu negocio?",
-            action: "Conversemos",
-        },
         members: {
             matias: {
                 role: "Data Analyst & AI Master",
@@ -423,6 +440,13 @@ export const es = {
     },
 
     footer: {
+        cta: {
+            title: "Construyamos.",
+            subline: "Un diagnóstico de 30 minutos por Google Meet. Sales con un plan de acción — con o sin nosotros.",
+            button: "Agendar diagnóstico gratuito",
+            whatsappLabel: "o directo por WhatsApp",
+            phoneDisplay: "+593 99 549 8636",
+        },
         tagline: "Arquitectura digital invisible para empresas que escalan.",
         services: {
             title: "Servicios",
