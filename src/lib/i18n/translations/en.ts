@@ -12,22 +12,32 @@ export const en: Translations = {
         startProject: "Start Project",
     },
 
-    // Hero Section — Obra Modular
+    // Hero Section — editorial typographic. titleBefore splits on '\n';
+    // the <h1> textContent must keep "custom software development" contiguous.
     hero: {
-        eyebrow: "Khannda · Custom software · Ecuador → LATAM",
-        titleBefore: "Custom software",
-        titleEmphasis: "built to fit",
-        titleAfter: ", piece by piece.",
-        description: "We design and assemble web, mobile and n8n automation systems that fit your operation — not the other way around. 50+ systems in production for fintech, logistics, retail and healthcare since 2019.",
+        eyebrow: "Khannda · Quito → LATAM & US · since 2019",
+        titleBefore: "Custom\nsoftware",
+        titleEmphasis: "development",
+        titleAfter: ".",
+        description: "Web, mobile and n8n automation systems for companies across LATAM and the US. Fixed scope, code you own, an MVP in production in 4–6 weeks.",
         cta: "Book a diagnostic",
-        ctaSecondary: "View projects",
+        ctaSecondary: "See the work",
         proof: "Est. 2019 · 50+ systems in production · Fintech / Logistics / Retail / Health",
-        annotation: "MODULE N.05 — built to fit",
     },
+
+    // Editorial intro (home)
+    intro: {
+        title: "What you'll find here.",
+        body: "No digital-transformation promises, no 40-slide decks. Below: what we do, three real systems in production, how we charge, and the questions everyone asks before starting. If your case doesn't need custom software, we'll tell you on the first call.",
+    },
+
+    // Giant separator words (decorative, aria-hidden; universal terms —
+    // intentionally identical in both languages)
+    separators: ["Software", "Fintech", "Uptime", "Partner"],
 
     // About Section — A1 Layered Stack
     about: {
-        eyebrow: "Why Khannda · 01",
+        eyebrow: "How we build it",
         title: "Invisible",
         titleHighlight: "Architecture.",
         subtitle: "Your customer only sees the screen. Behind it run five layers we design, operate, and guarantee. Hover any of them.",
@@ -81,10 +91,8 @@ export const en: Translations = {
 
     // Services Section
     services: {
-        badge: "Capabilities",
-        title: "Our",
-        titleHighlight: "Services",
-        subtitle: "World-class software engineering to solve complex business challenges.",
+        title: "What we do.",
+        subtitle: "Four ways to work with us. All of them end with code you own.",
         seoIntro: "We are a custom software development company based in Ecuador working across LATAM and the US. Every service is quoted as a fixed scope and delivered with source code, documentation and support included.",
         items: {
             development: {
@@ -121,11 +129,23 @@ export const en: Translations = {
             timeToMarket: { value: "4 WKS", label: "Time-to-Market", desc: "Agile and fast development cycles." },
             ownership: { value: "2x", label: "Faster", desc: "Agile development and frequent deliveries." },
         },
+        outroText: "Not sure which of the four you need? That's what the diagnostic is for.",
+        outroCta: "Book a free diagnostic",
+    },
+
+    // Work Index (home) — rows read from projects.showcase.*
+    work: {
+        eyebrow: "Selected work",
+        title: "Systems in production.",
+        subtitle: "Three of the 50+ systems we've kept in production since 2019.",
+        statusLabel: "In production",
+        completedLabel: "Completed:",
+        viewCase: "View case",
+        allCases: "See all case studies",
     },
 
     // Pricing Section
     pricing: {
-        badge: "Investment",
         title: "Collaboration",
         titleHighlight: "Models",
         subtitle: "Total transparency. No hidden costs.",
@@ -158,10 +178,6 @@ export const en: Translations = {
         title: "Our",
         titleHighlight: "Team",
         subtitle: "Empathy, technique, and passion for solving real problems with code.",
-        cta: {
-            question: "Ready to digitize your business?",
-            action: "Let's Talk",
-        },
         members: {
             matias: {
                 role: "Data Analyst & AI Master",
@@ -425,6 +441,13 @@ export const en: Translations = {
     },
 
     footer: {
+        cta: {
+            title: "Let's build.",
+            subline: "A 30-minute diagnostic over Google Meet. You leave with an action plan — with or without us.",
+            button: "Book a free diagnostic",
+            whatsappLabel: "or straight on WhatsApp",
+            phoneDisplay: "+593 99 549 8636",
+        },
         tagline: "Invisible digital architecture for companies that scale.",
         services: {
             title: "Services",

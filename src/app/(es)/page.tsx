@@ -6,22 +6,30 @@ import { useTheme } from '@/providers/ThemeProvider';
 import { useLanguage } from '@/providers/LanguageProvider';
 import { Navbar, Footer } from '@/components/shared/layout';
 import { HeroSection } from '@/components/features/home';
-import { WhatsAppFAB } from '@/components/shared/ui';
+import { WhatsAppFAB, SeparatorWord } from '@/components/shared/ui';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { faqPage } from '@/lib/seo/schema';
 import { cn } from '@/lib/utils';
 
 // Below-the-fold: code-splitting del JS, pero SIEMPRE con SSR — este contenido
-// (servicios, precios, equipo, FAQ) debe existir en el HTML para crawlers y LLMs.
-const AboutSection = dynamic(() => import('@/components/features/home/components/AboutSection'));
+// (servicios, trabajo, precios, equipo, FAQ) debe existir en el HTML para
+// crawlers y LLMs.
+const IntroSection = dynamic(() => import('@/components/features/home/components/IntroSection'));
 const ServicesSection = dynamic(() => import('@/components/features/home/components/ServicesSection'));
+const WorkIndexSection = dynamic(() => import('@/components/features/home/components/WorkIndexSection'));
+const AboutSection = dynamic(() => import('@/components/features/home/components/AboutSection'));
 const PricingSection = dynamic(() => import('@/components/features/home/components/PricingSection'));
-const FAQSection = dynamic(() => import('@/components/features/home/components/FAQSection'));
 const TeamSection = dynamic(() => import('@/components/features/home/components/TeamSection'));
+const FAQSection = dynamic(() => import('@/components/features/home/components/FAQSection'));
 
 export default function HomePage() {
   const { isDark, toggleTheme } = useTheme();
   const { language, t } = useLanguage();
+
+  // Palabras separadoras gigantes (decorativas): Software → Fintech (la única
+  // teñida, antesala del caso flagship) → Uptime → Partner. Ninguna entre FAQ
+  // y footer para no competir con el CTA gigante.
+  const [sepSoftware, sepFintech, sepUptime, sepPartner] = t.separators;
 
   return (
     <div className={cn(
@@ -35,15 +43,27 @@ export default function HomePage() {
       <main>
         <HeroSection isDark={isDark} />
 
-        <AboutSection isDark={isDark} />
+        <IntroSection isDark={isDark} />
+
+        <SeparatorWord word={sepSoftware} align="left" />
 
         <ServicesSection isDark={isDark} />
 
+        <SeparatorWord word={sepFintech} align="right" tint />
+
+        <WorkIndexSection isDark={isDark} />
+
+        <SeparatorWord word={sepUptime} align="left" />
+
+        <AboutSection isDark={isDark} />
+
+        <SeparatorWord word={sepPartner} align="right" />
+
         <PricingSection isDark={isDark} />
 
-        <FAQSection isDark={isDark} />
-
         <TeamSection isDark={isDark} />
+
+        <FAQSection isDark={isDark} />
       </main>
 
       {/* FAQPage schema: solo en la home, donde vive el contenido visible */}

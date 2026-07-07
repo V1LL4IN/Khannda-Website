@@ -10,11 +10,17 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildSiteGraph } from '@/lib/seo/schema';
+import { montserrat, inter, geistMono } from '@/lib/fonts';
+import { CustomCursor } from '@/components/shared/ui/CustomCursor';
 import type { Lang } from '@/lib/seo/site';
 
 export function BaseLayout({ children, lang }: { children: ReactNode; lang: Lang }) {
     return (
-        <html lang={lang} suppressHydrationWarning>
+        <html
+            lang={lang}
+            suppressHydrationWarning
+            className={`${montserrat.variable} ${inter.variable} ${geistMono.variable}`}
+        >
             <head>
                 <JsonLd data={buildSiteGraph(lang)} />
             </head>
@@ -23,6 +29,7 @@ export function BaseLayout({ children, lang }: { children: ReactNode; lang: Lang
                     <LanguageProvider language={lang}>
                         <LenisProvider>
                             {children}
+                            <CustomCursor />
                         </LenisProvider>
                     </LanguageProvider>
                 </ThemeProvider>

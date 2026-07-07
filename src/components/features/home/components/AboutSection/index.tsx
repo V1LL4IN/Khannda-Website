@@ -1,74 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// AboutSection — "Arquitectura invisible" como la sección PINNED insignia
+// (patrón sticky-features de mosaicist). Desktop + motion-ok: el bloque se
+// fija y cada capa se revela con clip-path mientras el texto sube escalonado;
+// barra de progreso púrpura. Móvil / no-JS / reduced-motion: las 5 capas
+// quedan en flow, apiladas y 100% legibles (toda la conversión es gsap.set
+// dentro de matchMedia → se revierte sola). Todo el copy es indexable.
+
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/providers/LanguageProvider';
+import { RevealGroup } from '@/components/shared/ui';
+import { useStickyFeature } from '@/lib/animation/useStickyFeature';
 import type { AboutSectionProps } from './AboutSection.types';
-
-const PURPLE_MID = '#712F6D';
-const PURPLE_END = '#8a3c86';
-const GRADIENT = 'linear-gradient(135deg, #592355, #712F6D 50%, #8a3c86)';
-
-const SectionHeader = ({
-    eyebrow,
-    title,
-    highlight,
-    sub,
-    isDark,
-}: {
-    eyebrow: string;
-    title: string;
-    highlight: string;
-    sub: string;
-    isDark: boolean;
-}) => (
-    <div className="flex flex-col gap-4 items-start max-w-[720px]">
-        <span
-            className={cn(
-                'inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-[10px] uppercase tracking-[0.18em] border',
-                isDark
-                    ? 'border-[rgba(138,60,134,0.3)] bg-[rgba(138,60,134,0.08)] text-[#c87bbf]'
-                    : 'border-[rgba(89,35,85,0.18)] bg-[rgba(89,35,85,0.04)] text-[#712F6D]'
-            )}
-        >
-            <span
-                className="w-[5px] h-[5px] rounded-full"
-                style={{ background: PURPLE_END }}
-            />
-            {eyebrow}
-        </span>
-        <h2
-            className={cn(
-                'text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium m-0 leading-[1.05] tracking-[-0.03em]',
-                isDark ? 'text-white' : 'text-[#0a0a0a]'
-            )}
-        >
-            {title}{' '}
-            <span
-                className="font-bold"
-                style={{
-                    background: GRADIENT,
-                    WebkitBackgroundClip: 'text',
-                    backgroundClip: 'text',
-                    color: 'transparent',
-                }}
-            >
-                {highlight}
-            </span>
-        </h2>
-        {sub && (
-            <p
-                className={cn(
-                    'text-base md:text-[17px] leading-[1.55] font-light m-0 max-w-[600px]',
-                    isDark ? 'text-neutral-400' : 'text-neutral-600'
-                )}
-            >
-                {sub}
-            </p>
-        )}
-    </div>
-);
 
 type Layer = {
     name: string;
@@ -79,234 +23,136 @@ type Layer = {
     metricLabel: string;
 };
 
-const LayerRow = ({
-    layer,
-    index,
-    isActive,
-    onActivate,
-    isDark,
-}: {
-    layer: Layer;
-    index: number;
-    isActive: boolean;
-    onActivate: () => void;
-    isDark: boolean;
-}) => {
-    return (
-        <div
-            onMouseEnter={onActivate}
-            onFocus={onActivate}
-            onClick={onActivate}
-            tabIndex={0}
-            role="button"
-            aria-expanded={isActive}
-            className={cn(
-                'grid items-stretch rounded-md border cursor-pointer transition-all duration-[250ms] overflow-hidden relative',
-                'grid-cols-[40px_1fr] sm:grid-cols-[60px_1fr_auto]',
-                isActive
-                    ? isDark
-                        ? 'bg-neutral-900 border-[rgba(138,60,134,0.4)] shadow-[0_8px_32px_rgba(89,35,85,0.2)] p-6 sm:p-7'
-                        : 'bg-white border-[rgba(89,35,85,0.25)] shadow-[0_8px_32px_rgba(89,35,85,0.08)] p-6 sm:p-7'
-                    : isDark
-                    ? 'bg-transparent border-white/[0.08] py-3.5 px-6 sm:px-7'
-                    : 'bg-transparent border-black/[0.08] py-3.5 px-6 sm:px-7'
-            )}
-            style={{ outline: 'none' }}
-        >
-            {/* Layer index */}
-            <div
-                className="font-mono text-[11px] uppercase tracking-[0.18em] flex items-center"
-                style={{
-                    color: isActive ? (isDark ? '#c87bbf' : PURPLE_MID) : isDark ? '#525252' : '#a3a3a3',
-                }}
-            >
-                L{index}
-            </div>
-
-            {/* Name + tag + (active: copy + chips) */}
-            <div
-                className={cn(
-                    'flex flex-col justify-center min-w-0',
-                    isActive ? 'gap-3' : 'gap-0'
-                )}
-            >
-                <div className="flex items-baseline gap-3 sm:gap-4 flex-wrap">
-                    <span
-                        className={cn(
-                            'font-medium tracking-[-0.01em] transition-all duration-[250ms]',
-                            isActive
-                                ? 'text-2xl sm:text-[28px]'
-                                : 'text-xl sm:text-[22px]',
-                            isDark ? 'text-white' : 'text-[#0a0a0a]'
-                        )}
-                    >
-                        {layer.name}
-                    </span>
-                    <span
-                        className={cn(
-                            'font-mono text-[10px] uppercase tracking-[0.14em]',
-                            isDark ? 'text-neutral-500' : 'text-neutral-500'
-                        )}
-                    >
-                        {layer.tag}
-                    </span>
-                </div>
-                <AnimatePresence initial={false}>
-                    {isActive && (
-                        <motion.div
-                            key="details"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.25, ease: [0.2, 0.7, 0.3, 1] }}
-                            className="flex flex-col gap-3 overflow-hidden"
-                        >
-                            <p
-                                className={cn(
-                                    'text-sm sm:text-[15px] leading-[1.55] m-0 max-w-[640px]',
-                                    isDark ? 'text-neutral-300' : 'text-neutral-700'
-                                )}
-                            >
-                                {layer.own}
-                            </p>
-                            <div className="flex gap-1.5 flex-wrap">
-                                {layer.stack.map((s) => (
-                                    <span
-                                        key={s}
-                                        className={cn(
-                                            'px-2.5 py-1 rounded-[3px] font-mono text-[11px]',
-                                            isDark
-                                                ? 'bg-[rgba(138,60,134,0.15)] text-[#c87bbf]'
-                                                : 'bg-[rgba(89,35,85,0.06)] text-[#712F6D]'
-                                        )}
-                                    >
-                                        {s}
-                                    </span>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-
-            {/* Metric — right column on sm+; for xs (single-col grid above), wrapped below */}
-            <div
-                className={cn(
-                    'col-span-2 sm:col-span-1 text-left sm:text-right flex flex-col justify-center mt-2 sm:mt-0',
-                    'sm:pl-4'
-                )}
-            >
-                <div
-                    className={cn(
-                        'font-medium tracking-[-0.02em] tabular-nums transition-all duration-[250ms]',
-                        isActive ? 'text-[26px] sm:text-[32px]' : 'text-xl sm:text-[22px]'
-                    )}
-                    style={{
-                        color: isActive ? PURPLE_END : isDark ? '#525252' : '#a3a3a3',
-                    }}
-                >
-                    {layer.metric}
-                </div>
-                <AnimatePresence initial={false}>
-                    {isActive && (
-                        <motion.div
-                            key="metric-label"
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -4 }}
-                            transition={{ duration: 0.2 }}
-                            className={cn(
-                                'font-mono text-[9px] uppercase tracking-[0.14em] mt-0.5',
-                                isDark ? 'text-neutral-500' : 'text-neutral-500'
-                            )}
-                        >
-                            {layer.metricLabel}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </div>
-    );
-};
-
-export function AboutSection({ isDark }: AboutSectionProps) {
+export function AboutSection({ isDark: _isDark }: AboutSectionProps) {
     const { t, language } = useLanguage();
-    const [active, setActive] = useState<number>(2);
-
+    const rootRef = useStickyFeature<HTMLDivElement>();
     const layers = t.about.layers as Layer[];
 
     return (
         <section
             id="nosotros"
-            className={cn(
-                'relative transition-colors duration-300',
-                isDark ? 'bg-neutral-950' : 'bg-[#fafaf9]'
-            )}
+            className="bg-background text-foreground transition-colors duration-300 px-6 sm:px-10 scroll-mt-16"
         >
-            <div className="max-w-[1280px] mx-auto px-6 sm:px-14 py-20 md:py-24 flex flex-col gap-10">
-                <SectionHeader
-                    eyebrow={t.about.eyebrow}
-                    title={t.about.title}
-                    highlight={t.about.titleHighlight}
-                    sub={t.about.subtitle}
-                    isDark={isDark}
-                />
+            <div ref={rootRef} className="max-w-[1400px] mx-auto py-20 md:py-28">
+                {/* Header */}
+                <RevealGroup className="mb-14">
+                    <p data-reveal className="font-mono text-[10px] uppercase tracking-[0.3em] text-faint mb-6">
+                        05 — {t.about.eyebrow}
+                    </p>
+                    <h2 data-reveal className="font-display font-extralight uppercase text-h2 m-0 mb-4">
+                        {t.about.title} {t.about.titleHighlight}
+                    </h2>
+                    <p data-reveal className="text-lead font-light m-0 max-w-[600px] text-muted-foreground">
+                        {t.about.subtitle}
+                    </p>
+                </RevealGroup>
 
-                <div className="flex flex-col gap-2">
-                    {layers.map((layer, i) => (
-                        <LayerRow
-                            key={layer.name}
-                            layer={layer}
-                            index={i}
-                            isActive={active === i}
-                            onActivate={() => setActive(i)}
-                            isDark={isDark}
-                        />
-                    ))}
+                {/* Bloque pinned */}
+                <div data-sticky-pin className="lg:flex lg:items-center">
+                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 w-full">
+                        {/* Índice de capas (desktop) + barra de progreso */}
+                        <div className="hidden lg:block lg:col-span-4" aria-hidden="true">
+                            <ul className="flex flex-col gap-4">
+                                {layers.map((layer, i) => (
+                                    <li
+                                        key={layer.name}
+                                        data-sticky-menu-item
+                                        className="group flex items-baseline gap-4 text-faint transition-colors duration-300 data-[active=true]:text-foreground"
+                                    >
+                                        <span className="font-mono text-[11px] tracking-[0.18em] transition-colors duration-300 group-data-[active=true]:text-accent">
+                                            L{i}
+                                        </span>
+                                        <span className="font-display font-light uppercase tracking-[0.04em] text-xl">
+                                            {layer.name}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="mt-10 h-px w-full bg-border overflow-hidden">
+                                <div
+                                    data-sticky-progress
+                                    className="h-full w-full bg-accent-strong origin-left"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Stage de capas */}
+                        <div data-sticky-stage className="lg:col-span-8 flex flex-col gap-6 lg:gap-0">
+                            {layers.map((layer, i) => (
+                                <article
+                                    key={layer.name}
+                                    data-sticky-item
+                                    className="bg-background border border-border rounded-lg p-7 md:p-9"
+                                >
+                                    <div className="flex items-start justify-between gap-6">
+                                        <div className="min-w-0">
+                                            <h3
+                                                data-sticky-text
+                                                className="font-display font-light uppercase tracking-[0.04em] text-h3 mb-1"
+                                            >
+                                                <span className="lg:hidden font-mono text-[11px] tracking-[0.18em] text-accent mr-3 align-middle">
+                                                    L{i}
+                                                </span>
+                                                {layer.name}
+                                            </h3>
+                                            <p
+                                                data-sticky-text
+                                                className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint"
+                                            >
+                                                {layer.tag}
+                                            </p>
+                                        </div>
+                                        <div data-sticky-text className="text-right shrink-0">
+                                            <div className="font-display font-thin tabular-nums text-3xl md:text-4xl leading-none">
+                                                {layer.metric}
+                                            </div>
+                                            <div className="font-mono text-[9px] uppercase tracking-[0.14em] text-faint mt-1.5">
+                                                {layer.metricLabel}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p
+                                        data-sticky-text
+                                        className="text-sm sm:text-base leading-[1.6] text-muted-foreground mt-6 max-w-[560px]"
+                                    >
+                                        {layer.own}
+                                    </p>
+
+                                    <div data-sticky-text className="flex gap-2 flex-wrap mt-6">
+                                        {layer.stack.map((s) => (
+                                            <span
+                                                key={s}
+                                                className="px-3 py-1.5 rounded-full border border-border font-mono text-[11px] leading-none text-muted-foreground"
+                                            >
+                                                {s}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
-                <div
-                    className={cn(
-                        'flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t pt-5',
-                        isDark ? 'border-white/[0.08]' : 'border-black/[0.08]'
-                    )}
-                >
-                    <div
-                        className={cn(
-                            'font-mono text-[11px] tracking-[0.1em]',
-                            isDark ? 'text-neutral-400' : 'text-neutral-600'
-                        )}
-                    >
+                {/* Footer note + CTA */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-14">
+                    <div className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground">
                         {t.about.footerNote}
                     </div>
-                    <button
-                        className={cn(
-                            'px-5 py-3 rounded text-[13px] font-medium border bg-transparent transition-colors',
-                            isDark
-                                ? 'text-[#c87bbf] border-[#c87bbf] hover:bg-[rgba(138,60,134,0.1)]'
-                                : 'text-[#8a3c86] border-[#8a3c86] hover:bg-[rgba(89,35,85,0.06)]'
-                        )}
-                    >
+                    <button className="text-sm font-medium text-accent border-b border-accent/40 pb-0.5 bg-transparent cursor-pointer transition-colors hover:border-accent">
                         {t.about.footerCta}
                     </button>
                 </div>
 
                 {/* Cierre indexable + cross-link a casos de éxito */}
-                <div className={cn('border-t pt-6 mt-2', isDark ? 'border-white/[0.08]' : 'border-black/[0.08]')}>
-                    <p
-                        className={cn(
-                            'text-sm font-light leading-relaxed max-w-3xl',
-                            isDark ? 'text-neutral-500' : 'text-neutral-500'
-                        )}
-                    >
+                <div className="border-t border-border pt-6 mt-10">
+                    <p className="text-sm font-light leading-relaxed max-w-3xl text-faint">
                         {t.about.seoOutro}{' '}
                         <a
                             href={`${language === 'en' ? '/en' : ''}/proyectos`}
                             className={cn(
-                                'border-b pb-0.5 transition-colors',
-                                isDark
-                                    ? 'text-purple-300/80 border-purple-300/30 hover:text-purple-200'
-                                    : 'text-purple-700 border-purple-300 hover:text-purple-900'
+                                'text-accent border-b border-accent/40 pb-0.5 transition-colors hover:border-accent'
                             )}
                         >
                             {t.about.seoLink}
