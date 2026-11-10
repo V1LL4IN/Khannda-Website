@@ -160,7 +160,7 @@ export function solutionsServices(lang: Lang) {
     };
 }
 
-/** Casos de éxito de /proyectos + el video demo de YouTube. */
+/** Casos de éxito de /proyectos. */
 export function projectsItemList(lang: Lang) {
     const t = dict(lang);
     const cases = [t.projects.showcase.finance, t.projects.showcase.fitness, t.projects.showcase.retail];
@@ -188,14 +188,6 @@ export function projectsItemList(lang: Lang) {
                         },
                     })),
                 },
-            },
-            {
-                '@type': 'VideoObject',
-                name: lang === 'es' ? 'Demo de proyectos Khannda' : 'Khannda projects demo',
-                description: t.projects.subtitle,
-                embedUrl: 'https://www.youtube.com/embed/v5Tq4UY8-08',
-                thumbnailUrl: 'https://i.ytimg.com/vi/v5Tq4UY8-08/hqdefault.jpg',
-                uploadDate: '2025-01-01',
             },
         ],
     };

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/providers/ThemeProvider";
 import { Zap, Shield, TrendingUp, Sparkles, CheckCircle2 } from "lucide-react";
+import { ScrollModel } from "@/components/shared/ui/ScrollModel";
 
 interface BenefitCardProps {
     title: string;
@@ -140,38 +141,63 @@ export const TechDetailSection = () => {
     return (
         <div className={cn("w-full min-h-screen relative z-20 pt-20 pb-32 px-6", isDark ? "bg-background" : "bg-background")}>
             <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <div className={cn(
-                        "inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-6",
-                        isDark
-                            ? "bg-purple-500/10 border border-purple-500/20 text-purple-400"
-                            : "bg-purple-100 border border-purple-200 text-purple-700"
-                    )}>
-                        <Sparkles size={14} />
-                        <span>{t.technologies.details.badge}</span>
+                {/* Header + núcleo 3D (chip holográfico que rota con el scroll) */}
+                <div className="grid lg:grid-cols-2 items-center gap-6 lg:gap-12 mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center lg:text-left"
+                    >
+                        <div className={cn(
+                            "inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-6",
+                            isDark
+                                ? "bg-purple-500/10 border border-purple-500/20 text-purple-400"
+                                : "bg-purple-100 border border-purple-200 text-purple-700"
+                        )}>
+                            <Sparkles size={14} />
+                            <span>{t.technologies.details.badge}</span>
+                        </div>
+
+                        <h2 className={cn(
+                            "text-4xl md:text-5xl font-bold mb-6 tracking-tight",
+                            isDark ? "text-white" : "text-neutral-900"
+                        )}>
+                            {t.technologies.details.title}{" "}
+                            <span className="gradient-text">{t.technologies.details.titleHighlight}</span>
+                        </h2>
+
+                        <p className={cn(
+                            "max-w-2xl mx-auto lg:mx-0 text-lg leading-relaxed",
+                            isDark ? "text-neutral-400" : "text-neutral-600"
+                        )}>
+                            {t.technologies.details.description}
+                        </p>
+                    </motion.div>
+
+                    <div className="relative order-first lg:order-last">
+                        {/* Rejilla HUD detrás del modelo */}
+                        <div
+                            aria-hidden
+                            className="absolute inset-0 pointer-events-none"
+                            style={{
+                                backgroundImage: `linear-gradient(${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"} 1px, transparent 1px)`,
+                                backgroundSize: "36px 36px",
+                                maskImage: "radial-gradient(circle at center, black 0%, transparent 65%)",
+                                WebkitMaskImage: "radial-gradient(circle at center, black 0%, transparent 65%)",
+                            }}
+                        />
+                        <ScrollModel
+                            src="/models/chip.glb"
+                            poster="/models/chip.webp"
+                            alt={t.technologies.stackScreen.header}
+                            turns={1}
+                            tilt={[0.9, 0.25]}
+                            size={2.6}
+                            className="w-full aspect-square max-w-[460px] mx-auto"
+                        />
                     </div>
-
-                    <h2 className={cn(
-                        "text-4xl md:text-5xl font-bold mb-6 tracking-tight",
-                        isDark ? "text-white" : "text-neutral-900"
-                    )}>
-                        {t.technologies.details.title}{" "}
-                        <span className="gradient-text">{t.technologies.details.titleHighlight}</span>
-                    </h2>
-
-                    <p className={cn(
-                        "max-w-2xl mx-auto text-lg leading-relaxed",
-                        isDark ? "text-neutral-400" : "text-neutral-600"
-                    )}>
-                        {t.technologies.details.description}
-                    </p>
-                </motion.div>
+                </div>
 
                 {/* Benefit Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -196,6 +222,14 @@ export const TechDetailSection = () => {
                     transition={{ delay: 0.1 }}
                     className="text-center mt-16"
                 >
+                    <ScrollModel
+                        src="/models/servers.glb"
+                        poster="/models/servers.webp"
+                        alt=""
+                        glow="cyan"
+                        turns={0.75}
+                        className="w-56 h-56 md:w-64 md:h-64 mx-auto mb-6"
+                    />
                     <p className={cn(
                         "text-sm mb-4",
                         isDark ? "text-neutral-500" : "text-neutral-500"
