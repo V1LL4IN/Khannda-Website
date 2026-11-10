@@ -311,7 +311,7 @@ function Laptop({ progress, isDark }: Omit<SceneProps, "active">) {
                         <meshStandardMaterial color="#050506" metalness={0.4} roughness={0.25} />
                     </mesh>
                     {/* Imagen de pantalla (se enciende con el scroll) */}
-                    <mesh position={[0, 0.01, 0.002]}>
+                    <mesh position={[0, 0.01, 0.002]} renderOrder={1}>
                         <planeGeometry args={[W - 0.22, LID_H - 0.26]} />
                         <meshBasicMaterial ref={screenMat} map={screenTexture} transparent opacity={0} toneMapped={false} />
                     </mesh>
@@ -325,6 +325,9 @@ function Laptop({ progress, isDark }: Omit<SceneProps, "active">) {
                             tiles.current[i] = m;
                         }}
                         visible={false}
+                        // Siempre después de la pantalla: ambos son transparentes y, sin
+                        // orden fijo, según el ángulo la pantalla tapaba algunos logos.
+                        renderOrder={2}
                     >
                         <planeGeometry args={[0.56, 0.56]} />
                         <meshBasicMaterial map={tileTextures[i]} transparent opacity={0} toneMapped={false} depthWrite={false} />
