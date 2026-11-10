@@ -1,164 +1,241 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+// /proyectos — tres casos como paneles grandes que se apilan con el scroll.
+// Cada panel muestra título, resultados y un visual; el problema y la
+// solución se abren con "+" sobre el visual. Todo el texto está SIEMPRE en
+// el HTML (lo indexan buscadores y lo citan los LLMs), solo se pliega.
+import React, { useEffect, useId, useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { ArrowUpRight, Check, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ProjectsShowcase } from './ProjectsShowcase';
 import { LayoutTextFlip } from '@/components/shared/ui/layout-text-flip';
-import { ScrollReveal } from '@/components/shared/ui';
+import { useLanguage } from '@/providers/LanguageProvider';
+import { CASE_VISUALS } from './CaseVisuals';
 
 interface ProjectsSectionProps {
     isDark: boolean;
 }
 
-import { useLanguage } from '@/providers/LanguageProvider';
+type CaseKey = keyof typeof CASE_VISUALS;
+const KEYS: CaseKey[] = ['finance', 'fitness', 'retail'];
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+interface CaseStudy {
+    title: string;
+    sector: string;
+    challenge: string;
+    solution: string;
+    stack: string[];
+    results: string[];
+}
+
+interface CasePanelProps {
+    caseKey: CaseKey;
+    index: number;
+    data: CaseStudy;
+    labels: { challenge: string; solution: string; stack: string; results: string };
+    isDark: boolean;
+    still: boolean;
+    /** Apilado activo (solo escritorio). */
+    stacked: boolean;
+    progress: MotionValue<number>;
+}
+
+function CasePanel({ caseKey, index, data, labels, isDark, still, stacked, progress }: CasePanelProps) {
+    const [open, setOpen] = useState(false);
+    const detailId = useId();
+    const Visual = CASE_VISUALS[caseKey];
+    // Los paneles ya apilados se encogen un poco al entrar el siguiente
+    const scale = useTransform(progress, [index / KEYS.length, 1], [1, 1 - (KEYS.length - 1 - index) * 0.045]);
+
+    return (
+        <div className="lg:sticky" style={{ top: `${6 + index * 1.1}rem` }}>
+            <motion.article
+                id={`caso-${caseKey}`}
+                style={stacked ? { scale, transformOrigin: 'top center' } : undefined}
+                className={cn(
+                    'scroll-mt-28 grid lg:grid-cols-2 gap-6 lg:gap-10 rounded-[32px] md:rounded-[44px] p-6 sm:p-8 lg:p-12',
+                    'lg:h-[76vh] lg:min-h-[600px] lg:max-h-[780px]',
+                    isDark ? 'bg-[#111113] shadow-[0_-1px_0_rgba(255,255,255,0.06)]' : 'bg-[#f1f1f4] shadow-[0_-1px_0_rgba(0,0,0,0.04)]'
+                )}
+            >
+                {/* Ficha */}
+                <div className="flex flex-col">
+                    <p className={cn('font-mono text-[11px] uppercase tracking-[0.2em] mb-5', isDark ? 'text-[#c87bbf]' : 'text-[#8a3c86]')}>
+                        {String(index + 1).padStart(2, '0')} / {String(KEYS.length).padStart(2, '0')} · {data.sector}
+                    </p>
+                    <h2 className={cn('text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight leading-[1.03] mb-8', isDark ? 'text-white' : 'text-neutral-900')}>
+                        {data.title}
+                    </h2>
+
+                    <h3 className="sr-only">{labels.results}</h3>
+                    <ul className="space-y-3 mb-8">
+                        {data.results.map((result, i) => (
+                            <li key={i} className={cn('flex items-start gap-3 text-base', isDark ? 'text-neutral-300' : 'text-neutral-700')}>
+                                <Check size={18} className="mt-0.5 shrink-0 text-[#8a3c86]" />
+                                {result}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <h3 className="sr-only">{labels.stack}</h3>
+                    <ul className="flex flex-wrap gap-2 mt-auto">
+                        {data.stack.map((tech) => (
+                            <li
+                                key={tech}
+                                className={cn(
+                                    'px-3.5 py-1.5 rounded-full font-mono text-[11px]',
+                                    isDark ? 'bg-white/[0.06] text-neutral-300' : 'bg-white text-neutral-700'
+                                )}
+                            >
+                                {tech}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Visual + detalle plegable */}
+                <div className={cn('relative overflow-hidden rounded-[26px] md:rounded-[32px] min-h-[300px] lg:min-h-0', isDark ? 'bg-[#19191c]' : 'bg-white')}>
+                    <div
+                        className={cn(
+                            'absolute inset-0 p-8 sm:p-12 transition-all duration-500 ease-out',
+                            open ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                        )}
+                    >
+                        <Visual isDark={isDark} still={still} />
+                    </div>
+
+                    {/* Problema → solución: en el DOM aunque esté plegado (SEO/GEO) */}
+                    <div
+                        id={detailId}
+                        inert={!open}
+                        className={cn(
+                            'relative lg:absolute lg:inset-0 lg:overflow-y-auto p-7 sm:p-9 pb-20 transition-all duration-500 ease-out',
+                            open ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 max-lg:absolute max-lg:inset-0 max-lg:overflow-hidden'
+                        )}
+                    >
+                        <h3 className={cn('font-mono text-[11px] uppercase tracking-[0.2em] mb-2', isDark ? 'text-[#c87bbf]' : 'text-[#8a3c86]')}>
+                            {labels.challenge}
+                        </h3>
+                        <p className={cn('text-sm sm:text-[15px] leading-relaxed mb-6', isDark ? 'text-neutral-300' : 'text-neutral-700')}>
+                            {data.challenge}
+                        </p>
+                        <h3 className={cn('font-mono text-[11px] uppercase tracking-[0.2em] mb-2', isDark ? 'text-[#c87bbf]' : 'text-[#8a3c86]')}>
+                            {labels.solution}
+                        </h3>
+                        <p className={cn('text-sm sm:text-[15px] leading-relaxed', isDark ? 'text-neutral-300' : 'text-neutral-700')}>
+                            {data.solution}
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={() => setOpen((v) => !v)}
+                        aria-expanded={open}
+                        aria-controls={detailId}
+                        className={cn(
+                            'absolute left-4 lg:left-auto lg:right-4 bottom-4 inline-flex items-center gap-2 h-11 pl-5 pr-3.5 rounded-full text-sm font-medium transition-colors duration-300',
+                            open
+                                ? 'bg-[#8a3c86] text-white'
+                                : isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-neutral-900 text-white hover:bg-[#8a3c86]'
+                        )}
+                    >
+                        {labels.challenge} · {labels.solution}
+                        <Plus size={18} className={cn('transition-transform duration-300', open && 'rotate-45')} />
+                    </button>
+                </div>
+            </motion.article>
+        </div>
+    );
+}
 
 export function ProjectsSection({ isDark }: ProjectsSectionProps) {
     const { t, language } = useLanguage();
     const p = language === 'en' ? '/en' : '';
+    const reduceMotion = useReducedMotion();
+    const stackRef = useRef<HTMLDivElement>(null);
+    const [isDesktop, setIsDesktop] = useState(false);
+    const { scrollYProgress } = useScroll({ target: stackRef, offset: ['start start', 'end end'] });
+
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const update = () => setIsDesktop(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
 
     return (
-        <section id="casos" className={cn("min-h-screen pt-36 pb-24 relative overflow-visible transition-colors duration-300 bg-background flex flex-col")}>
-
-            {/* Background Decorations — radial-gradient estático (sin blur GPU) */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div
-                    className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px]"
-                    style={{ background: `radial-gradient(circle, ${isDark ? 'rgba(6,78,59,0.22)' : 'rgba(167,243,208,0.4)'} 0%, transparent 70%)` }}
-                />
-                <div
-                    className="absolute -bottom-[20%] -left-[10%] w-[500px] h-[500px]"
-                    style={{ background: `radial-gradient(circle, ${isDark ? 'rgba(22,78,99,0.22)' : 'rgba(165,243,252,0.4)'} 0%, transparent 70%)` }}
-                />
-            </div>
-
-            <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-                <div className="text-center max-w-3xl mx-auto mb-5">
+        <section id="casos" className="relative pt-36 pb-6 px-3 sm:px-5 transition-colors duration-300 bg-background">
+            <div className="max-w-[1500px] mx-auto">
+                {/* Encabezado */}
+                <div className="text-center max-w-4xl mx-auto mb-14 md:mb-20 px-3">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className={cn("flex flex-nowrap items-center justify-center gap-3 text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-6 whitespace-nowrap", isDark ? "text-white" : "text-neutral-900")}
+                        transition={{ duration: 0.7, ease: EASE }}
+                        className={cn('flex flex-nowrap items-center justify-center gap-3 text-3xl sm:text-5xl md:text-7xl font-semibold tracking-tight mb-6 whitespace-nowrap', isDark ? 'text-white' : 'text-neutral-900')}
                     >
-                        <LayoutTextFlip
-                            text={t.projects.title}
-                            words={t.projects.flipWords}
-                        />
+                        <LayoutTextFlip text={t.projects.title} words={t.projects.flipWords} />
                     </motion.h1>
-
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className={cn("text-lg", isDark ? "text-neutral-400" : "text-neutral-600")}
+                        transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+                        className={cn('text-lg max-w-2xl mx-auto', isDark ? 'text-neutral-400' : 'text-neutral-600')}
                     >
                         {t.projects.subtitle}
                     </motion.p>
                 </div>
 
-                <ProjectsShowcase />
-
-                {/* Separador entre el showcase y el detalle de casos */}
-                <div className="flex items-center justify-center gap-4 mt-20 mb-10">
-                    <div className={cn("flex-1 h-px", isDark ? "bg-white/10" : "bg-black/10")} />
-                    <p className={cn("text-xs font-mono uppercase tracking-[0.2em] shrink-0", isDark ? "text-white/40" : "text-neutral-500")}>
-                        {t.projects.detailLabel}
-                    </p>
-                    <div className={cn("flex-1 h-px", isDark ? "bg-white/10" : "bg-black/10")} />
-                </div>
-
-                {/* Casos de éxito en detalle — problema → solución → stack →
-                    resultados. Siempre en el DOM: es el contenido que indexan
-                    buscadores y citan los LLMs. */}
-                <div className="grid gap-6 lg:grid-cols-3">
-                    {[
-                        t.projects.showcase.finance,
-                        t.projects.showcase.fitness,
-                        t.projects.showcase.retail,
-                    ].map((caseStudy, i) => (
-                        <ScrollReveal key={i} delay={0.05 * i} direction="up">
-                        <article
-                            className={cn(
-                                'rounded-2xl border p-7 flex flex-col h-full transition-colors',
-                                isDark ? 'border-white/10 bg-white/[0.02] hover:border-white/20' : 'border-black/10 bg-white hover:border-black/20'
-                            )}
-                        >
-                            <p
-                                className={cn(
-                                    'text-[10px] font-mono uppercase tracking-[0.18em] mb-3',
-                                    isDark ? 'text-[rgba(200,123,191,0.9)]' : 'text-[rgba(138,60,134,0.9)]'
-                                )}
-                            >
-                                {caseStudy.sector}
-                            </p>
-                            <h2 className={cn('text-xl font-semibold mb-5', isDark ? 'text-white' : 'text-neutral-900')}>
-                                {caseStudy.title}
-                            </h2>
-
-                            <h3 className={cn('text-xs font-mono uppercase tracking-[0.15em] mb-2', isDark ? 'text-white/60' : 'text-neutral-500')}>
-                                {t.projects.labels.challenge}
-                            </h3>
-                            <p className={cn('text-sm font-light leading-relaxed mb-5', isDark ? 'text-neutral-400' : 'text-neutral-600')}>
-                                {caseStudy.challenge}
-                            </p>
-
-                            <h3 className={cn('text-xs font-mono uppercase tracking-[0.15em] mb-2', isDark ? 'text-white/60' : 'text-neutral-500')}>
-                                {t.projects.labels.solution}
-                            </h3>
-                            <p className={cn('text-sm font-light leading-relaxed mb-5', isDark ? 'text-neutral-400' : 'text-neutral-600')}>
-                                {caseStudy.solution}
-                            </p>
-
-                            <h3 className={cn('text-xs font-mono uppercase tracking-[0.15em] mb-2', isDark ? 'text-white/60' : 'text-neutral-500')}>
-                                {t.projects.labels.stack}
-                            </h3>
-                            <ul className="flex flex-wrap gap-1.5 mb-5">
-                                {caseStudy.stack.map((tech, j) => (
-                                    <li
-                                        key={j}
-                                        className={cn(
-                                            'px-2.5 py-1 rounded-[3px] font-mono text-[11px]',
-                                            isDark ? 'bg-[rgba(138,60,134,0.15)] text-[#c87bbf]' : 'bg-[rgba(89,35,85,0.06)] text-[#712F6D]'
-                                        )}
-                                    >
-                                        {tech}
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <h3 className={cn('text-xs font-mono uppercase tracking-[0.15em] mb-2', isDark ? 'text-white/60' : 'text-neutral-500')}>
-                                {t.projects.labels.results}
-                            </h3>
-                            <ul className={cn('space-y-1.5 text-sm font-light', isDark ? 'text-neutral-400' : 'text-neutral-600')}>
-                                {caseStudy.results.map((result, j) => (
-                                    <li key={j} className="flex gap-2">
-                                        <span className="text-[#8a3c86] shrink-0">·</span>
-                                        {result}
-                                    </li>
-                                ))}
-                            </ul>
-                        </article>
-                        </ScrollReveal>
+                {/* Casos apilados */}
+                <div ref={stackRef} className="flex flex-col gap-3 sm:gap-5 lg:gap-10">
+                    {KEYS.map((key, i) => (
+                        <CasePanel
+                            key={key}
+                            caseKey={key}
+                            index={i}
+                            data={t.projects.showcase[key]}
+                            labels={t.projects.labels}
+                            isDark={isDark}
+                            still={!!reduceMotion}
+                            stacked={isDesktop && !reduceMotion}
+                            progress={scrollYProgress}
+                        />
                     ))}
                 </div>
 
-                {/* CTA → /contacto */}
-                <p className={cn("text-center text-sm font-light mt-14 pt-8 border-t", isDark ? "text-neutral-400 border-white/10" : "text-neutral-600 border-black/10")}>
-                    {t.projects.crossText}{' '}
-                    <a
-                        href={`${p}/contacto`}
-                        className={cn(
-                            "border-b pb-0.5 transition-colors",
-                            isDark
-                                ? "text-purple-300/80 border-purple-300/30 hover:text-purple-200"
-                                : "text-purple-700 border-purple-300 hover:text-purple-900"
-                        )}
-                    >
-                        {t.projects.crossLink}
-                    </a>
-                </p>
+                {/* Cierre → /contacto */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.7, ease: EASE }}
+                    className="relative z-10 overflow-hidden rounded-[32px] md:rounded-[44px] mt-3 sm:mt-5 lg:mt-10 px-7 py-14 md:px-16 md:py-24 text-white"
+                    style={{ background: 'linear-gradient(135deg, #3d1839 0%, #592355 45%, #8a3c86 100%)' }}
+                >
+                    <div
+                        aria-hidden
+                        className="absolute -right-24 -top-24 w-[420px] h-[420px] rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.16) 0%, transparent 65%)' }}
+                    />
+                    <div className="relative grid md:grid-cols-12 gap-8 items-end">
+                        <p className="md:col-span-8 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+                            {t.projects.crossText}
+                        </p>
+                        <div className="md:col-span-4 flex md:justify-end">
+                            <a
+                                href={`${p}/contacto`}
+                                className="group inline-flex items-center gap-2 pl-7 pr-5 py-4 rounded-full bg-white text-neutral-900 text-base font-medium transition-transform duration-300 hover:scale-[1.03]"
+                            >
+                                {t.projects.crossLink}
+                                <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </a>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
