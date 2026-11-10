@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { MacbookShowcase } from './MacbookShowcase';
+import { MacAssembly } from './MacAssembly';
 import { TechDetailSection } from './TechDetailSection';
 import { LayoutTextFlip } from '@/components/shared/ui/layout-text-flip';
 
@@ -17,7 +17,7 @@ export function TechnologiesSection({ isDark }: TechnologiesSectionProps) {
     const { t } = useLanguage();
 
     return (
-        <section id="tecnologia" className={cn("relative overflow-hidden transition-colors duration-300 bg-background pt-36 pb-8")}>
+        <section id="tecnologia" className={cn("relative overflow-x-clip transition-colors duration-300 bg-background pt-36 pb-8")}>
             {/* Background Decorations — radial-gradient estático (sin blur GPU) */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
@@ -59,12 +59,10 @@ export function TechnologiesSection({ isDark }: TechnologiesSectionProps) {
                 </div>
             </div>
 
-            {/* MacBook Showcase */}
-            <div className="w-full">
-                <MacbookShowcase />
-                <div className="-mt-[20vh] relative z-10">
-                    <TechDetailSection />
-                </div>
+            {/* Portátil 3D que se ensambla con el scroll */}
+            <MacAssembly />
+            <div className="relative z-10">
+                <TechDetailSection />
             </div>
         </section>
     );

@@ -48,7 +48,7 @@ const BenefitCard = ({ title, description, icon, benefits, accentColor, delay = 
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay, duration: 0.5 }}
             className={cn(
-                "group relative overflow-hidden rounded-2xl p-6",
+                "group relative overflow-hidden rounded-[28px] p-7",
                 "transition-all duration-300",
                 isDark
                     ? "bg-neutral-900/60 border border-white/[0.08] hover:border-white/[0.15] hover:shadow-xl"
@@ -64,7 +64,7 @@ const BenefitCard = ({ title, description, icon, benefits, accentColor, delay = 
             <div className="relative z-10">
                 {/* Icon & Title */}
                 <div className="flex items-center gap-3 mb-4">
-                    <div className={cn("p-3 rounded-xl", colors.iconBg)}>
+                    <div className={cn("p-3 rounded-2xl", colors.iconBg)}>
                         <span className={colors.icon}>
                             {icon}
                         </span>
@@ -206,7 +206,7 @@ export const TechDetailSection = () => {
                     <a
                         href={`${p}/contacto`}
                         className={cn(
-                            "inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200",
+                            "inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-medium transition-all duration-200",
                             isDark
                                 ? "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white"
                                 : "bg-neutral-100 border border-neutral-200 hover:bg-neutral-200 hover:border-neutral-300 text-neutral-900"
