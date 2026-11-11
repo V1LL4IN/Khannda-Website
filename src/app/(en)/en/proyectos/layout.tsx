@@ -5,10 +5,10 @@ import { altLanguages, l, OG_IMAGE } from '@/lib/seo/site';
 
 export const metadata: Metadata = {
   title: 'Projects & Case Studies',
-  description: 'Custom software case studies: a financial system for a credit union, gym management with n8n automation and an e-commerce platform for the US market.',
+  description: 'Custom software case studies: a financial system for a credit union, gym management with n8n automation and a corporate website for a US firm.',
   openGraph: {
     title: 'Projects & Case Studies | Khannda',
-    description: 'Custom software case studies in fintech, fitness and e-commerce.',
+    description: 'Custom software case studies in fintech, fitness and corporate websites.',
     url: l('en', '/proyectos'),
     siteName: 'Khannda',
     images: [OG_IMAGE],

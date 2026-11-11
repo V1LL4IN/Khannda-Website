@@ -17,7 +17,7 @@ interface ProjectsSectionProps {
 }
 
 type CaseKey = keyof typeof CASE_VISUALS;
-const KEYS: CaseKey[] = ['finance', 'fitness', 'retail'];
+const KEYS: CaseKey[] = ['finance', 'fitness', 'altus'];
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 interface CaseStudy {

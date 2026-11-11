@@ -24,7 +24,7 @@ interface DeviceMockupProps {
     priority?: boolean;
     alt: string;
     /** Etiqueta corta sobre el mockup (p. ej. "Datos de demostración"). */
-    note: string;
+    note?: string;
     isDark: boolean;
     /** true = sin animación de entrada (prefers-reduced-motion). */
     still: boolean;
@@ -87,14 +87,16 @@ export function DeviceMockup({ slug, mobile = true, priority = false, alt, note,
                 </motion.div>}
             </div>
 
-            <p
-                className={cn(
-                    "absolute top-4 left-4 lg:top-5 lg:left-5 px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-[0.16em]",
-                    isDark ? "bg-white/[0.06] text-neutral-400" : "bg-neutral-100 text-neutral-500"
-                )}
-            >
-                {note}
-            </p>
+            {note && (
+                <p
+                    className={cn(
+                        "absolute top-4 left-4 lg:top-5 lg:left-5 px-3 py-1 rounded-full font-mono text-[10px] uppercase tracking-[0.16em]",
+                        isDark ? "bg-white/[0.06] text-neutral-400" : "bg-neutral-100 text-neutral-500"
+                    )}
+                >
+                    {note}
+                </p>
+            )}
         </div>
     );
 }

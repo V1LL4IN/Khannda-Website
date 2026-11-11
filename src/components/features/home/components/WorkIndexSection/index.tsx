@@ -83,7 +83,7 @@ const WorkIndexSection: React.FC<WorkIndexSectionProps> = () => {
     const cases = [
         t.projects.showcase.finance,
         t.projects.showcase.fitness,
-        t.projects.showcase.retail,
+        t.projects.showcase.altus,
     ];
 
     return (

@@ -163,7 +163,7 @@ export function solutionsServices(lang: Lang) {
 /** Casos de éxito de /proyectos. */
 export function projectsItemList(lang: Lang) {
     const t = dict(lang);
-    const cases = [t.projects.showcase.finance, t.projects.showcase.fitness, t.projects.showcase.retail];
+    const cases = [t.projects.showcase.finance, t.projects.showcase.fitness, t.projects.showcase.altus];
     return {
         '@context': 'https://schema.org',
         '@graph': [
