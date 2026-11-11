@@ -42,4 +42,7 @@ export const CONTACT_PHONE = '+593995498636';
  * con la que buscadores y asistentes de IA confirman que esos perfiles y este
  * sitio son la misma empresa. Vacío = no se emite `sameAs`.
  */
-export const SOCIAL_PROFILES: string[] = [];
+export const SOCIAL_PROFILES: string[] = [
+    'https://www.linkedin.com/company/khannda/',
+    'https://www.instagram.com/khanndaec/',
+];
