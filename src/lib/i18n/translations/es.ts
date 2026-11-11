@@ -40,49 +40,52 @@ export const es = {
         title: "Arquitectura",
         titleHighlight: "Invisible.",
         subtitle: "Tu cliente solo ve la pantalla. Detrás corren cinco capas que diseñamos, operamos y garantizamos.",
+        // Cada dato de estas capas repite uno que el sitio ya afirma en otra
+        // parte (FAQ, casos de éxito, /tecnologia): nada de cifras ni
+        // certificaciones que no se puedan respaldar.
         layers: [
             {
                 name: "Experiencia",
-                tag: "UX · UI · Performance",
-                own: "Lo único que el usuario ve. Carga < 1.2s, accesible, offline-ready.",
-                stack: ["Next.js", "React Native", "Framer Motion", "WCAG AA"],
-                metric: "+34%",
-                metricLabel: "conversión post-rediseño",
+                tag: "Web · Móvil · Rendimiento",
+                own: "Lo único que tu usuario ve: web y apps para iOS y Android desde una sola base de código.",
+                stack: ["Next.js", "React", "React Native", "Tailwind CSS"],
+                metric: "< 2 s",
+                metricLabel: "tiempo de carga objetivo",
             },
             {
-                name: "API Surface",
-                tag: "Gateway · Auth · Contract",
-                own: "Una sola superficie versionada. Tu equipo y tus partners hablan el mismo idioma.",
-                stack: ["tRPC", "GraphQL Federation", "OAuth 2.1", "OpenAPI 3.1"],
-                metric: "< 80ms",
-                metricLabel: "p95 global · 6 regiones",
+                name: "Integraciones",
+                tag: "APIs · Webhooks · n8n",
+                own: "Tu CRM, facturación, WhatsApp y hojas de cálculo conectados entre sí, sin que nadie copie y pegue.",
+                stack: ["n8n", "APIs REST", "Webhooks", "Salesforce"],
+                metric: "400+",
+                metricLabel: "integraciones con n8n",
             },
             {
                 name: "Lógica de Negocio",
-                tag: "Microservicios · Eventos · Workflows",
-                own: "Donde vive tu modelo de negocio. Aislado, testeado, observable, reemplazable.",
-                stack: ["Node 22", "Go", "Temporal", "Kafka", "SQS"],
-                metric: "94%",
-                metricLabel: "cobertura de tests · main",
+                tag: "Reglas · Procesos · Cálculos",
+                own: "Las reglas, cálculos y flujos propios de tu operación, escritos a medida y documentados.",
+                stack: ["Node.js", "TypeScript"],
+                metric: "4–6",
+                metricLabel: "semanas a un MVP funcional",
             },
             {
                 name: "Datos",
-                tag: "OLTP · Warehouse · Cache",
-                own: "Replicación multi-región, backups verificados, RTO < 15 min, RPO < 1 min.",
-                stack: ["Postgres 16", "Redis", "ClickHouse", "dbt"],
-                metric: "99.99%",
-                metricLabel: "durabilidad anualizada",
+                tag: "Base de datos · Caché · Respaldos",
+                own: "Base de datos relacional con respaldos automáticos diarios y accesos a nombre de tu empresa.",
+                stack: ["PostgreSQL", "Redis", "Cloud"],
+                metric: "Diarios",
+                metricLabel: "respaldos automáticos",
             },
             {
                 name: "Seguridad",
-                tag: "Zero-trust · Audit · Compliance",
-                own: "Cifrado E2E, secretos rotados, auditoría inmutable, alertas en tiempo real.",
-                stack: ["mTLS", "Vault", "SIEM", "PCI-DSS", "SOC 2"],
-                metric: "0",
-                metricLabel: "incidentes Sev-1 · 24m",
+                tag: "Cifrado · Roles · Auditoría",
+                own: "Cifrado de datos, acceso por roles y registro de auditoría de cada transacción.",
+                stack: ["SSL/TLS", "Roles por perfil", "Registro de auditoría"],
+                metric: "100%",
+                metricLabel: "de operaciones auditadas · caso fintech",
             },
         ],
-        footerNote: "5 capas · 1 contrato SLA · cero monolitos",
+        footerNote: "5 capas · código, documentación y accesos a tu nombre",
         footerCta: "Conoce nuestro stack tecnológico",
     },
 
@@ -99,9 +102,9 @@ export const es = {
             },
             security: {
                 title: "Alta Seguridad & Fintech",
-                description: "Software para fintech y cooperativas de ahorro y crédito con estándares bancarios: cifrado de extremo a extremo, roles por perfil y auditoría de cada transacción.",
+                description: "Software para fintech y cooperativas de ahorro y crédito con estándares bancarios: cifrado de datos, roles por perfil y auditoría de cada transacción.",
                 linkText: "Mira el caso de la Cooperativa César Terán",
-                features: ["Encriptación E2E", "Compliance PCI-DSS", "Auditoría Continua"],
+                features: ["Cifrado de datos", "Roles por perfil", "Auditoría por transacción"],
             },
             automation: {
                 title: "Automatización Operativa",
@@ -117,9 +120,9 @@ export const es = {
             },
         },
         metrics: {
-            efficiency: { value: "+40%", label: "Eficiencia Operativa", desc: "Reducción promedio de carga manual." },
+            efficiency: { value: "20+ H", label: "Ahorro semanal", desc: "Trabajo manual que ahorran en promedio nuestros clientes con automatización." },
             timeToMarket: { value: "4–6 SEM", label: "MVP funcional", desc: "Sprints con demos semanales: ves avances reales cada semana." },
-            ownership: { value: "2x", label: "Más Rápido", desc: "Desarrollo ágil y entregas frecuentes." },
+            ownership: { value: "100%", label: "Código tuyo", desc: "Código fuente, documentación y accesos a nombre de tu empresa." },
         },
         outroText: "¿No sabes cuál de las cuatro necesitas? Para eso existe el diagnóstico.",
         outroCta: "Agendar diagnóstico gratuito",
@@ -206,7 +209,7 @@ export const es = {
                 title: "Automatización",
                 cardTitle: "Automatización con n8n",
                 description: "Conectamos tu CRM, facturación, WhatsApp y hojas de cálculo con n8n, una plataforma de automatización de código abierto. Lo que hoy alguien copia y pega a mano pasa a ejecutarse solo.",
-                highlights: ["Flujos personalizados que trabajan 24/7", "+400 integraciones listas para usar", "Ahorro promedio de 20+ horas semanales", "Cero errores manuales"],
+                highlights: ["Flujos personalizados que trabajan 24/7", "+400 integraciones listas para usar", "Ahorro promedio de 20+ horas semanales", "Sin tareas de copiar y pegar"],
             },
             development: {
                 title: "Desarrollo",
@@ -218,17 +221,19 @@ export const es = {
                 title: "Consultoría",
                 cardTitle: "Optimización de Procesos",
                 description: "Analizamos tu operación, encontramos los cuellos de botella y entregamos un roadmap de modernización priorizado por retorno. Empieza con un diagnóstico gratuito de 30 minutos.",
-                highlights: ["Análisis profundo de operaciones", "Roadmap de transformación digital", "KPIs claros y medibles", "ROI garantizado"],
+                highlights: ["Análisis profundo de operaciones", "Roadmap de transformación digital", "KPIs claros y medibles", "Prioridades ordenadas por retorno"],
             },
         },
     },
 
     // Projects Page
     projects: {
-        title: "Casos de",
-        titleHighlight: "Éxito",
-        flipWords: ["Éxito", "Impacto", "Valor", "Resultados"],
-        subtitle: "Así hemos transformado negocios reales en Ecuador y Estados Unidos con software a medida y automatización.",
+        // H1: la keyword va en la parte fija; solo rota el adjetivo. titleEnd
+        // existe para el inglés, donde el adjetivo va antes ("Real Case Studies").
+        title: "Casos de Éxito",
+        flipWords: ["Reales", "Medibles", "Vigentes"],
+        titleEnd: "",
+        subtitle: "Así hemos transformado negocios en Ecuador y Estados Unidos con software a medida y automatización.",
         crossText: "¿Tu operación se parece a alguno de estos casos?",
         crossLink: "Agenda un diagnóstico gratuito",
         detailLabel: "Los casos en detalle",
@@ -288,10 +293,10 @@ export const es = {
 
     // Technologies Page
     technologies: {
-        title: "Nuestro",
-        titleHighlight: "Stack",
-        flipWords: ["Stack", "Arsenal", "Motor", "Core"],
-        titleEnd: "Tecnológico",
+        // H1: "Stack Tecnológico" fijo; solo rota el adjetivo.
+        title: "Stack Tecnológico",
+        flipWords: ["Moderno", "Probado", "Escalable", "Abierto"],
+        titleEnd: "",
         subtitle: "Next.js, React y React Native en el frontend; Node.js y PostgreSQL en el backend; n8n para automatizar. Tecnologías con comunidades enormes: tu sistema nunca dependerá de una herramienta exótica, ni de nosotros.",
         details: {
             badge: "Por qué elegirnos",
@@ -316,8 +321,8 @@ export const es = {
                 },
                 scalability: {
                     title: "Escalabilidad",
-                    description: "Crece sin límites. Tu plataforma se adapta automáticamente a la demanda.",
-                    items: ["Infraestructura cloud que crece contigo", "Sin caídas en momentos de alto tráfico", "Capacidad ilimitada de usuarios", "Costos que escalan con tu éxito"],
+                    description: "Crece con tu negocio. La infraestructura se amplía cuando la demanda lo pide.",
+                    items: ["Infraestructura cloud que crece contigo", "Preparada para picos de tráfico", "Capacidad que se amplía según la demanda", "Costos que escalan con tu éxito"],
                 },
             },
         },

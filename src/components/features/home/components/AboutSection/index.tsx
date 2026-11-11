@@ -85,13 +85,14 @@ export function AboutSection({ isDark: _isDark }: AboutSectionProps) {
                                 >
                                     <div className="flex items-start justify-between gap-6">
                                         <div className="min-w-0">
+                                            {/* Índice en móvil (en desktop va en la columna izquierda) */}
+                                            <p aria-hidden="true" className="lg:hidden font-mono text-[11px] tracking-[0.18em] text-accent mb-2">
+                                                L{i}
+                                            </p>
                                             <h3
                                                 data-sticky-text
                                                 className="font-display font-light uppercase tracking-[0.04em] text-h3 mb-1"
                                             >
-                                                <span className="lg:hidden font-mono text-[11px] tracking-[0.18em] text-accent mr-3 align-middle">
-                                                    L{i}
-                                                </span>
                                                 {layer.name}
                                             </h3>
                                             <p

@@ -175,9 +175,10 @@ export function ProjectsSection({ isDark }: ProjectsSectionProps) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, ease: EASE }}
-                        className={cn('flex flex-nowrap items-center justify-center gap-3 text-3xl sm:text-5xl md:text-7xl font-semibold tracking-tight mb-6 whitespace-nowrap', isDark ? 'text-white' : 'text-neutral-900')}
+                        className={cn('flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-3xl sm:text-5xl md:text-7xl font-semibold tracking-tight mb-6', isDark ? 'text-white' : 'text-neutral-900')}
                     >
                         <LayoutTextFlip text={t.projects.title} words={t.projects.flipWords} />
+                        {t.projects.titleEnd && <>{' '}<span>{t.projects.titleEnd}</span></>}
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

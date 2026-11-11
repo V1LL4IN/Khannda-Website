@@ -24,15 +24,21 @@ export const LayoutTextFlip = ({
 
   return (
     <>
-      <motion.span
-        layoutId="subtext"
-        className="font-bold tracking-tight"
-      >
-        {text}
-      </motion.span>
-      {/* Espacio real: el gap de flex separa visualmente, pero el texto del
-          H1 que lee un crawler quedaba pegado ("NuestroStackTecnológico") */}
-      {' '}
+      {/* Texto fijo (lleva la keyword del H1). Vacío cuando la palabra que
+          rota va primero, como en inglés: "Real Case Studies". */}
+      {text && (
+        <>
+          <motion.span
+            layoutId="subtext"
+            className="font-bold tracking-tight"
+          >
+            {text}
+          </motion.span>
+          {/* Espacio real: el gap de flex separa visualmente, pero el texto
+              del H1 que lee un crawler quedaba pegado ("StackTecnológicoModerno") */}
+          {' '}
+        </>
+      )}
       <motion.span
         layout
         className="relative inline-flex items-center rounded-md border border-transparent bg-white px-3 py-1 font-sans font-bold tracking-tight shadow-sm ring shadow-black/10 ring-black/10 drop-shadow-lg dark:bg-neutral-900 dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10"
