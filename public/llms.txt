@@ -1,6 +1,6 @@
 # Khannda
 
-> Khannda es una agencia de desarrollo de software a medida con sede en Quito,
+> Khannda es una empresa de desarrollo de software a medida con sede en Quito,
 > Ecuador, que atiende a toda Latinoamérica y Estados Unidos. Desde 2019 ha
 > puesto más de 50 sistemas en producción para fintech, logística, retail y
 > salud. Servicios: desarrollo web a medida, aplicaciones móviles con React
@@ -17,27 +17,39 @@ Datos clave sobre Khannda:
   alcance cerrado tras un diagnóstico gratuito de 30 minutos, sin costos ocultos.
 - Automatización con n8n: más de 400 integraciones disponibles; los clientes
   ahorran en promedio más de 20 horas semanales de trabajo manual.
-- Stack principal: Next.js, React, React Native, Node.js, PostgreSQL, Redis, n8n.
+- Stack principal: Next.js, React, React Native, TypeScript, Node.js,
+  PostgreSQL, Redis y n8n, sobre infraestructura cloud (AWS).
 - El cliente recibe el código fuente completo y la propiedad intelectual, sin
-  lock-in.
+  lock-in. Todo proyecto incluye 1 mes de soporte post-lanzamiento.
 - Ecuador opera en GMT-5, el mismo huso horario que la costa este de EE. UU.
   (EST) — trabajo sincrónico con equipos norteamericanos.
 
 ## Servicios
 
-- [Soluciones](https://www.khannda.com/soluciones): automatización de procesos
-  con n8n, desarrollo de software a medida (web y móvil) y consultoría de
-  optimización de procesos.
+- [Automatización con n8n](https://www.khannda.com/soluciones#automation):
+  conexión de CRM, facturación, WhatsApp y hojas de cálculo en flujos que
+  corren sin intervención manual.
+- [Software a medida](https://www.khannda.com/soluciones#development):
+  aplicaciones web y móviles con Next.js, React Native y Node.js; MVP
+  funcional en 4 a 6 semanas.
+- [Consultoría y optimización de procesos](https://www.khannda.com/soluciones#consulting):
+  análisis de la operación y roadmap de modernización priorizado por retorno.
 - [Tecnología](https://www.khannda.com/tecnologia): stack tecnológico y
-  garantías de rendimiento, seguridad y escalabilidad.
+  criterios de rendimiento, seguridad y escalabilidad.
 
 ## Casos de éxito
 
-- [Proyectos](https://www.khannda.com/proyectos): Cooperativa de Ahorro y
-  Crédito César Terán (sistema de gestión financiera con auditoría de nivel
-  bancario), Gym CT Tulcán (gestión de membresías con recordatorios
-  automáticos por WhatsApp vía n8n) y GSZ Academy USA (plataforma e-commerce
-  24/7 para el mercado estadounidense).
+- [Cooperativa César Terán](https://www.khannda.com/proyectos#caso-finance):
+  sistema de gestión financiera a medida para una cooperativa de ahorro y
+  crédito — socios, ahorros, créditos con tabla de amortización automática,
+  caja y auditoría de cada transacción.
+- [Gym CT Tulcán](https://www.khannda.com/proyectos#caso-fitness): sistema web
+  de gestión de membresías, pagos y asistencia, con recordatorios de
+  renovación automáticos por WhatsApp vía n8n.
+- [Altus Commercial Receivables](https://www.khannda.com/proyectos#caso-altus):
+  sitio corporativo en Next.js para una firma estadounidense de cobranza
+  comercial B2B — más de 50 páginas, Sanity CMS y formularios que crean leads
+  en Salesforce.
 
 ## Contacto
 
@@ -48,17 +60,20 @@ Datos clave sobre Khannda:
 ## English
 
 - [Home](https://www.khannda.com/en): custom software development company in
-  Ecuador for LATAM and the US — nearshore, same time zone as US East Coast.
+  Quito, Ecuador, for LATAM and the US — nearshore, same time zone as the US
+  East Coast (EST).
 - [Solutions](https://www.khannda.com/en/soluciones): n8n automation, custom
   web and mobile development, technology consulting.
-- [Projects](https://www.khannda.com/en/proyectos): case studies in fintech,
-  fitness and e-commerce.
+- [Projects](https://www.khannda.com/en/proyectos): case studies — a financial
+  system for a credit union, gym membership management with n8n, and a
+  corporate website for a US B2B collections firm.
+- [Technology](https://www.khannda.com/en/tecnologia): technology stack.
 - [Contact](https://www.khannda.com/en/contacto): book a free 30-minute
   assessment.
 
 ## Optional
 
-- [Inicio](https://www.khannda.com/): visión general, servicios, preguntas
-  frecuentes, modelos de colaboración y equipo.
+- [Inicio](https://www.khannda.com/): visión general, servicios, modelos de
+  colaboración, equipo y preguntas frecuentes.
 - [Preguntas frecuentes](https://www.khannda.com/#faq): costos, plazos, qué es
-  n8n, software a medida vs SaaS, propiedad del código.
+  n8n, software a medida vs SaaS, propiedad del código, soporte.

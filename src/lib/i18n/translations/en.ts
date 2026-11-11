@@ -28,7 +28,7 @@ export const en: Translations = {
     // Editorial intro (home)
     intro: {
         title: "What you'll find here.",
-        body: "No digital-transformation promises, no 40-slide decks. Below: what we do, three real systems in production, how we charge, and the questions everyone asks before starting. If your case doesn't need custom software, we'll tell you on the first call.",
+        body: "Khannda is a custom software development company based in Quito, Ecuador. Since 2019 we have put 50+ systems into production for fintech, logistics, retail and healthcare. No digital-transformation promises, no 40-slide decks: below is what we do, three real systems, how we charge, and the questions everyone asks before starting. If your case doesn't need custom software, we'll tell you on the first call.",
     },
 
     // Giant separator words (decorative, aria-hidden; universal terms —
@@ -40,7 +40,7 @@ export const en: Translations = {
         eyebrow: "How we build it",
         title: "Invisible",
         titleHighlight: "Architecture.",
-        subtitle: "Your customer only sees the screen. Behind it run five layers we design, operate, and guarantee. Hover any of them.",
+        subtitle: "Your customer only sees the screen. Behind it run five layers we design, operate, and guarantee.",
         layers: [
             {
                 name: "Experience",
@@ -84,49 +84,42 @@ export const en: Translations = {
             },
         ],
         footerNote: "5 layers · 1 SLA contract · zero monoliths",
-        footerCta: "See reference architecture →",
-        seoOutro: "These five layers are the foundation of the 50+ production systems we have built since 2019 for fintech, logistics, retail and healthcare across Ecuador and LATAM.",
-        seoLink: "See them in our case studies",
+        footerCta: "Explore our technology stack",
     },
 
     // Services Section
     services: {
         title: "What we do.",
-        subtitle: "Four ways to work with us. All of them end with code you own.",
-        seoIntro: "We are a custom software development company based in Ecuador working across LATAM and the US. Every service is quoted as a fixed scope and delivered with source code, documentation and support included.",
+        subtitle: "Four ways to work with us. All are quoted as a fixed scope and end with source code, documentation and support in your hands.",
         items: {
             development: {
                 title: "Custom Development",
-                description: "Software architecture designed to scale. Clean, modular, and maintainable code.",
-                detail: "We build custom web and mobile applications that fit your operation — not the other way around. A working MVP in 4–6 weeks, with an architecture designed to scale from day one.",
+                description: "Custom web and mobile applications that fit your operation — not the other way around. A working MVP in 4–6 weeks, with an architecture designed to scale from day one.",
                 linkText: "Explore custom software development",
                 features: ["Microservices", "REST/GraphQL APIs", "Cloud Native"],
             },
             security: {
                 title: "High Security & Fintech",
-                description: "Critical infrastructure with banking standards. Data protection and guaranteed transactionality.",
-                detail: "We build software for fintech companies and credit unions with banking-grade standards: end-to-end encryption, role-based access and an audit trail for every transaction.",
+                description: "Software for fintech companies and credit unions with banking-grade standards: end-to-end encryption, role-based access and an audit trail for every transaction.",
                 linkText: "See the Cooperativa César Terán case study",
                 features: ["E2E Encryption", "PCI-DSS Compliance", "Continuous Auditing"],
             },
             automation: {
                 title: "Operational Automation",
-                description: "We eliminate manual work. Bots, scripts, and intelligent workflows that work 24/7.",
-                detail: "We automate processes with n8n: connecting your CRM, invoicing, WhatsApp and spreadsheets through 400+ integrations. Our clients save an average of 20+ hours of manual work per week.",
+                description: "We automate processes with n8n: connecting your CRM, invoicing, WhatsApp and spreadsheets through 400+ integrations. Our clients save an average of 20+ hours of manual work per week.",
                 linkText: "How we apply n8n automation",
                 features: ["RPA / Bots", "System Integration", "Webhooks & Events"],
             },
             consulting: {
                 title: "Technology Consulting",
-                description: "Technical debt audit and modernization roadmap for established companies.",
-                detail: "Our technology consulting audits your technical debt and delivers a modernization roadmap prioritized by return. It starts with a free 30-minute assessment.",
+                description: "We audit your technical debt and deliver a modernization roadmap prioritized by return. It starts with a free 30-minute assessment.",
                 linkText: "Start with a free assessment",
                 features: ["Code Reviews", "System Design", "Tech Stack Selection"],
             },
         },
         metrics: {
             efficiency: { value: "+40%", label: "Operational Efficiency", desc: "Average reduction in manual workload." },
-            timeToMarket: { value: "4 WKS", label: "Time-to-Market", desc: "Agile and fast development cycles." },
+            timeToMarket: { value: "4–6 WKS", label: "Working MVP", desc: "Sprints with weekly demos: you see real progress every week." },
             ownership: { value: "2x", label: "Faster", desc: "Agile development and frequent deliveries." },
         },
         outroText: "Not sure which of the four you need? That's what the diagnostic is for.",
@@ -149,15 +142,15 @@ export const en: Translations = {
         title: "Collaboration",
         titleHighlight: "Models",
         subtitle: "Total transparency. No hidden costs.",
-        seoNote: "Every custom software project is quoted as a fixed scope after a free assessment: you know the price and timeline before we start. In both models, you own the source code.",
-        seoLink: "Book a free assessment",
+        lead: "Every custom software project is quoted as a fixed scope after a free assessment: you know the price and timeline before we start. In both models, you own the source code.",
+        leadLink: "Book a free assessment",
         plans: {
             essential: {
                 name: "Essential Systematization",
                 description: "Ideal for validating products or starting digital transformation.",
                 pricing: "Project-Based",
                 pricingNote: "Quote based on defined scope",
-                features: ["MVP in 4-6 weeks", "Essential UI/UX Design", "Basic Cloud Infrastructure", "1 Month Post-Launch Support"],
+                features: ["MVP in 4–6 weeks", "Essential UI/UX Design", "Basic Cloud Infrastructure", "1 Month Post-Launch Support"],
                 cta: "Start Conversation",
             },
             enterprise: {
@@ -204,7 +197,7 @@ export const en: Translations = {
         titleHighlight: "Drive",
         flipWords: ["Drive", "Transform", "Power", "Accelerate"],
         titleEnd: "your Business",
-        subtitle: "From making complex workflows automatic to building robust platforms. We create the digital ecosystem your company needs.",
+        subtitle: "Three ways to fix your operation: automate the repetitive with n8n, build custom software, or start with consulting. All are quoted as a fixed scope.",
         crossCases: "See how we apply it in our case studies",
         crossStack: "Explore our technology stack",
         faqTitle: "Frequently asked questions about these solutions",
@@ -213,22 +206,19 @@ export const en: Translations = {
             automation: {
                 title: "Automation",
                 cardTitle: "Automation with n8n",
-                description: "Connect your favorite apps and automate repetitive tasks. Intelligent workflows that save hours of manual work every week.",
-                tagline: "Connect your apps. Eliminate the repetitive. Scale without limits.",
+                description: "We connect your CRM, invoicing, WhatsApp and spreadsheets with n8n, an open-source automation platform. What someone copies and pastes by hand today starts running on its own.",
                 highlights: ["Custom workflows running 24/7", "+400 ready-to-use integrations", "Average savings of 20+ hours weekly", "Zero manual errors"],
             },
             development: {
                 title: "Development",
                 cardTitle: "Custom Software",
-                description: "Custom web and mobile application development. Scalable solutions built with the latest market technologies.",
-                tagline: "Code that scales. Design that captivates. Results that matter.",
+                description: "Web and mobile applications built around your process, with Next.js, React Native and Node.js. A working MVP in 4–6 weeks and, when we finish, you own the source code.",
                 highlights: ["Modern and responsive web apps", "iOS and Android mobile apps", "Cloud-native architectures", "Continuous support and maintenance"],
             },
             consulting: {
                 title: "Consulting",
                 cardTitle: "Process Optimization",
-                description: "We analyze and digitize your business operations. We transform slow processes into agile and efficient systems.",
-                tagline: "We transform operations. We digitize processes. We multiply results.",
+                description: "We analyze your operation, find the bottlenecks and deliver a modernization roadmap prioritized by return. It starts with a free 30-minute assessment.",
                 highlights: ["Deep operations analysis", "Digital transformation roadmap", "Clear and measurable KPIs", "Guaranteed ROI"],
             },
         },
@@ -303,7 +293,7 @@ export const en: Translations = {
         titleHighlight: "Tech",
         flipWords: ["Tech", "Digital", "Cloud", "Dev"],
         titleEnd: "Stack",
-        subtitle: "We use the most modern and robust technologies on the market to build solutions that scale with your business.",
+        subtitle: "Next.js, React and React Native on the frontend; Node.js and PostgreSQL on the backend; n8n for automation. Technologies with huge communities: your system will never depend on an exotic tool, or on us.",
         details: {
             badge: "Why Choose Us",
             title: "Technology that",
@@ -335,8 +325,9 @@ export const en: Translations = {
         stackScreen: {
             header: "Tech Stack",
             tagline: "The best tools for exceptional results",
+            list: "Next.js, React, TypeScript, Tailwind CSS, Node.js, PostgreSQL, AWS and n8n.",
             footer: "Modern Stack",
-            updated: "Updated 2024",
+            updated: "Updated 2026",
         },
     },
 
@@ -377,7 +368,7 @@ export const en: Translations = {
             },
             {
                 question: "Do you work with companies outside Ecuador?",
-                answer: "Yes. We operate from Ecuador for all of Latin America and the United States, 100% remotely. Ecuador shares its time zone with the US East Coast (EST), which enables synchronous work with North American teams. GSZ Academy, one of our case studies, operates in the US.",
+                answer: "Yes. We operate from Ecuador for all of Latin America and the United States, 100% remotely. Ecuador shares its time zone with the US East Coast (EST), which enables synchronous work with North American teams. Altus Commercial Receivables, one of our case studies, is a US firm.",
             },
             {
                 question: "Who owns the code?",
@@ -455,7 +446,7 @@ export const en: Translations = {
             title: "Services",
             development: "Custom Development",
             automation: "Automation",
-            consulting: "Cloud Consulting",
+            consulting: "Technology Consulting",
         },
         company: {
             title: "Company",

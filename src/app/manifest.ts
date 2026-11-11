@@ -1,11 +1,11 @@
 import type { MetadataRoute } from 'next';
+import { PAGES } from '@/lib/seo/metadata';
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'Khannda — Desarrollo de Software a Medida',
         short_name: 'Khannda',
-        description:
-            'Desarrollo de software a medida en Ecuador para toda LATAM: web, móvil, automatización con n8n y consultoría tecnológica.',
+        description: PAGES[''].es.description,
         start_url: '/',
         display: 'standalone',
         background_color: '#0a0a0c',

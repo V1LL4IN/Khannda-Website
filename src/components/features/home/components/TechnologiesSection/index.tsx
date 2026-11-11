@@ -31,7 +31,7 @@ export function TechnologiesSection({ isDark }: TechnologiesSectionProps) {
                         <LayoutTextFlip
                             text={t.technologies.title}
                             words={t.technologies.flipWords}
-                        />
+                        />{' '}
                         <span>{t.technologies.titleEnd}</span>
                     </motion.h1>
 

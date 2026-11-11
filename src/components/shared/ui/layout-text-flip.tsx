@@ -30,7 +30,9 @@ export const LayoutTextFlip = ({
       >
         {text}
       </motion.span>
-
+      {/* Espacio real: el gap de flex separa visualmente, pero el texto del
+          H1 que lee un crawler quedaba pegado ("NuestroStackTecnológico") */}
+      {' '}
       <motion.span
         layout
         className="relative inline-flex items-center rounded-md border border-transparent bg-white px-3 py-1 font-sans font-bold tracking-tight shadow-sm ring shadow-black/10 ring-black/10 drop-shadow-lg dark:bg-neutral-900 dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10"

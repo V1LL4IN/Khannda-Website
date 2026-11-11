@@ -1,14 +1,6 @@
-import type { Metadata } from 'next';
-import { altLanguages, l } from '@/lib/seo/site';
+import { pageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = {
-  title: 'Política de Privacidad',
-  description: 'Política de privacidad de Khannda: qué datos recogemos, con qué finalidad y tus derechos según la Ley Orgánica de Protección de Datos Personales del Ecuador.',
-  alternates: {
-    canonical: l('es', '/privacidad'),
-    languages: altLanguages('/privacidad'),
-  },
-};
+export const metadata = pageMetadata('es', '/privacidad');
 
 export default function PrivacidadLayout({ children }: { children: React.ReactNode }) {
   return children;

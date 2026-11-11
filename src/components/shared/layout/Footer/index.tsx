@@ -82,6 +82,10 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                             <img
                                 src="/logo-khannda.png"
                                 alt="Khannda Logo"
+                                width={24}
+                                height={24}
+                                loading="lazy"
+                                decoding="async"
                                 className={cn(
                                     'h-6 w-auto object-contain',
                                     isDark ? 'invert brightness-0' : 'brightness-0'
@@ -101,9 +105,10 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                             {t.footer.services.title}
                         </h4>
                         <ul className="space-y-2.5 text-sm text-muted-foreground">
-                            <li><a href={`${p}/soluciones`} className="hover:text-accent transition-colors">{t.footer.services.development}</a></li>
-                            <li><a href={`${p}/soluciones`} className="hover:text-accent transition-colors">{t.footer.services.automation}</a></li>
-                            <li><a href={`${p}/soluciones`} className="hover:text-accent transition-colors">{t.footer.services.consulting}</a></li>
+                            {/* anclas = id de cada panel en /soluciones */}
+                            <li><a href={`${p}/soluciones#development`} className="hover:text-accent transition-colors">{t.footer.services.development}</a></li>
+                            <li><a href={`${p}/soluciones#automation`} className="hover:text-accent transition-colors">{t.footer.services.automation}</a></li>
+                            <li><a href={`${p}/soluciones#consulting`} className="hover:text-accent transition-colors">{t.footer.services.consulting}</a></li>
                         </ul>
                     </div>
 

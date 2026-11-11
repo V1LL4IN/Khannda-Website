@@ -70,7 +70,8 @@ export function MacAssembly() {
         { title: b.performance.title, body: b.performance.description },
         { title: b.security.title, body: b.security.description },
         { title: b.scalability.title, body: b.scalability.description },
-        { title: t.technologies.stackScreen.header, body: t.technologies.stackScreen.tagline },
+        // El stack se dibuja en un canvas: este texto es su única versión legible
+        { title: t.technologies.stackScreen.header, body: t.technologies.stackScreen.list },
     ];
 
     return (
