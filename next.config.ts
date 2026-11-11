@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
       },
       {
         // Assets estáticos sin hash en el nombre: cachear 30 días, no immutable.
-        source: '/(team|press|projects)/:path*',
+        source: '/(team|press|projects|hero)/:path*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' },
         ],
