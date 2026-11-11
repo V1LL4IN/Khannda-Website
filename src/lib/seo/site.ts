@@ -38,11 +38,12 @@ export const CONTACT_PHONE = '+593995498636';
 
 /**
  * Perfiles públicos de Khannda (LinkedIn, Instagram, GitHub, Google Business
- * Profile…). Se publican como `sameAs` en el schema Organization: es la señal
- * con la que buscadores y asistentes de IA confirman que esos perfiles y este
- * sitio son la misma empresa. Vacío = no se emite `sameAs`.
+ * Profile…). Fuente única de dos cosas que deben coincidir: los enlaces del
+ * footer y el `sameAs` del schema Organization, que es la señal con la que
+ * buscadores y asistentes de IA confirman que esos perfiles y este sitio son
+ * la misma empresa. Vacío = ni enlaces ni `sameAs`.
  */
-export const SOCIAL_PROFILES: string[] = [
-    'https://www.linkedin.com/company/khannda/',
-    'https://www.instagram.com/khanndaec/',
+export const SOCIAL_PROFILES: { name: string; url: string }[] = [
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/khannda/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/khanndaec/' },
 ];

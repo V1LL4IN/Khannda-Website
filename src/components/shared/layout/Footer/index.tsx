@@ -7,6 +7,7 @@
 import React from 'react';
 import { cn } from '../../../../lib/utils';
 import { useLanguage } from '@/providers/LanguageProvider';
+import { SOCIAL_PROFILES } from '@/lib/seo/site';
 import {
     ExpandableScreen,
     ExpandableScreenTrigger,
@@ -98,6 +99,23 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             {t.footer.tagline}
                         </p>
+                        {/* Mismos perfiles que el sameAs del schema Organization */}
+                        {SOCIAL_PROFILES.length > 0 && (
+                            <ul className="flex flex-wrap gap-x-5 gap-y-2 pt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                                {SOCIAL_PROFILES.map((profile) => (
+                                    <li key={profile.url}>
+                                        <a
+                                            href={profile.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:text-accent transition-colors"
+                                        >
+                                            {profile.name} ↗
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
 
                     <div>

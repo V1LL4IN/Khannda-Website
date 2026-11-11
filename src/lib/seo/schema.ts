@@ -71,7 +71,7 @@ function organization(lang: Lang) {
             jobTitle: t.team.members[member.id].role,
             worksFor: { '@id': ORG_ID },
         })),
-        ...(SOCIAL_PROFILES.length ? { sameAs: SOCIAL_PROFILES } : {}),
+        ...(SOCIAL_PROFILES.length ? { sameAs: SOCIAL_PROFILES.map((profile) => profile.url) } : {}),
         priceRange: '$$',
         openingHoursSpecification: {
             '@type': 'OpeningHoursSpecification',
