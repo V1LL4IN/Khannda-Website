@@ -20,13 +20,14 @@ interface VisualProps {
 }
 
 /** Captura real del sistema (escritorio + móvil) con datos de demostración. */
-const screenshotVisual = (slug: string, caseKey: "finance" | "fitness") => {
+const screenshotVisual = (slug: string, caseKey: "finance" | "fitness", mobile = true) => {
     const ScreenshotVisual = ({ isDark, still }: VisualProps) => {
         const { t } = useLanguage();
         const { labels, showcase } = t.projects;
         return (
             <DeviceMockup
                 slug={slug}
+                mobile={mobile}
                 alt={`${labels.screenshot}: ${showcase[caseKey].sector}`}
                 note={labels.demoData}
                 isDark={isDark}
@@ -38,7 +39,7 @@ const screenshotVisual = (slug: string, caseKey: "finance" | "fitness") => {
 };
 
 export const FinanceVisual = screenshotVisual("coop", "finance");
-export const FitnessVisual = screenshotVisual("gym", "fitness");
+export const FitnessVisual = screenshotVisual("gym", "fitness", false);
 
 /** E-commerce: esfera de 24 horas siempre activa alrededor de la compra. */
 export const RetailVisual = ({ isDark, still }: VisualProps) => {

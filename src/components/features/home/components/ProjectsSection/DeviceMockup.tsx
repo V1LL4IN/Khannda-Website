@@ -18,6 +18,8 @@ const MOBILE = { width: 390, height: 844 };
 interface DeviceMockupProps {
     /** Nombre base en /public/projects: `${slug}-desktop.webp` y `${slug}-mobile.webp`. */
     slug: string;
+    /** false = solo escritorio (el sistema no tiene vista móvil). */
+    mobile?: boolean;
     alt: string;
     /** Etiqueta corta sobre el mockup (p. ej. "Datos de demostración"). */
     note: string;
@@ -26,7 +28,7 @@ interface DeviceMockupProps {
     still: boolean;
 }
 
-export function DeviceMockup({ slug, alt, note, isDark, still }: DeviceMockupProps) {
+export function DeviceMockup({ slug, mobile = true, alt, note, isDark, still }: DeviceMockupProps) {
     return (
         <div className="absolute inset-0 flex items-center justify-center p-4 pb-20 sm:p-7 sm:pb-20 lg:p-8 lg:pb-16">
             <div className="relative w-full max-w-[680px]">
@@ -37,7 +39,8 @@ export function DeviceMockup({ slug, alt, note, isDark, still }: DeviceMockupPro
                     viewport={inView}
                     transition={{ duration: 0.8, ease: EASE }}
                     className={cn(
-                        "w-[92%] overflow-hidden rounded-[10px] sm:rounded-[14px] border",
+                        mobile ? "w-[92%]" : "w-full",
+                        "overflow-hidden rounded-[10px] sm:rounded-[14px] border",
                         isDark
                             ? "border-white/10 bg-[#232327] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)]"
                             : "border-black/[0.08] bg-[#f4f4f6] shadow-[0_24px_60px_-24px_rgba(40,20,50,0.35)]"
@@ -59,7 +62,7 @@ export function DeviceMockup({ slug, alt, note, isDark, still }: DeviceMockupPro
                 </motion.div>
 
                 {/* Móvil */}
-                <motion.div
+                {mobile && <motion.div
                     initial={still ? false : { opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={inView}
@@ -78,7 +81,7 @@ export function DeviceMockup({ slug, alt, note, isDark, still }: DeviceMockupPro
                         sizes="(min-width: 1024px) 12vw, 24vw"
                         className="block w-full h-auto rounded-[12%/5.6%]"
                     />
-                </motion.div>
+                </motion.div>}
             </div>
 
             <p
