@@ -20,6 +20,8 @@ interface DeviceMockupProps {
     slug: string;
     /** false = solo escritorio (el sistema no tiene vista móvil). */
     mobile?: boolean;
+    /** true = primer panel, visible sin scroll: carga la captura con prioridad. */
+    priority?: boolean;
     alt: string;
     /** Etiqueta corta sobre el mockup (p. ej. "Datos de demostración"). */
     note: string;
@@ -28,9 +30,9 @@ interface DeviceMockupProps {
     still: boolean;
 }
 
-export function DeviceMockup({ slug, mobile = true, alt, note, isDark, still }: DeviceMockupProps) {
+export function DeviceMockup({ slug, mobile = true, priority = false, alt, note, isDark, still }: DeviceMockupProps) {
     return (
-        <div className="absolute inset-0 flex items-center justify-center p-4 pb-20 sm:p-7 sm:pb-20 lg:p-8 lg:pb-16">
+        <div className="absolute inset-0 flex items-center justify-center p-4 pt-12 pb-20 sm:p-7 sm:pt-14 sm:pb-20 lg:p-8 lg:pb-16">
             <div className="relative w-full max-w-[680px]">
                 {/* Escritorio */}
                 <motion.div
@@ -57,6 +59,7 @@ export function DeviceMockup({ slug, mobile = true, alt, note, isDark, still }: 
                         width={DESKTOP.width}
                         height={DESKTOP.height}
                         sizes="(min-width: 1024px) 45vw, 90vw"
+                        priority={priority}
                         className="block w-full h-auto"
                     />
                 </motion.div>
