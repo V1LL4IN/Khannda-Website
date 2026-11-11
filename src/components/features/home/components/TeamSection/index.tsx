@@ -8,7 +8,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { TeamSectionProps, TeamMember } from './TeamSection.types';
+import { TeamSectionProps } from './TeamSection.types';
+import { TEAM } from '@/lib/constants/team';
 import { useLanguage } from '@/providers/LanguageProvider';
 import { RevealGroup } from '@/components/shared/ui';
 import { useFlickCards } from '@/lib/animation/useFlickCards';
@@ -17,38 +18,11 @@ export function TeamSection({ isDark: _isDark }: TeamSectionProps) {
   const { t, language } = useLanguage();
   const { rootRef, prev, next } = useFlickCards<HTMLDivElement>();
 
-  // Kevin aún no tiene retrato: tile monograma sobre superficie
-  const teamMembers: (TeamMember & { monogram?: string })[] = [
-    {
-      id: 'matias',
-      name: 'Matías Villarreal',
-      role: t.team.members.matias.role,
-      description: t.team.members.matias.description,
-      image: '/team/Mati.jpg',
-    },
-    {
-      id: 'jose',
-      name: 'José Terán',
-      role: t.team.members.jose.role,
-      description: t.team.members.jose.description,
-      image: '/team/Pepe.jpeg',
-    },
-    {
-      id: 'kevin',
-      name: 'Kevin Cano',
-      role: t.team.members.kevin.role,
-      description: t.team.members.kevin.description,
-      image: '/logo-khannda.png',
-      monogram: 'KC',
-    },
-    {
-      id: 'kenny',
-      name: 'Kenny Pinchao',
-      role: t.team.members.kenny.role,
-      description: t.team.members.kenny.description,
-      image: '/team/Kenny.jpg',
-    }
-  ];
+  const teamMembers = TEAM.map((member) => ({
+    ...member,
+    role: t.team.members[member.id].role,
+    description: t.team.members[member.id].description,
+  }));
 
   return (
     <section className="bg-background text-foreground transition-colors duration-300 px-6 sm:px-10 overflow-hidden">
@@ -79,7 +53,7 @@ export function TeamSection({ isDark: _isDark }: TeamSectionProps) {
               className="group bg-background border border-border rounded-lg p-4 will-change-transform"
             >
               <div className="relative aspect-[4/5] rounded-md overflow-hidden mb-5 bg-surface">
-                {member.monogram ? (
+                {member.image === null ? (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="font-display font-thin text-6xl text-faint select-none">
                       {member.monogram}
@@ -113,14 +87,14 @@ export function TeamSection({ isDark: _isDark }: TeamSectionProps) {
         <div className="hidden motion-safe:flex items-center justify-center gap-4 mt-10">
           <button
             onClick={prev}
-            aria-label="Anterior"
+            aria-label={language === 'en' ? 'Previous' : 'Anterior'}
             className="w-11 h-11 rounded-full border border-border flex items-center justify-center text-muted-foreground transition-colors hover:border-accent hover:text-accent"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
           <button
             onClick={next}
-            aria-label="Siguiente"
+            aria-label={language === 'en' ? 'Next' : 'Siguiente'}
             className="w-11 h-11 rounded-full border border-border flex items-center justify-center text-muted-foreground transition-colors hover:border-accent hover:text-accent"
           >
             <ArrowRight className="w-4 h-4" />

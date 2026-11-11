@@ -26,13 +26,13 @@ export function TechnologiesSection({ isDark }: TechnologiesSectionProps) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className={cn("flex flex-nowrap items-center justify-center gap-3 text-2xl sm:text-4xl md:text-6xl font-semibold tracking-tight mb-6 whitespace-nowrap", isDark ? "text-white" : "text-neutral-900")}
+                        className={cn("flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight mb-6", isDark ? "text-white" : "text-neutral-900")}
                     >
                         <LayoutTextFlip
                             text={t.technologies.title}
                             words={t.technologies.flipWords}
                         />
-                        <span>{t.technologies.titleEnd}</span>
+                        {t.technologies.titleEnd && <>{' '}<span>{t.technologies.titleEnd}</span></>}
                     </motion.h1>
 
                     <motion.p

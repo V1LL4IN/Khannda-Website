@@ -21,11 +21,29 @@ export const altLanguages = (path: string) => ({
     'x-default': l('es', path),
 });
 
-export const OG_IMAGE = {
+const OG_ALT = {
+    es: 'Khannda — Desarrollo de software a medida',
+    en: 'Khannda — Custom software development',
+} as const;
+
+/** Imagen Open Graph con el texto alternativo en el idioma de la página. */
+export const ogImage = (lang: Lang) => ({
     url: '/og-image.jpg',
     width: 1200,
     height: 630,
-    alt: 'Khannda - Desarrollo de Software a Medida',
-} as const;
+    alt: OG_ALT[lang],
+});
 
 export const CONTACT_PHONE = '+593995498636';
+
+/**
+ * Perfiles públicos de Khannda (LinkedIn, Instagram, GitHub, Google Business
+ * Profile…). Fuente única de dos cosas que deben coincidir: los enlaces del
+ * footer y el `sameAs` del schema Organization, que es la señal con la que
+ * buscadores y asistentes de IA confirman que esos perfiles y este sitio son
+ * la misma empresa. Vacío = ni enlaces ni `sameAs`.
+ */
+export const SOCIAL_PROFILES: { name: string; url: string }[] = [
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/khannda/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/khanndaec/' },
+];

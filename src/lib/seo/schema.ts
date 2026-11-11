@@ -3,15 +3,12 @@
 // idénticos (requisito de Google para FAQ y señal de consistencia para LLMs).
 
 import { es, en } from '@/lib/i18n';
-import { SITE_URL, CONTACT_PHONE, l, type Lang } from './site';
+import { TEAM } from '@/lib/constants/team';
+import { PAGES } from './metadata';
+import { SITE_URL, CONTACT_PHONE, SOCIAL_PROFILES, l, type Lang } from './site';
 
 const ORG_ID = `${SITE_URL}/#org`;
 const dict = (lang: Lang) => (lang === 'es' ? es : en);
-
-const DESCRIPTION = {
-    es: 'Desarrollo de software a medida en Ecuador para toda LATAM: aplicaciones web, móviles, automatización con n8n y consultoría tecnológica. Más de 50 sistemas en producción desde 2019.',
-    en: 'Custom software development in Ecuador for LATAM and the US: web and mobile applications, n8n automation and technology consulting. 50+ systems in production since 2019.',
-} as const;
 
 const SERVICE_NAMES = {
     es: ['Desarrollo Web a Medida', 'Aplicaciones Móviles', 'Automatización de Procesos (n8n)', 'Consultoría Tecnológica'],
@@ -33,21 +30,48 @@ const SERVICE_DESCRIPTIONS = {
     ],
 } as const;
 
+// Mercados como entidades (no códigos sueltos: 'LATAM' no es un código ISO).
+const areaServed = (lang: Lang) => [
+    { '@type': 'Country', name: 'Ecuador' },
+    { '@type': 'Place', name: lang === 'es' ? 'Latinoamérica' : 'Latin America' },
+    { '@type': 'Country', name: lang === 'es' ? 'Estados Unidos' : 'United States' },
+];
+
+// Temas en los que Khannda es fuente: servicios + el stack que el sitio
+// declara en el FAQ y en /tecnologia. Debe coincidir con el texto visible.
+const KNOWS_ABOUT = {
+    es: ['Desarrollo de software a medida', 'Automatización de procesos con n8n', 'Aplicaciones móviles', 'Consultoría tecnológica', 'Software para fintech y cooperativas'],
+    en: ['Custom software development', 'Process automation with n8n', 'Mobile applications', 'Technology consulting', 'Software for fintech and credit unions'],
+} as const;
+const STACK = ['Next.js', 'React', 'React Native', 'TypeScript', 'Node.js', 'PostgreSQL', 'Redis', 'n8n'];
+
 function organization(lang: Lang) {
+    const t = dict(lang);
     return {
         '@type': ['Organization', 'ProfessionalService'],
         '@id': ORG_ID,
         name: 'Khannda',
         url: SITE_URL,
         logo: `${SITE_URL}/logo-khannda.png`,
+        image: `${SITE_URL}/og-image.jpg`,
+        telephone: CONTACT_PHONE,
         foundingDate: '2019',
-        description: DESCRIPTION[lang],
+        description: PAGES[''][lang].description,
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Quito',
             addressCountry: 'EC',
         },
-        areaServed: ['EC', 'LATAM', 'US'],
+        areaServed: areaServed(lang),
+        knowsAbout: [...KNOWS_ABOUT[lang], ...STACK],
+        // Mismas personas y cargos que la sección de equipo de la home
+        employee: TEAM.map((member) => ({
+            '@type': 'Person',
+            name: member.name,
+            jobTitle: t.team.members[member.id].role,
+            worksFor: { '@id': ORG_ID },
+        })),
+        ...(SOCIAL_PROFILES.length ? { sameAs: SOCIAL_PROFILES.map((profile) => profile.url) } : {}),
         priceRange: '$$',
         openingHoursSpecification: {
             '@type': 'OpeningHoursSpecification',
@@ -144,49 +168,62 @@ export function breadcrumb(lang: Lang, items: Array<{ name: string; path: string
     };
 }
 
-/** Los 3 servicios de /soluciones como nodos Service. */
+/** Los 3 servicios de /soluciones como nodos Service (cada uno con su ancla). */
 export function solutionsServices(lang: Lang) {
     const topics = dict(lang).solutions.topics;
+    const page = l(lang, '/soluciones');
     return {
         '@context': 'https://schema.org',
-        '@graph': [topics.automation, topics.development, topics.consulting].map((topic) => ({
+        '@graph': (['automation', 'development', 'consulting'] as const).map((key) => ({
             '@type': 'Service',
-            name: topic.cardTitle,
-            description: topic.description,
+            '@id': `${page}#${key}`,
+            url: `${page}#${key}`,
+            name: topics[key].cardTitle,
+            serviceType: topics[key].title,
+            description: topics[key].description,
             provider: { '@id': ORG_ID },
-            areaServed: ['EC', 'LATAM', 'US'],
+            areaServed: areaServed(lang),
             inLanguage: lang,
         })),
     };
 }
 
+// Captura de cada caso (misma imagen que muestra el panel en /proyectos)
+const CASE_IMAGES = { finance: 'coop', fitness: 'gym', altus: 'altus' } as const;
+
 /** Casos de éxito de /proyectos. */
 export function projectsItemList(lang: Lang) {
     const t = dict(lang);
-    const cases = [t.projects.showcase.finance, t.projects.showcase.fitness, t.projects.showcase.altus];
+    const page = l(lang, '/proyectos');
     return {
         '@context': 'https://schema.org',
         '@graph': [
             {
                 '@type': 'CollectionPage',
-                '@id': `${l(lang, '/proyectos')}/#cases`,
-                url: l(lang, '/proyectos'),
+                '@id': `${page}/#cases`,
+                url: page,
                 name: lang === 'es' ? 'Casos de Éxito' : 'Case Studies',
                 inLanguage: lang,
                 mainEntity: {
                     '@type': 'ItemList',
-                    itemListElement: cases.map((c, i) => ({
-                        '@type': 'ListItem',
-                        position: i + 1,
-                        item: {
-                            '@type': 'CreativeWork',
-                            name: c.title,
-                            abstract: `${c.challenge} ${c.solution}`,
-                            keywords: c.sector,
-                            creator: { '@id': ORG_ID },
-                            inLanguage: lang,
-                        },
-                    })),
+                    itemListElement: (['finance', 'fitness', 'altus'] as const).map((key, i) => {
+                        const c = t.projects.showcase[key];
+                        return {
+                            '@type': 'ListItem',
+                            position: i + 1,
+                            item: {
+                                '@type': 'CreativeWork',
+                                // id del <article> del caso en la página
+                                url: `${page}#caso-${key}`,
+                                name: c.title,
+                                abstract: `${c.challenge} ${c.solution}`,
+                                keywords: [c.sector, ...c.stack].join(', '),
+                                image: `${SITE_URL}/projects/${CASE_IMAGES[key]}-desktop.webp`,
+                                creator: { '@id': ORG_ID },
+                                inLanguage: lang,
+                            },
+                        };
+                    }),
                 },
             },
         ],

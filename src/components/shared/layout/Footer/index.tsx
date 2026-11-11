@@ -7,6 +7,7 @@
 import React from 'react';
 import { cn } from '../../../../lib/utils';
 import { useLanguage } from '@/providers/LanguageProvider';
+import { SOCIAL_PROFILES } from '@/lib/seo/site';
 import {
     ExpandableScreen,
     ExpandableScreenTrigger,
@@ -82,6 +83,10 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                             <img
                                 src="/logo-khannda.png"
                                 alt="Khannda Logo"
+                                width={24}
+                                height={24}
+                                loading="lazy"
+                                decoding="async"
                                 className={cn(
                                     'h-6 w-auto object-contain',
                                     isDark ? 'invert brightness-0' : 'brightness-0'
@@ -94,6 +99,23 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                         <p className="text-sm leading-relaxed text-muted-foreground">
                             {t.footer.tagline}
                         </p>
+                        {/* Mismos perfiles que el sameAs del schema Organization */}
+                        {SOCIAL_PROFILES.length > 0 && (
+                            <ul className="flex flex-wrap gap-x-5 gap-y-2 pt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                                {SOCIAL_PROFILES.map((profile) => (
+                                    <li key={profile.url}>
+                                        <a
+                                            href={profile.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:text-accent transition-colors"
+                                        >
+                                            {profile.name} ↗
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
 
                     <div>
@@ -101,9 +123,10 @@ const Footer: React.FC<FooterProps> = ({ isDark }) => {
                             {t.footer.services.title}
                         </h4>
                         <ul className="space-y-2.5 text-sm text-muted-foreground">
-                            <li><a href={`${p}/soluciones`} className="hover:text-accent transition-colors">{t.footer.services.development}</a></li>
-                            <li><a href={`${p}/soluciones`} className="hover:text-accent transition-colors">{t.footer.services.automation}</a></li>
-                            <li><a href={`${p}/soluciones`} className="hover:text-accent transition-colors">{t.footer.services.consulting}</a></li>
+                            {/* anclas = id de cada panel en /soluciones */}
+                            <li><a href={`${p}/soluciones#development`} className="hover:text-accent transition-colors">{t.footer.services.development}</a></li>
+                            <li><a href={`${p}/soluciones#automation`} className="hover:text-accent transition-colors">{t.footer.services.automation}</a></li>
+                            <li><a href={`${p}/soluciones#consulting`} className="hover:text-accent transition-colors">{t.footer.services.consulting}</a></li>
                         </ul>
                     </div>
 

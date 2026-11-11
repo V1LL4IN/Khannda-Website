@@ -1,8 +1,9 @@
 "use client";
 
 // PricingSection — dos modelos de colaboración como composición editorial
-// dividida por hairline (sin cards coloreadas, sin precios públicos: el
-// lenguaje de cotización por alcance cerrado vive en pricingNote/seoNote).
+// dividida por hairline (sin cards coloreadas, sin precios públicos: cómo se
+// cotiza — alcance cerrado tras el diagnóstico — abre la sección como
+// entradilla, con el enlace a /contacto).
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
@@ -32,9 +33,18 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ isDark }) => {
                     <p data-reveal className="font-mono text-[10px] uppercase tracking-[0.3em] text-faint mb-6">
                         06 — {t.pricing.subtitle}
                     </p>
-                    <h2 data-reveal className="font-display font-extralight uppercase text-h2 mb-14">
+                    <h2 data-reveal className="font-display font-extralight uppercase text-h2 mb-4">
                         {t.pricing.title} {t.pricing.titleHighlight}
                     </h2>
+                    <p data-reveal className="text-lead font-light text-muted-foreground max-w-[62ch] mb-14">
+                        {t.pricing.lead}{' '}
+                        <a
+                            href={`${language === 'en' ? '/en' : ''}/contacto`}
+                            className="text-accent border-b border-accent/40 pb-0.5 transition-colors hover:border-accent"
+                        >
+                            {t.pricing.leadLink}
+                        </a>
+                    </p>
                 </RevealGroup>
 
                 <div className="grid md:grid-cols-2 border-t border-b border-border divide-y md:divide-y-0 md:divide-x divide-border">
@@ -92,17 +102,6 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ isDark }) => {
                         </div>
                     ))}
                 </div>
-
-                {/* Nota indexable + cross-link a /contacto */}
-                <p className="text-sm max-w-2xl font-light leading-relaxed mt-10 text-faint">
-                    {t.pricing.seoNote}{' '}
-                    <a
-                        href={`${language === 'en' ? '/en' : ''}/contacto`}
-                        className="text-accent border-b border-accent/40 pb-0.5 transition-colors hover:border-accent"
-                    >
-                        {t.pricing.seoLink}
-                    </a>
-                </p>
             </div>
         </section>
     );

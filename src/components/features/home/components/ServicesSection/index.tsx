@@ -1,9 +1,9 @@
 // src/components/features/home/components/ServicesSection/index.tsx
 // Servicios como filas editoriales apiladas (patrón índice de la referencia):
-// índice mono | título display + copy indexable | pills de stack | CTA
+// índice mono | título display + un párrafo | pills de stack | CTA
 // contextual. Cada fila revela como unidad (trigger propio); el header con
-// stagger. Los cross-links con keyword se conservan; consultoría y el outro
-// abren el flujo de booking.
+// stagger. Los cross-links llevan al ancla exacta de /soluciones o del caso;
+// consultoría y el outro abren el flujo de booking.
 'use client';
 
 import React from 'react';
@@ -26,7 +26,6 @@ interface ServicesSectionProps {
 type ServiceRowData = {
     title: string;
     description: string;
-    detail: string;
     linkText: string;
     features: string[];
     href: string | null;
@@ -60,7 +59,7 @@ const ServiceRow = ({
                     {service.title}
                 </h3>
                 <p className="text-sm sm:text-base font-light leading-[1.6] text-muted-foreground max-w-[62ch]">
-                    {service.description} {service.detail}
+                    {service.description}
                 </p>
             </div>
 
@@ -110,9 +109,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ isDark }) => {
 
     // href null = el CTA abre el modal de booking (consultoría ES el diagnóstico)
     const rows: ServiceRowData[] = [
-        { ...t.services.items.development, href: `${p}/soluciones` },
-        { ...t.services.items.security, href: `${p}/proyectos` },
-        { ...t.services.items.automation, href: `${p}/soluciones` },
+        { ...t.services.items.development, href: `${p}/soluciones#development` },
+        { ...t.services.items.security, href: `${p}/proyectos#caso-finance` },
+        { ...t.services.items.automation, href: `${p}/soluciones#automation` },
         { ...t.services.items.consulting, href: null },
     ];
 
@@ -131,11 +130,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ isDark }) => {
                         03 — {t.nav.solutions} ({String(rows.length).padStart(2, '0')})
                     </p>
                     <h2 data-reveal className="font-display font-extralight uppercase text-h2 mb-4">{t.services.title}</h2>
-                    <p data-reveal className="text-lead font-light text-muted-foreground max-w-[52ch]">
+                    <p data-reveal className="text-lead font-light text-muted-foreground max-w-[58ch]">
                         {t.services.subtitle}
-                    </p>
-                    <p data-reveal className="text-sm font-light text-faint max-w-2xl mt-4">
-                        {t.services.seoIntro}
                     </p>
                 </RevealGroup>
 

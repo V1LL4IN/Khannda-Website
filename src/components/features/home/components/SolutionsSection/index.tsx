@@ -2,8 +2,10 @@
 
 // /soluciones — tres soluciones como paneles grandes (texto + visual animado,
 // alternando lado), FAQ y enlaces cruzados.
-// La descripción y los puntos destacados se abren con "+": están SIEMPRE en
-// el HTML (lo indexan buscadores y lo citan los LLMs), solo se pliegan.
+// El H2 es el nombre buscable del servicio ("Automatización con n8n") y la
+// descripción queda a la vista. Los puntos destacados se abren con "+": están
+// SIEMPRE en el HTML (lo indexan buscadores y lo citan los LLMs), solo se
+// pliegan.
 import React, { useId, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Check, Plus } from 'lucide-react';
@@ -26,7 +28,6 @@ interface Topic {
     title: string;
     cardTitle: string;
     description: string;
-    tagline: string;
     highlights: string[];
 }
 
@@ -62,13 +63,13 @@ function SolutionPanel({ topicKey, index, topic, isDark, still, detailsLabel, ta
             {/* Texto */}
             <div className={cn('flex flex-col', flip && 'lg:order-2')}>
                 <p className={cn('font-mono text-[11px] uppercase tracking-[0.2em] mb-5', isDark ? 'text-[#c87bbf]' : 'text-[#8a3c86]')}>
-                    {String(index + 1).padStart(2, '0')} / {String(KEYS.length).padStart(2, '0')} · {topic.cardTitle}
+                    {String(index + 1).padStart(2, '0')} / {String(KEYS.length).padStart(2, '0')} · {topic.title}
                 </p>
-                <h2 className={cn('text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight leading-[1.03] mb-5', isDark ? 'text-white' : 'text-neutral-900')}>
-                    {topic.title}
+                <h2 className={cn('text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight leading-[1.03] mb-5 text-balance', isDark ? 'text-white' : 'text-neutral-900')}>
+                    {topic.cardTitle}
                 </h2>
-                <p className={cn('text-lg sm:text-xl leading-snug max-w-md', isDark ? 'text-neutral-300' : 'text-neutral-700')}>
-                    {topic.tagline}
+                <p className={cn('text-base sm:text-lg leading-relaxed max-w-lg', isDark ? 'text-neutral-300' : 'text-neutral-700')}>
+                    {topic.description}
                 </p>
 
                 {/* Detalle plegable: en el DOM aunque esté cerrado (SEO/GEO) */}
@@ -78,10 +79,7 @@ function SolutionPanel({ topicKey, index, topic, isDark, still, detailsLabel, ta
                     className={cn('grid transition-[grid-template-rows,opacity] duration-500 ease-out', open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0')}
                 >
                     <div className="overflow-hidden">
-                        <p className={cn('text-sm sm:text-[15px] leading-relaxed pt-6 mb-5 max-w-lg', isDark ? 'text-neutral-400' : 'text-neutral-600')}>
-                            {topic.description}
-                        </p>
-                        <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                        <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5 pt-6">
                             {topic.highlights.map((item, i) => (
                                 <li key={i} className={cn('flex items-start gap-2.5 text-sm', isDark ? 'text-neutral-300' : 'text-neutral-700')}>
                                     <Check size={16} className="mt-0.5 shrink-0 text-[#8a3c86]" />
@@ -158,7 +156,7 @@ export function SolutionsSection({ isDark }: SolutionsSectionProps) {
                         transition={{ duration: 0.7, ease: EASE }}
                         className={cn('flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight mb-6', isDark ? 'text-white' : 'text-neutral-900')}
                     >
-                        <LayoutTextFlip text={t.solutions.title} words={t.solutions.flipWords} />
+                        <LayoutTextFlip text={t.solutions.title} words={t.solutions.flipWords} />{' '}
                         <span>{t.solutions.titleEnd}</span>
                     </motion.h1>
                     <motion.p
@@ -177,8 +175,8 @@ export function SolutionsSection({ isDark }: SolutionsSectionProps) {
                     {KEYS.map((key, i) => {
                         const topic = t.solutions.topics[key];
                         const message = language === 'en'
-                            ? `Hi! I'm interested in learning more about ${topic.title}.`
-                            : `¡Hola! Me interesa conocer más sobre ${topic.title}.`;
+                            ? `Hi! I'm interested in learning more about ${topic.cardTitle}.`
+                            : `¡Hola! Me interesa conocer más sobre ${topic.cardTitle}.`;
                         return (
                             <SolutionPanel
                                 key={key}

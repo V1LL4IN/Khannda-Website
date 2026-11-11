@@ -5,10 +5,9 @@
 // fija y cada capa se revela con clip-path mientras el texto sube escalonado;
 // barra de progreso púrpura. Móvil / no-JS / reduced-motion: las 5 capas
 // quedan en flow, apiladas y 100% legibles (toda la conversión es gsap.set
-// dentro de matchMedia → se revierte sola). Todo el copy es indexable.
+// dentro de matchMedia → se revierte sola). Todo el copy está en el HTML.
 
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { useLanguage } from '@/providers/LanguageProvider';
 import { RevealGroup } from '@/components/shared/ui';
 import { useStickyFeature } from '@/lib/animation/useStickyFeature';
@@ -86,13 +85,14 @@ export function AboutSection({ isDark: _isDark }: AboutSectionProps) {
                                 >
                                     <div className="flex items-start justify-between gap-6">
                                         <div className="min-w-0">
+                                            {/* Índice en móvil (en desktop va en la columna izquierda) */}
+                                            <p aria-hidden="true" className="lg:hidden font-mono text-[11px] tracking-[0.18em] text-accent mb-2">
+                                                L{i}
+                                            </p>
                                             <h3
                                                 data-sticky-text
                                                 className="font-display font-light uppercase tracking-[0.04em] text-h3 mb-1"
                                             >
-                                                <span className="lg:hidden font-mono text-[11px] tracking-[0.18em] text-accent mr-3 align-middle">
-                                                    L{i}
-                                                </span>
                                                 {layer.name}
                                             </h3>
                                             <p
@@ -140,24 +140,12 @@ export function AboutSection({ isDark: _isDark }: AboutSectionProps) {
                     <div className="font-mono text-[11px] tracking-[0.1em] text-muted-foreground">
                         {t.about.footerNote}
                     </div>
-                    <button className="text-sm font-medium text-accent border-b border-accent/40 pb-0.5 bg-transparent cursor-pointer transition-colors hover:border-accent">
-                        {t.about.footerCta}
-                    </button>
-                </div>
-
-                {/* Cierre indexable + cross-link a casos de éxito */}
-                <div className="border-t border-border pt-6 mt-10">
-                    <p className="text-sm font-light leading-relaxed max-w-3xl text-faint">
-                        {t.about.seoOutro}{' '}
-                        <a
-                            href={`${language === 'en' ? '/en' : ''}/proyectos`}
-                            className={cn(
-                                'text-accent border-b border-accent/40 pb-0.5 transition-colors hover:border-accent'
-                            )}
-                        >
-                            {t.about.seoLink}
-                        </a>
-                    </p>
+                    <a
+                        href={`${language === 'en' ? '/en' : ''}/tecnologia`}
+                        className="text-sm font-medium text-accent border-b border-accent/40 pb-0.5 transition-colors hover:border-accent"
+                    >
+                        {t.about.footerCta} →
+                    </a>
                 </div>
             </div>
         </section>

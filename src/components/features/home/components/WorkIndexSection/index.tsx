@@ -80,11 +80,11 @@ const WorkIndexSection: React.FC<WorkIndexSectionProps> = () => {
     const { t, language } = useLanguage();
     const p = language === 'en' ? '/en' : '';
 
-    const cases = [
-        t.projects.showcase.finance,
-        t.projects.showcase.fitness,
-        t.projects.showcase.altus,
-    ];
+    // key = id del <article> del caso en /proyectos (caso-finance, …)
+    const cases = (['finance', 'fitness', 'altus'] as const).map((key) => ({
+        key,
+        data: t.projects.showcase[key],
+    }));
 
     return (
         <section id="trabajo" className="bg-background text-foreground transition-colors duration-300 px-6 sm:px-10 scroll-mt-16">
@@ -100,11 +100,11 @@ const WorkIndexSection: React.FC<WorkIndexSectionProps> = () => {
                 </RevealGroup>
 
                 <div>
-                    {cases.map((c, i) => (
+                    {cases.map(({ key, data }) => (
                         <WorkRow
-                            key={i}
-                            c={c}
-                            href={`${p}/proyectos`}
+                            key={key}
+                            c={data}
+                            href={`${p}/proyectos#caso-${key}`}
                             statusLabel={t.work.statusLabel}
                             cursorLabel={t.work.viewCase}
                         />
