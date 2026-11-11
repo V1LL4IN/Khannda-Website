@@ -5,8 +5,7 @@
 export const TEAM = [
     { id: 'matias', name: 'Matías Villarreal', image: '/team/Mati.jpg' },
     { id: 'jose', name: 'José Terán', image: '/team/Pepe.jpeg' },
-    // Kevin aún no tiene retrato: tile monograma sobre superficie
-    { id: 'kevin', name: 'Kevin Cano', image: null, monogram: 'KC' },
+    { id: 'kevin', name: 'Kevin Cano', image: '/team/Kevin.jpg' },
     { id: 'kenny', name: 'Kenny Pinchao', image: '/team/Kenny.jpg' },
 ] as const;
 

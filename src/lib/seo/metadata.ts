@@ -34,11 +34,11 @@ export const PAGES = {
         priority: 1,
         es: {
             title: 'Desarrollo de Software a Medida en Ecuador',
-            description: 'Desarrollo de software a medida en Ecuador para LATAM y EE. UU.: web, móvil y automatización con n8n. Más de 50 sistemas en producción desde 2019.',
+            description: 'Desarrollo de software a medida en Ecuador para LATAM y EE. UU.: web, móvil y automatización con n8n. Más de 10 sistemas en producción desde 2019.',
         },
         en: {
             title: 'Custom Software Development in Ecuador',
-            description: 'Nearshore custom software development from Ecuador for LATAM and the US: web, mobile and n8n automation. 50+ systems in production since 2019.',
+            description: 'Nearshore custom software development from Ecuador for LATAM and the US: web, mobile and n8n automation. 10+ systems in production since 2019.',
         },
     },
     '/soluciones': {

@@ -22,13 +22,13 @@ export const en: Translations = {
         description: "Web, mobile and n8n automation systems for companies across LATAM and the US. Fixed scope, code you own, an MVP in production in 4–6 weeks.",
         cta: "Book a diagnostic",
         ctaSecondary: "See the work",
-        proof: "Est. 2019 · 50+ systems in production · Fintech / Logistics / Retail / Health",
+        proof: "Est. 2019 · 10+ systems in production · Fintech / Logistics / Retail / Health",
     },
 
     // Editorial intro (home)
     intro: {
         title: "What you'll find here.",
-        body: "Khannda is a custom software development company based in Quito, Ecuador. Since 2019 we have put 50+ systems into production for fintech, logistics, retail and healthcare. No digital-transformation promises, no 40-slide decks: below is what we do, three real systems, how we charge, and the questions everyone asks before starting. If your case doesn't need custom software, we'll tell you on the first call.",
+        body: "Khannda is a custom software development company based in Quito, Ecuador. Since 2019 we have put 10+ systems into production for fintech, logistics, retail and healthcare. No digital-transformation promises, no 40-slide decks: below is what we do, three real systems, how we charge, and the questions everyone asks before starting. If your case doesn't need custom software, we'll tell you on the first call.",
     },
 
     // Giant separator words (decorative, aria-hidden; universal terms —
@@ -130,7 +130,7 @@ export const en: Translations = {
     work: {
         eyebrow: "Selected work",
         title: "Systems in production.",
-        subtitle: "Three of the 50+ systems we've kept in production since 2019.",
+        subtitle: "Three of the 10+ systems we've kept in production since 2019.",
         statusLabel: "In production",
         completedLabel: "Completed:",
         viewCase: "View case",
@@ -298,7 +298,7 @@ export const en: Translations = {
             title: "Technology that",
             titleHighlight: "Powers Your Business",
             description: "We don't overwhelm you with technicalities. What matters is how our technology translates into real results for your company.",
-            crossProjects: "Backed by 50+ systems in production — see the case studies",
+            crossProjects: "Backed by 10+ systems in production — see the case studies",
             cta: {
                 text: "Want to know more about our technical architecture?",
                 button: "Let's Talk",

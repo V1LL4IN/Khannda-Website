@@ -53,22 +53,14 @@ export function TeamSection({ isDark: _isDark }: TeamSectionProps) {
               className="group bg-background border border-border rounded-lg p-4 will-change-transform"
             >
               <div className="relative aspect-[4/5] rounded-md overflow-hidden mb-5 bg-surface">
-                {member.image === null ? (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display font-thin text-6xl text-faint select-none">
-                      {member.monogram}
-                    </span>
-                  </div>
-                ) : (
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    draggable={false}
-                    className="object-cover grayscale transition-all duration-400 ease-sexy group-hover:grayscale-0 group-data-[flick-status=active]:grayscale-0"
-                  />
-                )}
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  draggable={false}
+                  className="object-cover grayscale transition-all duration-400 ease-sexy group-hover:grayscale-0 group-data-[flick-status=active]:grayscale-0"
+                />
               </div>
               <h3 className="font-display font-light uppercase tracking-[0.04em] text-lg sm:text-xl mb-1.5">
                 {member.name}

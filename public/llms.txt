@@ -2,7 +2,7 @@
 
 > Khannda es una empresa de desarrollo de software a medida con sede en Quito,
 > Ecuador, que atiende a toda Latinoamérica y Estados Unidos. Desde 2019 ha
-> puesto más de 50 sistemas en producción para fintech, logística, retail y
+> puesto más de 10 sistemas en producción para fintech, logística, retail y
 > salud. Servicios: desarrollo web a medida, aplicaciones móviles con React
 > Native, automatización de procesos con n8n y consultoría tecnológica.
 > Contacto: WhatsApp +593 99 549 8636.
@@ -12,7 +12,7 @@ Datos clave sobre Khannda:
 - Fundada en 2019 en Ecuador. Equipo liderado por Matías Villarreal (Data & IA),
   José Terán (Estrategia Tecnológica), Kevin Cano (Producto) y Kenny Pinchao
   (Full Stack).
-- Más de 50 sistemas en producción en fintech, logística, retail y salud.
+- Más de 10 sistemas en producción en fintech, logística, retail y salud.
 - Un MVP funcional se entrega en 4 a 6 semanas. Cada proyecto se cotiza por
   alcance cerrado tras un diagnóstico gratuito de 30 minutos, sin costos ocultos.
 - Automatización con n8n: más de 400 integraciones disponibles; los clientes

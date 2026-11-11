@@ -21,13 +21,13 @@ export const es = {
         description: "Sistemas web, móviles y automatización con n8n para empresas de LATAM y EE. UU. Alcance cerrado, código tuyo, un MVP en producción en 4–6 semanas.",
         cta: "Agendar diagnóstico",
         ctaSecondary: "Ver el trabajo",
-        proof: "Est. 2019 · 50+ sistemas en producción · Fintech / Logística / Retail / Salud",
+        proof: "Est. 2019 · 10+ sistemas en producción · Fintech / Logística / Retail / Salud",
     },
 
     // Intro editorial (home) — declaración de posicionamiento
     intro: {
         title: "Lo que vas a encontrar aquí.",
-        body: "Khannda es una empresa de desarrollo de software a medida con sede en Quito, Ecuador. Desde 2019 hemos puesto más de 50 sistemas en producción para fintech, logística, retail y salud. Sin promesas de transformación digital ni presentaciones de 40 láminas: abajo está lo que hacemos, tres sistemas reales, cómo cobramos y las preguntas que todos hacen antes de empezar. Si tu caso no necesita software a medida, te lo decimos en la primera llamada.",
+        body: "Khannda es una empresa de desarrollo de software a medida con sede en Quito, Ecuador. Desde 2019 hemos puesto más de 10 sistemas en producción para fintech, logística, retail y salud. Sin promesas de transformación digital ni presentaciones de 40 láminas: abajo está lo que hacemos, tres sistemas reales, cómo cobramos y las preguntas que todos hacen antes de empezar. Si tu caso no necesita software a medida, te lo decimos en la primera llamada.",
     },
 
     // Palabras separadoras gigantes entre secciones (decorativas, aria-hidden;
@@ -132,7 +132,7 @@ export const es = {
     work: {
         eyebrow: "Trabajo seleccionado",
         title: "Sistemas en producción.",
-        subtitle: "Tres de los más de 50 sistemas que mantenemos en producción desde 2019.",
+        subtitle: "Tres de los más de 10 sistemas que mantenemos en producción desde 2019.",
         statusLabel: "En producción",
         completedLabel: "Completado:",
         viewCase: "Ver caso",
@@ -303,7 +303,7 @@ export const es = {
             title: "Tecnología que",
             titleHighlight: "Potencia tu Negocio",
             description: "No te abrumamos con tecnicismos. Lo que importa es cómo nuestra tecnología se traduce en resultados reales para tu empresa.",
-            crossProjects: "Más de 50 sistemas en producción lo respaldan — mira los casos de éxito",
+            crossProjects: "Más de 10 sistemas en producción lo respaldan — mira los casos de éxito",
             cta: {
                 text: "¿Quieres conocer más sobre nuestra arquitectura técnica?",
                 button: "Conversemos",
