@@ -17,10 +17,10 @@ export const SWAP = {
     ease: 'power4.inOut',
 } as const;
 
-/** Deck de cards arrastrable */
-export const FLICK = {
-    duration: 0.6,
-    ease: 'elastic.out(1.2, 1)',
+/** Carrusel asomado (snap tras arrastre / flechas) */
+export const PEEK = {
+    duration: 0.9,
+    ease: 'expo.out',
 } as const;
 
 /** Cursor custom (lag del follower) */
