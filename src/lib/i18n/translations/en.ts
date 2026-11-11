@@ -248,6 +248,8 @@ export const en: Translations = {
             solution: "The solution",
             stack: "Stack",
             results: "Results",
+            screenshot: "System screenshot",
+            demoData: "Demo data",
         },
         showcase: {
             finance: {

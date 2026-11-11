@@ -247,6 +247,8 @@ export const es = {
             solution: "La solución",
             stack: "Stack",
             results: "Resultados",
+            screenshot: "Captura del sistema",
+            demoData: "Datos de demostración",
         },
         showcase: {
             finance: {
