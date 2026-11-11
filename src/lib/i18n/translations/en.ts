@@ -248,6 +248,8 @@ export const en: Translations = {
             solution: "The solution",
             stack: "Stack",
             results: "Results",
+            screenshot: "System screenshot",
+            demoData: "Demo data",
         },
         showcase: {
             finance: {
@@ -278,18 +280,18 @@ export const en: Translations = {
                     "Admin hours freed up every week",
                 ],
             },
-            retail: {
-                title: "GSZ Academy USA",
-                type: "E-Commerce",
-                sector: "E-commerce · Education (USA)",
-                challenge: "A US-based academy sold its programs through direct messages and collected payments manually: slow enrollments, hard-to-reconcile payments and zero ability to sell outside business hours.",
-                solution: "We developed a custom e-commerce platform: program catalog, online checkout and an admin panel for students, orders and revenue. Sales became available 24/7 for the US market.",
-                stack: ["Next.js", "Node.js", "PostgreSQL", "Online payments"],
+            altus: {
+                title: "Altus Commercial Receivables",
+                type: "Corporate website",
+                sector: "Corporate website · B2B commercial collections (USA)",
+                challenge: "Altus, a US B2B commercial receivables recovery firm, needed to rebuild its corporate website on a modern foundation without losing the URLs or search rankings of the previous site, and to connect its forms, chat and calls to the sales team.",
+                solution: "We rebuilt the site in Next.js from the design prototype: 50+ service, industry and city pages that keep the previous site's routes and redirects. We integrated Sanity as the CMS for campaign landing pages and articles, forms that create leads in Salesforce, and a pipeline that routes chats and calls to the sales team. It includes an interactive DSO calculator, JSON-LD structured data, a sitemap and llms.txt.",
+                stack: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS", "Salesforce"],
                 results: [
-                    "24/7 online sales with no manual work",
-                    "Enrollment in minutes instead of days",
-                    "Automatic payment reconciliation",
-                    "Remote Ecuador → USA operation in the same time zone",
+                    "50+ service, industry and city pages",
+                    "Forms that create leads directly in Salesforce",
+                    "Landing pages and articles editable from the CMS",
+                    "Structured data and llms.txt for search engines and AI assistants",
                 ],
             },
         },

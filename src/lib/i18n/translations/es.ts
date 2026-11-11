@@ -247,6 +247,8 @@ export const es = {
             solution: "La solución",
             stack: "Stack",
             results: "Resultados",
+            screenshot: "Captura del sistema",
+            demoData: "Datos de demostración",
         },
         showcase: {
             finance: {
@@ -277,18 +279,18 @@ export const es = {
                     "Horas administrativas liberadas cada semana",
                 ],
             },
-            retail: {
-                title: "GSZ Academy USA",
-                type: "E-Commerce",
-                sector: "E-commerce · Educación (EE. UU.)",
-                challenge: "Una academia con operación en Estados Unidos vendía sus programas por mensajes directos y cobraba de forma manual: matrículas lentas, pagos difíciles de conciliar y cero capacidad de venta fuera del horario de atención.",
-                solution: "Desarrollamos una plataforma e-commerce a medida: catálogo de programas, checkout con pagos en línea y panel de administración de alumnos, pedidos e ingresos. La venta quedó disponible 24/7 para el mercado estadounidense.",
-                stack: ["Next.js", "Node.js", "PostgreSQL", "Pagos en línea"],
+            altus: {
+                title: "Altus Commercial Receivables",
+                type: "Sitio corporativo",
+                sector: "Sitio web corporativo · Cobranza comercial B2B (EE. UU.)",
+                challenge: "Altus, firma estadounidense de recuperación de cartera comercial B2B, necesitaba reconstruir su sitio corporativo sobre una base moderna sin perder las URL ni el posicionamiento del sitio anterior, y conectar sus formularios, chat y llamadas con el equipo comercial.",
+                solution: "Reconstruimos el sitio en Next.js a partir del prototipo de diseño: más de 50 páginas de servicios, industrias y ciudades que conservan las rutas del sitio anterior con sus redirecciones. Integramos Sanity como CMS para landing pages de campaña y artículos, formularios que crean leads en Salesforce y un flujo que lleva chats y llamadas al equipo comercial. Incluye una calculadora de DSO interactiva, datos estructurados JSON-LD, sitemap y llms.txt.",
+                stack: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS", "Salesforce"],
                 results: [
-                    "Ventas online 24/7 sin intervención manual",
-                    "Matrícula en minutos, antes tomaba días",
-                    "Conciliación de pagos automática",
-                    "Operación remota Ecuador → EE. UU. en el mismo huso horario",
+                    "Más de 50 páginas de servicios, industrias y ciudades",
+                    "Formularios que crean leads directamente en Salesforce",
+                    "Landing pages y artículos editables desde el CMS",
+                    "Datos estructurados y llms.txt para buscadores y asistentes de IA",
                 ],
             },
         },
